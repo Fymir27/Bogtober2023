@@ -25,7 +25,7 @@ func spawn_next_wave():
 	
 	for marker in _spawnPoints:
 		var point = marker.global_position;
-		var enemy = enemy_template.instantiate() as Follow;
+		var enemy = enemy_template.instantiate() as Enemy;
 		enemy.global_position = point;
 		enemy._target = _player;
 		get_tree().root.add_child(enemy);

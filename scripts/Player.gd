@@ -1,6 +1,7 @@
-extends CharacterBody2D
+class_name Player extends CharacterBody2D
 
 @export var _speed : float;
+@export var _hp_bar: ProgressBar;
 
 func _process(delta):
 	handle_input();
