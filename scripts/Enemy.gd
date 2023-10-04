@@ -21,6 +21,8 @@ func _physics_process(delta):
 	
 func handle_collision(collision: KinematicCollision2D):	
 	var player = collision.get_collider() as Player;	
+	if (!player):
+		return;
 	#print(player);
 	player.deal_damage(_damage);
 	queue_free();

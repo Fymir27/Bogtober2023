@@ -1,0 +1,9 @@
+[gd_resource type="Theme" load_steps=2 format=3 uid="uid://gfe8yonjytoy"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tm56y"]
+bg_color = Color(0.784314, 0, 0.227451, 1)
+
+[resource]
+Label/font_sizes/font_size = 42
+ProgressBar/font_sizes/font_size = 42
+ProgressBar/styles/fill = SubResource("StyleBoxFlat_tm56y")

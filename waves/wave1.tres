@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="Wave" load_steps=5 format=3 uid="uid://cqyk31sdbl0u3"]
+
+[ext_resource type="PackedScene" uid="uid://byhibxvldv5vk" path="res://public_enemy_nr_1.tscn" id="1_llxiu"]
+[ext_resource type="Script" path="res://scripts/GroupOfEnemies.gd" id="2_mdl6j"]
+[ext_resource type="Script" path="res://scripts/Wave.gd" id="3_j6t22"]
+
+[sub_resource type="Resource" id="Resource_incgp"]
+script = ExtResource("2_mdl6j")
+enemy = ExtResource("1_llxiu")
+count = 10
+
+[resource]
+script = ExtResource("3_j6t22")
+groups = Array[ExtResource("2_mdl6j")]([SubResource("Resource_incgp")])
+spawn_time = 10

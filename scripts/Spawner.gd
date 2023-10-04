@@ -1,11 +1,12 @@
 extends Node2D
 
 @export var _player: Node2D;
-@export var _spawnPoints: Array[Node2D];
-@export var _waves: Array[PackedScene];
+@export var _timer: ProgressBar;
+@export var _timerText: Label;
+@export var _minRadius: float;
+@export var _maxRadius: float;
+@export var _waves: Array[Wave];
 @export var _nextWaveIndex: int;
-@export var _minSpawnDelay: int;
-@export var _maxSpawnDelay: int;
 @export var _secondsUntilNextSpawn: float;
 
 func randf_between(min, max):
@@ -13,21 +14,40 @@ func randf_between(min, max):
 
 func _process(delta):
 	_secondsUntilNextSpawn -= delta;
-	if (_secondsUntilNextSpawn <= 0):
-		spawn_next_wave()
-		_secondsUntilNextSpawn = randf_between(_minSpawnDelay, _maxSpawnDelay);
-		
-		
-func spawn_next_wave():
-	print("Spawn wave " + str(_nextWaveIndex));
-	var enemy_template = _waves[_nextWaveIndex];
-	_nextWaveIndex = (_nextWaveIndex + 1) % _waves.size();	
-	
-	for marker in _spawnPoints:
-		var point = marker.global_position;
-		var enemy = enemy_template.instantiate() as Enemy;
-		enemy.global_position = point;
+	update_timer();
+
+	if (_secondsUntilNextSpawn > 0):
+		return;
+
+	var wave = _waves[_nextWaveIndex];
+	var enemies = wave.spawn();
+
+	var wave_root = Node2D.new();
+	wave_root.set_name("Wave " + str(_nextWaveIndex));
+	get_tree().root.add_child(wave_root);
+
+	for enemy in enemies:
+		wave_root.add_child(enemy);
 		enemy._target = _player;
-		get_tree().root.add_child(enemy);
-		
+
+	distribute_enemies(enemies);
+
+	_nextWaveIndex = (_nextWaveIndex + 1) % _waves.size();
+	_secondsUntilNextSpawn = _waves[_nextWaveIndex].spawn_time;
+
 	
+func distribute_enemies(enemies: Array[Enemy]):	
+	var angle_offset = (2 * PI) / enemies.size();
+	var i = 0;
+	for enemy in enemies:
+		var angle = angle_offset * i;
+		i += 1;
+		var distance_from_player = randf_between(_minRadius, _maxRadius);
+		var position_from_player = Vector2(cos(angle), sin(angle)).normalized() * distance_from_player;		
+		var final_position = _player.global_position + position_from_player;
+		enemy.global_position = final_position;
+
+func update_timer():
+	_timer.max_value =  _waves[_nextWaveIndex].spawn_time;
+	_timer.value = _secondsUntilNextSpawn;
+	_timerText.text = str(ceil(_secondsUntilNextSpawn)) + "s"
