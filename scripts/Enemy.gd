@@ -2,14 +2,25 @@ class_name Enemy extends CharacterBody2D
 
 @export var _speed: float;	
 @export var _damage: float;
+@export var _hit_delay: float;
 @export var _target: Node2D;
 @export var _sprite : Sprite2D;
+@export var _hit_progress: ProgressBar;
 
-func _ready():
-	# print("Ready: " + str(name));
+var _hit_timer: float;
+
+func _ready():	
+	if (_hit_progress):
+		_hit_progress.max_value = _hit_delay;
 	pass;
+
+func _process(delta):
+	_hit_timer -= delta;
+	if (_hit_progress):
+		_hit_progress.value = _hit_progress.max_value - _hit_timer;
+		
 	
-func _physics_process(delta):
+func _physics_process(_delta):
 	var direction = _target.global_position - global_position;
 	velocity = direction.normalized() * _speed;
 	move_and_slide();
@@ -23,9 +34,10 @@ func handle_collision(collision: KinematicCollision2D):
 	var player = collision.get_collider() as Player;	
 	if (!player):
 		return;
-	#print(player);
-	player.deal_damage(_damage);
-	queue_free();
+	if (_hit_timer > 0):
+		return;	
+	player.deal_damage(_damage);	
+	_hit_timer = _hit_delay;
 	
 func flip_sprite():
 	if (velocity.x > 0):

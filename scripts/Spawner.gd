@@ -9,8 +9,8 @@ extends Node2D
 @export var _nextWaveIndex: int;
 @export var _secondsUntilNextSpawn: float;
 
-func randf_between(min, max):
-	return min + randf() * (max - min);
+func randf_between(min_val, max_val):
+	return min_val + randf() * (max_val - min_val);
 
 func _process(delta):
 	_secondsUntilNextSpawn -= delta;
