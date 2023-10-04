@@ -1,7 +1,8 @@
 class_name Player extends CharacterBody2D
 
 @export var _speed : float;
-@export var _hp_bar: ProgressBar;
+@export var _hp_bar : ProgressBar;
+@export var _sprite : Sprite2D;
 
 func _process(delta):
 	handle_input();
@@ -26,7 +27,10 @@ func handle_input():
 		
 func flip_sprite():
 	if (velocity.x > 0):
-		$PlayerSprite.flip_h = true;	
+		_sprite.flip_h = true;	
 	else: if (velocity.x < 0):
-		$PlayerSprite.flip_h = false;
+		_sprite.flip_h = false;
+
+func deal_damage(amount: float):
+	_hp_bar.value -= amount;
 	
