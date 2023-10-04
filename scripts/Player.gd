@@ -1,5 +1,7 @@
 class_name Player extends CharacterBody2D
 
+signal player_died;
+
 @export var _speed : float;
 @export var _hp_bar : ProgressBar;
 @export var _sprite : Sprite2D;
@@ -33,4 +35,6 @@ func flip_sprite():
 
 func deal_damage(amount: float):
 	_hp_bar.value -= amount;
+	if (_hp_bar.value <= 0):
+		player_died.emit();
 	

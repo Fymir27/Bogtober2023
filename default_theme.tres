@@ -1,9 +1,14 @@
-[gd_resource type="Theme" load_steps=2 format=3 uid="uid://gfe8yonjytoy"]
+[gd_resource type="Theme" load_steps=3 format=3 uid="uid://gfe8yonjytoy"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vhali"]
+bg_color = Color(0.254902, 0.4, 0.203922, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tm56y"]
 bg_color = Color(0.784314, 0, 0.227451, 1)
 
 [resource]
+Button/font_sizes/font_size = 42
 Label/font_sizes/font_size = 42
+Panel/styles/panel = SubResource("StyleBoxFlat_vhali")
 ProgressBar/font_sizes/font_size = 42
 ProgressBar/styles/fill = SubResource("StyleBoxFlat_tm56y")

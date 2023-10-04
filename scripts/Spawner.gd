@@ -9,6 +9,14 @@ extends Node2D
 @export var _nextWaveIndex: int;
 @export var _secondsUntilNextSpawn: float;
 
+var enemies: Array[Enemy] = [];
+
+func kill_all_enemies():
+	for enemy in enemies:
+		enemy.get_parent().remove_child(enemy);
+		enemy.free();
+	enemies.clear();	
+
 func randf_between(min_val, max_val):
 	return min_val + randf() * (max_val - min_val);
 
@@ -19,8 +27,10 @@ func _process(delta):
 	if (_secondsUntilNextSpawn > 0):
 		return;
 
+	print("Spawning wave " + str(_nextWaveIndex));
+
 	var wave = _waves[_nextWaveIndex];
-	var enemies = wave.spawn();
+	enemies = wave.spawn();
 
 	var wave_root = Node2D.new();
 	wave_root.set_name("Wave " + str(_nextWaveIndex));
@@ -30,13 +40,13 @@ func _process(delta):
 		wave_root.add_child(enemy);
 		enemy._target = _player;
 
-	distribute_enemies(enemies);
+	distribute_enemies();
 
 	_nextWaveIndex = (_nextWaveIndex + 1) % _waves.size();
 	_secondsUntilNextSpawn = _waves[_nextWaveIndex].spawn_time;
 
 	
-func distribute_enemies(enemies: Array[Enemy]):	
+func distribute_enemies():	
 	var angle_offset = (2 * PI) / enemies.size();
 	var i = 0;
 	for enemy in enemies:

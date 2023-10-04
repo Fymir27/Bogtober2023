@@ -21,6 +21,8 @@ func _process(delta):
 		
 	
 func _physics_process(_delta):
+	if (!_target):
+		return;
 	var direction = _target.global_position - global_position;
 	velocity = direction.normalized() * _speed;
 	move_and_slide();

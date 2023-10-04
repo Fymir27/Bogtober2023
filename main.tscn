@@ -1,6 +1,7 @@
-[gd_scene load_steps=9 format=3 uid="uid://cbdeftm7hb34y"]
+[gd_scene load_steps=10 format=3 uid="uid://cbdeftm7hb34y"]
 
 [ext_resource type="TileSet" uid="uid://doey0ec6xxyh4" path="res://background.tres" id="1_bu084"]
+[ext_resource type="Script" path="res://GameState.gd" id="1_bxje8"]
 [ext_resource type="Script" path="res://scripts/Player.gd" id="2_k7c3w"]
 [ext_resource type="Texture2D" uid="uid://pwroljxqddpq" path="res://phinoon.png" id="2_s2ppa"]
 [ext_resource type="Script" path="res://scripts/Spawner.gd" id="4_ijtmi"]
@@ -16,6 +17,10 @@ bg_color = Color(0.290196, 0.301961, 1, 1)
 
 [node name="Root" type="Node2D"]
 
+[node name="GameState" type="Node" parent="." node_paths=PackedStringArray("_game_over_panel")]
+script = ExtResource("1_bxje8")
+_game_over_panel = NodePath("../Player/GameOver")
+
 [node name="Tilemap" type="TileMap" parent="."]
 scale = Vector2(3, 3)
 tile_set = ExtResource("1_bu084")
@@ -25,7 +30,7 @@ layer_0/tile_data = PackedInt32Array(-3407979, 131072, 0, -3342443, 0, 0, -32769
 [node name="Player" type="CharacterBody2D" parent="." node_paths=PackedStringArray("_hp_bar", "_sprite")]
 script = ExtResource("2_k7c3w")
 _speed = 500.0
-_hp_bar = NodePath("Camera2D/HPBar")
+_hp_bar = NodePath("HPBar")
 _sprite = NodePath("PlayerSprite")
 
 [node name="PlayerSprite" type="Sprite2D" parent="Player"]
@@ -42,22 +47,28 @@ position = Vector2(6.05026, 28.8492)
 scale = Vector2(2.02516, 2.15722)
 script = ExtResource("4_ijtmi")
 _player = NodePath("..")
-_timer = NodePath("TimeUntilNextWave")
-_timerText = NodePath("TimeUntilNextWave/TimerText")
+_timer = NodePath("../TimeUntilNextWave")
+_timerText = NodePath("../TimeUntilNextWave/TimerText")
 _minRadius = 3000.0
 _maxRadius = 4000.0
 _waves = Array[Resource("res://scripts/Wave.gd")]([ExtResource("5_a370e")])
 
-[node name="TimeUntilNextWave" type="ProgressBar" parent="Player/Spawner"]
+[node name="Camera2D" type="Camera2D" parent="Player"]
+position = Vector2(-3, 21)
+zoom = Vector2(0.5, 0.5)
+
+[node name="TimeUntilNextWave" type="ProgressBar" parent="Player"]
+z_index = 100
+z_as_relative = false
 anchors_preset = 6
 anchor_left = 1.0
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
-offset_left = 813.0
-offset_top = -412.0
-offset_right = 929.0
-offset_bottom = 388.0
+offset_left = 1725.0
+offset_top = -842.0
+offset_right = 1841.0
+offset_bottom = 843.0
 grow_horizontal = 0
 grow_vertical = 2
 theme_override_styles/fill = SubResource("StyleBoxFlat_e0p1k")
@@ -65,30 +76,31 @@ value = 75.0
 fill_mode = 3
 show_percentage = false
 
-[node name="TimerText" type="Label" parent="Player/Spawner/TimeUntilNextWave"]
+[node name="TimerText" type="Label" parent="Player/TimeUntilNextWave"]
+z_index = 100
+z_as_relative = false
 layout_mode = 0
-offset_left = 15.0578
-offset_top = 367.568
-offset_right = 107.058
-offset_bottom = 428.568
+offset_left = -21.0
+offset_top = 804.0
+offset_right = 151.0
+offset_bottom = 950.0
 theme = ExtResource("6_rsfq3")
 text = "123s"
 horizontal_alignment = 1
 
-[node name="Camera2D" type="Camera2D" parent="Player"]
-position = Vector2(-3, 21)
-zoom = Vector2(0.5, 0.5)
-
-[node name="HPBar" type="ProgressBar" parent="Player/Camera2D"]
+[node name="HPBar" type="ProgressBar" parent="Player"]
 z_index = 100
-offset_left = -1082.0
-offset_top = -1076.0
-offset_right = 1068.0
-offset_bottom = -938.0
+z_as_relative = false
+offset_left = -1085.0
+offset_top = -1055.0
+offset_right = 1065.0
+offset_bottom = -917.0
 theme = ExtResource("6_rsfq3")
 value = 100.0
 
-[node name="Label" type="Label" parent="Player/Camera2D/HPBar"]
+[node name="Label" type="Label" parent="Player/HPBar"]
+z_index = 100
+z_as_relative = false
 layout_mode = 0
 offset_left = 986.0
 offset_top = -4.0
@@ -97,3 +109,65 @@ offset_bottom = 71.0
 theme = ExtResource("6_rsfq3")
 text = "Health"
 uppercase = true
+
+[node name="GameOver" type="Panel" parent="Player"]
+visible = false
+z_index = 100
+z_as_relative = false
+offset_left = -860.0
+offset_top = -427.0
+offset_right = 864.0
+offset_bottom = 467.0
+theme = ExtResource("6_rsfq3")
+
+[node name="Text" type="Label" parent="Player/GameOver"]
+z_index = 100
+z_as_relative = false
+layout_mode = 0
+offset_left = 3.0
+offset_top = 54.0
+offset_right = 1723.0
+offset_bottom = 381.0
+theme_override_font_sizes/font_size = 100
+text = "Game Over"
+horizontal_alignment = 1
+vertical_alignment = 1
+uppercase = true
+
+[node name="Quit" type="Button" parent="Player/GameOver"]
+z_index = 100
+z_as_relative = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 199.0
+offset_top = 631.0
+offset_right = -1119.0
+offset_bottom = -88.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("6_rsfq3")
+text = "Quit
+"
+
+[node name="Retry" type="Button" parent="Player/GameOver"]
+z_index = 100
+z_as_relative = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 1055.0
+offset_top = 633.0
+offset_right = -263.0
+offset_bottom = -88.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("6_rsfq3")
+text = "Retry"
+
+[connection signal="restart_scene" from="GameState" to="Player/Spawner" method="kill_all_enemies"]
+[connection signal="player_died" from="Player" to="GameState" method="_on_player_died"]
+[connection signal="pressed" from="Player/GameOver/Quit" to="GameState" method="quit"]
+[connection signal="pressed" from="Player/GameOver/Retry" to="GameState" method="retry"]
