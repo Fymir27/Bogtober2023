@@ -249,8 +249,7 @@ debug_color = Color(0.392157, 0.615686, 0.0235294, 0.0705882)
 script = ExtResource("8_061mk")
 
 [node name="WeaponSprite" type="Sprite2D" parent="Player/Weapon"]
-position = Vector2(149, 0)
-rotation = 1.5708
+position = Vector2(64, 0)
 texture = ExtResource("8_s34o0")
 
 [node name="WeaponAnimations" type="AnimationPlayer" parent="Player/Weapon/WeaponSprite"]
