@@ -1,12 +1,15 @@
-[gd_scene load_steps=10 format=3 uid="uid://cbdeftm7hb34y"]
+[gd_scene load_steps=18 format=3 uid="uid://cbdeftm7hb34y"]
 
+[ext_resource type="Script" path="res://scripts/GameState.gd" id="1_4b8ha"]
 [ext_resource type="TileSet" uid="uid://doey0ec6xxyh4" path="res://background.tres" id="1_bu084"]
-[ext_resource type="Script" path="res://GameState.gd" id="1_bxje8"]
 [ext_resource type="Script" path="res://scripts/Player.gd" id="2_k7c3w"]
-[ext_resource type="Texture2D" uid="uid://pwroljxqddpq" path="res://phinoon.png" id="2_s2ppa"]
 [ext_resource type="Script" path="res://scripts/Spawner.gd" id="4_ijtmi"]
+[ext_resource type="Texture2D" uid="uid://pwroljxqddpq" path="res://sprites/phinoon.png" id="4_knx4n"]
 [ext_resource type="Resource" uid="uid://cqyk31sdbl0u3" path="res://waves/wave1.tres" id="5_a370e"]
 [ext_resource type="Theme" uid="uid://gfe8yonjytoy" path="res://default_theme.tres" id="6_rsfq3"]
+[ext_resource type="Script" path="res://scripts/Weapon.gd" id="8_061mk"]
+[ext_resource type="Texture2D" uid="uid://c2bl6qxsboflf" path="res://sprites/weapon.png" id="8_s34o0"]
+[ext_resource type="Script" path="res://scripts/Score.gd" id="10_rx8cn"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_xafwk"]
 radius = 31.0
@@ -15,10 +18,76 @@ height = 174.0
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_e0p1k"]
 bg_color = Color(0.290196, 0.301961, 1, 1)
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_6ucjn"]
+radius = 221.081
+
+[sub_resource type="Animation" id="Animation_5q5qc"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = false
+tracks/0/path = NodePath("WeaponSprite:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-64, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = false
+tracks/1/path = NodePath("WeaponSprite:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_xgv5f"]
+resource_name = "stab"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Weapon/WeaponSprite:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(64, 0), Vector2(149, 0), Vector2(64, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Weapon/WeaponSprite:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 1.5708, 1.5708, 0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ps31q"]
+_data = {
+"RESET": SubResource("Animation_5q5qc"),
+"stab": SubResource("Animation_xgv5f")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tpuvh"]
+size = Vector2(20, 127)
+
 [node name="Root" type="Node2D"]
 
 [node name="GameState" type="Node" parent="." node_paths=PackedStringArray("_game_over_panel")]
-script = ExtResource("1_bxje8")
+script = ExtResource("1_4b8ha")
 _game_over_panel = NodePath("../Player/GameOver")
 
 [node name="Tilemap" type="TileMap" parent="."]
@@ -32,13 +101,14 @@ script = ExtResource("2_k7c3w")
 _speed = 500.0
 _hp_bar = NodePath("HPBar")
 _sprite = NodePath("PlayerSprite")
+_hit_delay = 2.0
 
 [node name="PlayerSprite" type="Sprite2D" parent="Player"]
 position = Vector2(-3, 21)
-texture = ExtResource("2_s2ppa")
+texture = ExtResource("4_knx4n")
 region_rect = Rect2(1, 1, 100, 100)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
+[node name="PlayerShape" type="CollisionShape2D" parent="Player"]
 position = Vector2(-5, 15)
 shape = SubResource("CapsuleShape2D_xafwk")
 
@@ -167,7 +237,57 @@ grow_vertical = 2
 theme = ExtResource("6_rsfq3")
 text = "Retry"
 
+[node name="AttackRange" type="Area2D" parent="Player"]
+collision_layer = 0
+collision_mask = 2
+
+[node name="AttackRangeShape" type="CollisionShape2D" parent="Player/AttackRange"]
+shape = SubResource("CircleShape2D_6ucjn")
+debug_color = Color(0.392157, 0.615686, 0.0235294, 0.0705882)
+
+[node name="Weapon" type="Node2D" parent="Player"]
+script = ExtResource("8_061mk")
+
+[node name="WeaponSprite" type="Sprite2D" parent="Player/Weapon"]
+position = Vector2(149, 0)
+rotation = 1.5708
+texture = ExtResource("8_s34o0")
+
+[node name="WeaponAnimations" type="AnimationPlayer" parent="Player/Weapon/WeaponSprite"]
+root_node = NodePath("../../..")
+libraries = {
+"": SubResource("AnimationLibrary_ps31q")
+}
+
+[node name="WeaponHitbox" type="Area2D" parent="Player/Weapon/WeaponSprite"]
+collision_layer = 4
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player/Weapon/WeaponSprite/WeaponHitbox"]
+position = Vector2(0, 0.5)
+shape = SubResource("RectangleShape2D_tpuvh")
+debug_color = Color(0.811765, 0, 0.137255, 0.419608)
+
+[node name="ScoreLabel" type="Label" parent="Player"]
+offset_left = -1898.0
+offset_top = -1034.0
+offset_right = -1774.0
+offset_bottom = -973.0
+theme = ExtResource("6_rsfq3")
+text = "Score:"
+
+[node name="ScoreValue" type="Label" parent="Player/ScoreLabel"]
+layout_mode = 0
+offset_left = 133.0
+offset_right = 253.0
+offset_bottom = 61.0
+text = "99999
+"
+script = ExtResource("10_rx8cn")
+
 [connection signal="restart_scene" from="GameState" to="Player/Spawner" method="kill_all_enemies"]
 [connection signal="player_died" from="Player" to="GameState" method="_on_player_died"]
+[connection signal="enemy_died" from="Player/Spawner" to="Player/ScoreLabel/ScoreValue" method="_on_spawner_enemy_died"]
 [connection signal="pressed" from="Player/GameOver/Quit" to="GameState" method="quit"]
 [connection signal="pressed" from="Player/GameOver/Retry" to="GameState" method="retry"]
+[connection signal="body_entered" from="Player/Weapon/WeaponSprite/WeaponHitbox" to="Player/Weapon" method="_on_enemy_hit"]

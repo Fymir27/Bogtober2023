@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://pwroljxqddpq"
-path="res://.godot/imported/phinoon.png-e766b3044c34975908932d1197c74fd8.ctex"
+uid="uid://cfxhit5m4g4jc"
+path="res://.godot/imported/weapon.png-71d896b470170ce1bc2d3a427c147866.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://phinoon.png"
-dest_files=["res://.godot/imported/phinoon.png-e766b3044c34975908932d1197c74fd8.ctex"]
+source_file="res://weapon.png"
+dest_files=["res://.godot/imported/weapon.png-71d896b470170ce1bc2d3a427c147866.ctex"]
 
 [params]
 

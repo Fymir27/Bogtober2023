@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://budj0fp5oavyj"
-path="res://.godot/imported/rook.png-2fe4871fb8f315d946923cf2a817e20c.ctex"
+uid="uid://pwroljxqddpq"
+path="res://.godot/imported/phinoon.png-34b0f6d6a6f45f3586d13f37d8bf8108.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://rook.png"
-dest_files=["res://.godot/imported/rook.png-2fe4871fb8f315d946923cf2a817e20c.ctex"]
+source_file="res://sprites/phinoon.png"
+dest_files=["res://.godot/imported/phinoon.png-34b0f6d6a6f45f3586d13f37d8bf8108.ctex"]
 
 [params]
 

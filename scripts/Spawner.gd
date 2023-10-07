@@ -1,5 +1,7 @@
 extends Node2D
 
+signal enemy_died(enemy: Enemy);
+
 @export var _player: Node2D;
 @export var _timer: ProgressBar;
 @export var _timerText: Label;
@@ -56,6 +58,7 @@ func distribute_enemies():
 		var position_from_player = Vector2(cos(angle), sin(angle)).normalized() * distance_from_player;		
 		var final_position = _player.global_position + position_from_player;
 		enemy.global_position = final_position;
+		enemy.tree_exited.connect(func(): enemy_died.emit(enemy));
 
 func update_timer():
 	_timer.max_value =  _waves[_nextWaveIndex].spawn_time;

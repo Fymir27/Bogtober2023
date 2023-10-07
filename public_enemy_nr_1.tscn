@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://byhibxvldv5vk"]
 
 [ext_resource type="Script" path="res://scripts/Enemy.gd" id="1_y2i6d"]
-[ext_resource type="Texture2D" uid="uid://pwroljxqddpq" path="res://phinoon.png" id="2_3gbk1"]
+[ext_resource type="Texture2D" uid="uid://pwroljxqddpq" path="res://sprites/phinoon.png" id="2_ahnhy"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_pt0o6"]
 radius = 15.5
@@ -24,7 +24,7 @@ _hit_progress = NodePath("ProgressBar")
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(2, 1)
 scale = Vector2(0.69, 0.275)
-texture = ExtResource("2_3gbk1")
+texture = ExtResource("2_ahnhy")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-0.5, -5.5)
