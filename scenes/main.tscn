@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://cbdeftm7hb34y"]
+[gd_scene load_steps=17 format=3 uid="uid://cbdeftm7hb34y"]
 
 [ext_resource type="Script" path="res://scripts/GameState.gd" id="1_boxcs"]
 [ext_resource type="TileSet" uid="uid://doey0ec6xxyh4" path="res://background.tres" id="2_w6q1b"]
@@ -9,6 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://c2bl6qxsboflf" path="res://sprites/weapon.png" id="7_xun4g"]
 [ext_resource type="Script" path="res://scripts/Score.gd" id="8_tngyd"]
 [ext_resource type="PackedScene" uid="uid://c4ripm6u51joa" path="res://scenes/spawner.tscn" id="9_5755s"]
+[ext_resource type="PackedScene" uid="uid://da28es3vlw5qi" path="res://scenes/e_pog.tscn" id="10_mbw4p"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_xafwk"]
 radius = 31.0
@@ -221,6 +222,7 @@ _player = NodePath("../Player")
 [node name="SpawnerB" parent="." node_paths=PackedStringArray("_player") instance=ExtResource("9_5755s")]
 position = Vector2(2699, -2033)
 _player = NodePath("../Player")
+_easy_enemy = ExtResource("10_mbw4p")
 
 [node name="SpawnerC" parent="." node_paths=PackedStringArray("_player") instance=ExtResource("9_5755s")]
 position = Vector2(-2833, 2041)
@@ -234,3 +236,7 @@ _player = NodePath("../Player")
 [connection signal="pressed" from="Player/GameOver/Quit" to="GameState" method="quit"]
 [connection signal="pressed" from="Player/GameOver/Retry" to="GameState" method="retry"]
 [connection signal="body_entered" from="Player/Weapon/WeaponSprite/WeaponHitbox" to="Player/Weapon" method="_on_enemy_hit"]
+[connection signal="enemy_died" from="SpawnerA" to="Player/ScoreLabel/ScoreValue" method="_on_spawner_enemy_died"]
+[connection signal="enemy_died" from="SpawnerB" to="Player/ScoreLabel/ScoreValue" method="_on_spawner_enemy_died"]
+[connection signal="enemy_died" from="SpawnerC" to="Player/ScoreLabel/ScoreValue" method="_on_spawner_enemy_died"]
+[connection signal="enemy_died" from="SpawnerD" to="Player/ScoreLabel/ScoreValue" method="_on_spawner_enemy_died"]
