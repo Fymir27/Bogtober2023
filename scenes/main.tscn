@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://cbdeftm7hb34y"]
+[gd_scene load_steps=19 format=3 uid="uid://cbdeftm7hb34y"]
 
 [ext_resource type="Script" path="res://scripts/GameState.gd" id="1_boxcs"]
 [ext_resource type="TileSet" uid="uid://doey0ec6xxyh4" path="res://background.tres" id="2_w6q1b"]
@@ -11,6 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://c4ripm6u51joa" path="res://scenes/spawner.tscn" id="9_5755s"]
 [ext_resource type="PackedScene" uid="uid://da28es3vlw5qi" path="res://scenes/e_pog.tscn" id="10_mbw4p"]
 [ext_resource type="PackedScene" uid="uid://csoliin8k8lj0" path="res://scenes/e_giog.tscn" id="11_ngcgn"]
+[ext_resource type="PackedScene" uid="uid://dmy3nmj6kyst2" path="res://scenes/e_shroomba.tscn" id="12_tqki8"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_xafwk"]
 radius = 31.0
@@ -233,6 +234,7 @@ _easy_enemy = ExtResource("11_ngcgn")
 [node name="SpawnerD" parent="." node_paths=PackedStringArray("_player") instance=ExtResource("9_5755s")]
 position = Vector2(2699, 2147)
 _player = NodePath("../Player")
+_easy_enemy = ExtResource("12_tqki8")
 
 [connection signal="player_died" from="Player" to="GameState" method="_on_player_died"]
 [connection signal="pressed" from="Player/GameOver/Quit" to="GameState" method="quit"]

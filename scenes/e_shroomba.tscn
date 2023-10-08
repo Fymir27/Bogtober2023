@@ -1,20 +1,20 @@
-[gd_scene load_steps=5 format=3 uid="uid://csoliin8k8lj0"]
+[gd_scene load_steps=5 format=3 uid="uid://dmy3nmj6kyst2"]
 
-[ext_resource type="Script" path="res://scripts/Enemy.gd" id="1_pt4ec"]
-[ext_resource type="Texture2D" uid="uid://cg6r6ipxx4ue2" path="res://sprites/Giog.png" id="2_y466r"]
+[ext_resource type="Script" path="res://scripts/Enemy.gd" id="1_vs45q"]
+[ext_resource type="Texture2D" uid="uid://cphbyiw8ycphg" path="res://sprites/ShroombaSmol.png" id="2_g7d8p"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_pt0o6"]
-radius = 118.0
-height = 346.0
+radius = 36.0
+height = 90.0
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cwiwd"]
 bg_color = Color(0.333333, 0, 0.815686, 1)
 
-[node name="giog" type="CharacterBody2D" node_paths=PackedStringArray("_sprite", "_hit_progress")]
+[node name="shroomba" type="CharacterBody2D" node_paths=PackedStringArray("_sprite", "_hit_progress")]
 collision_layer = 2
 collision_mask = 3
 motion_mode = 1
-script = ExtResource("1_pt4ec")
+script = ExtResource("1_vs45q")
 _speed = 100.0
 _damage = 7.0
 _hit_delay = 1.0
@@ -22,10 +22,9 @@ _sprite = NodePath("Sprite2D")
 _hit_progress = NodePath("ProgressBar")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("2_y466r")
+texture = ExtResource("2_g7d8p")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(15, 24)
 shape = SubResource("CapsuleShape2D_pt0o6")
 
 [node name="ProgressBar" type="ProgressBar" parent="."]
