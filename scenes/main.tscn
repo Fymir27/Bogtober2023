@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://cbdeftm7hb34y"]
+[gd_scene load_steps=16 format=3 uid="uid://cbdeftm7hb34y"]
 
 [ext_resource type="Script" path="res://scripts/GameState.gd" id="1_boxcs"]
 [ext_resource type="TileSet" uid="uid://doey0ec6xxyh4" path="res://background.tres" id="2_w6q1b"]
@@ -13,9 +13,6 @@
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_xafwk"]
 radius = 31.0
 height = 174.0
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_e0p1k"]
-bg_color = Color(0.290196, 0.301961, 1, 1)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_6ucjn"]
 radius = 221.081
@@ -89,46 +86,15 @@ shape = SubResource("CapsuleShape2D_xafwk")
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 position = Vector2(-3, 21)
-zoom = Vector2(0.5, 0.5)
-
-[node name="TimeUntilNextWave" type="ProgressBar" parent="Player"]
-z_index = 100
-z_as_relative = false
-anchors_preset = 6
-anchor_left = 1.0
-anchor_top = 0.5
-anchor_right = 1.0
-anchor_bottom = 0.5
-offset_left = 1725.0
-offset_top = -842.0
-offset_right = 1841.0
-offset_bottom = 843.0
-grow_horizontal = 0
-grow_vertical = 2
-theme_override_styles/fill = SubResource("StyleBoxFlat_e0p1k")
-value = 75.0
-fill_mode = 3
-show_percentage = false
-
-[node name="TimerText" type="Label" parent="Player/TimeUntilNextWave"]
-z_index = 100
-z_as_relative = false
-layout_mode = 0
-offset_left = -21.0
-offset_top = 804.0
-offset_right = 151.0
-offset_bottom = 950.0
-theme = ExtResource("5_jm235")
-text = "123s"
-horizontal_alignment = 1
+zoom = Vector2(0.6, 0.6)
 
 [node name="HPBar" type="ProgressBar" parent="Player"]
 z_index = 100
 z_as_relative = false
 offset_left = -1085.0
-offset_top = -1055.0
+offset_top = -850.0
 offset_right = 1065.0
-offset_bottom = -917.0
+offset_bottom = -712.0
 theme = ExtResource("5_jm235")
 value = 100.0
 
@@ -232,10 +198,10 @@ shape = SubResource("RectangleShape2D_tpuvh")
 debug_color = Color(0.811765, 0, 0.137255, 0.419608)
 
 [node name="ScoreLabel" type="Label" parent="Player"]
-offset_left = -1898.0
-offset_top = -1034.0
-offset_right = -1774.0
-offset_bottom = -973.0
+offset_left = -1507.0
+offset_top = -803.0
+offset_right = -1383.0
+offset_bottom = -742.0
 theme = ExtResource("5_jm235")
 text = "Score:"
 

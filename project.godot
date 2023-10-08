@@ -27,3 +27,9 @@ window/stretch/aspect="expand"
 
 2d_physics/layer_1="Player"
 2d_physics/layer_2="Enemy"
+
+[rendering]
+
+textures/lossless_compression/force_png=true
+anti_aliasing/screen_space_roughness_limiter/enabled=false
+anti_aliasing/canvas_textures/default_texture_filter=0

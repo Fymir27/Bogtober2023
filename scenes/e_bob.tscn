@@ -1,20 +1,20 @@
 [gd_scene load_steps=5 format=3 uid="uid://byhibxvldv5vk"]
 
-[ext_resource type="Script" path="res://scripts/Enemy.gd" id="1_47i6v"]
-[ext_resource type="Texture2D" uid="uid://pwroljxqddpq" path="res://sprites/phinoon.png" id="2_81jbp"]
+[ext_resource type="Script" path="res://scripts/Enemy.gd" id="1_8jluv"]
+[ext_resource type="Texture2D" uid="uid://pm2g6srkdu3m" path="res://sprites/Bob.png" id="2_32omx"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_pt0o6"]
-radius = 15.5
-height = 39.0
+radius = 36.0
+height = 132.0
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cwiwd"]
 bg_color = Color(0.333333, 0, 0.815686, 1)
 
-[node name="public_enemy_nr_1" type="CharacterBody2D" node_paths=PackedStringArray("_sprite", "_hit_progress")]
+[node name="bob" type="CharacterBody2D" node_paths=PackedStringArray("_sprite", "_hit_progress")]
 collision_layer = 2
 collision_mask = 3
 motion_mode = 1
-script = ExtResource("1_47i6v")
+script = ExtResource("1_8jluv")
 _speed = 100.0
 _damage = 7.0
 _hit_delay = 1.0
@@ -22,12 +22,11 @@ _sprite = NodePath("Sprite2D")
 _hit_progress = NodePath("ProgressBar")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(2, 1)
-scale = Vector2(0.69, 0.275)
-texture = ExtResource("2_81jbp")
+texture = ExtResource("2_32omx")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-0.5, -5.5)
+position = Vector2(-6, 8)
+rotation = 1.5708
 shape = SubResource("CapsuleShape2D_pt0o6")
 
 [node name="ProgressBar" type="ProgressBar" parent="."]

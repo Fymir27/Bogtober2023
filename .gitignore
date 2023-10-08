@@ -2,3 +2,4 @@
 .godot/
 # external editor
 .vscode/
+build/
