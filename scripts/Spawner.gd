@@ -3,15 +3,38 @@ extends Node2D
 signal enemy_died(enemy: Enemy);
 
 @export var _player: Node2D;
-@export var _timer: ProgressBar;
-@export var _timerText: Label;
-@export var _minRadius: float;
-@export var _maxRadius: float;
-@export var _waves: Array[Wave];
-@export var _nextWaveIndex: int;
-@export var _secondsUntilNextSpawn: float;
+@export var _spawn_delay: float;
+@export var _easy_enemy: PackedScene;
+@export var _hard_enemy: PackedScene;
+@export var _boss_enemy: PackedScene;
 
-var enemies: Array[Enemy] = [];
+var _secondsUntilNextSpawn: float;
+var enemies: Array[Enemy] = [];	
+
+func _ready():
+	set_process(false);
+
+func _process(delta):
+
+	_secondsUntilNextSpawn -= delta;
+
+	if (_secondsUntilNextSpawn > 0):
+		return;
+
+	var enemy_template = pick_enemy_to_spawn();
+	var enemy_count = pick_enemy_count();
+
+	print("Spawning enemies: " + str(enemy_count) + " x " + enemy_template.resource_path);
+
+	var spawned_enemies: Array[Enemy] = [];
+	for i in enemy_count:
+		var enemy = spawn_enemy(enemy_template);		
+		spawned_enemies.append(enemy);
+
+	enemies.append_array(spawned_enemies);
+
+	_secondsUntilNextSpawn = _spawn_delay;
+
 
 func kill_all_enemies():
 	for enemy in enemies:
@@ -21,46 +44,38 @@ func kill_all_enemies():
 
 func randf_between(min_val, max_val):
 	return min_val + randf() * (max_val - min_val);
-
-func _process(delta):
-	_secondsUntilNextSpawn -= delta;
-	update_timer();
-
-	if (_secondsUntilNextSpawn > 0):
-		return;
-
-	print("Spawning wave " + str(_nextWaveIndex));
-
-	var wave = _waves[_nextWaveIndex];
-	enemies = wave.spawn();
-
-	var wave_root = Node2D.new();
-	wave_root.set_name("Wave " + str(_nextWaveIndex));
-	get_tree().root.add_child(wave_root);
-
-	for enemy in enemies:
-		wave_root.add_child(enemy);
-		enemy._target = _player;
-
-	distribute_enemies();
-
-	_nextWaveIndex = (_nextWaveIndex + 1) % _waves.size();
-	_secondsUntilNextSpawn = _waves[_nextWaveIndex].spawn_time;
-
 	
-func distribute_enemies():	
-	var angle_offset = (2 * PI) / enemies.size();
-	var i = 0;
-	for enemy in enemies:
-		var angle = angle_offset * i;
-		i += 1;
-		var distance_from_player = randf_between(_minRadius, _maxRadius);
-		var position_from_player = Vector2(cos(angle), sin(angle)).normalized() * distance_from_player;		
-		var final_position = _player.global_position + position_from_player;
-		enemy.global_position = final_position;
-		enemy.tree_exited.connect(func(): enemy_died.emit(enemy));
+func pick_enemy_to_spawn() -> PackedScene:
+	# TODO
+	return _easy_enemy;
 
-func update_timer():
-	_timer.max_value =  _waves[_nextWaveIndex].spawn_time;
-	_timer.value = _secondsUntilNextSpawn;
-	_timerText.text = str(ceil(_secondsUntilNextSpawn)) + "s"
+func pick_enemy_count() -> int:
+	# TODO
+	return 1;
+
+func spawn_enemy(enemy_template: PackedScene) -> Enemy:
+	var enemy = enemy_template.instantiate() as Enemy;
+	if (!enemy):
+		print("Invalid enemy: " + enemy_template.name)
+		return null;
+
+	get_tree().get_root().add_child(enemy);
+
+	enemy.tree_exited.connect(func(): enemy_died.emit(enemy));
+
+	enemy._target = _player;
+	enemy.global_position = global_position;
+	enemy.global_position.x += randf_between(-200, 200);
+	enemy.global_position.y += randf_between(-2000, 200);
+	return enemy;
+
+func _on_body_entered(body):
+	if (body.collision_layer != 1):
+		return;
+	set_process(true);
+
+
+func _on_body_exited(body):
+	if (body.collision_layer != 1):
+		return;
+	set_process(false);	
