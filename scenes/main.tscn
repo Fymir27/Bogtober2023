@@ -25,6 +25,7 @@ length = 0.001
 
 [sub_resource type="Animation" id="Animation_xgv5f"]
 resource_name = "stab"
+step = 0.05
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -32,7 +33,7 @@ tracks/0/path = NodePath("Weapon/WeaponSprite:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.2, 1),
+"times": PackedFloat32Array(0, 0.1, 1),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
 "values": [Vector2(64, 0), Vector2(149, 0), Vector2(64, 0)]
@@ -44,7 +45,7 @@ tracks/1/path = NodePath("Weapon/WeaponSprite:rotation")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 1),
+"times": PackedFloat32Array(0, 0.05, 0.1, 1),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
 "values": [0.0, 1.5708, 1.5708, 0.0]
@@ -76,7 +77,7 @@ script = ExtResource("3_ggh7u")
 _speed = 500.0
 _hp_bar = NodePath("HPBar")
 _sprite = NodePath("PlayerSprite")
-_hit_delay = 2.0
+_hit_delay = 0.5
 
 [node name="PlayerSprite" type="Sprite2D" parent="Player"]
 position = Vector2(-3, 21)
@@ -180,6 +181,8 @@ debug_color = Color(0.392157, 0.615686, 0.0235294, 0.0705882)
 
 [node name="Weapon" type="Node2D" parent="Player"]
 script = ExtResource("6_hc7te")
+rotation_speed_attack = 10.0
+rotation_speed_retract = 5.0
 
 [node name="WeaponSprite" type="Sprite2D" parent="Player/Weapon"]
 position = Vector2(64, 0)
@@ -217,6 +220,12 @@ text = "99999
 "
 script = ExtResource("8_tngyd")
 
+[node name="AttackTimer" type="ProgressBar" parent="Player"]
+offset_left = -42.0
+offset_top = 96.0
+offset_right = 36.0
+offset_bottom = 123.0
+
 [node name="SpawnerA" parent="." node_paths=PackedStringArray("_player") instance=ExtResource("9_5755s")]
 position = Vector2(-2764, -2046)
 _player = NodePath("../Player")
@@ -244,3 +253,8 @@ _easy_enemy = ExtResource("12_tqki8")
 [connection signal="enemy_died" from="SpawnerB" to="Player/ScoreLabel/ScoreValue" method="_on_spawner_enemy_died"]
 [connection signal="enemy_died" from="SpawnerC" to="Player/ScoreLabel/ScoreValue" method="_on_spawner_enemy_died"]
 [connection signal="enemy_died" from="SpawnerD" to="Player/ScoreLabel/ScoreValue" method="_on_spawner_enemy_died"]
+
+[editable path="SpawnerA"]
+[editable path="SpawnerB"]
+[editable path="SpawnerC"]
+[editable path="SpawnerD"]

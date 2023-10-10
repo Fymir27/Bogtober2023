@@ -12,17 +12,18 @@ var hit_timer: float;
 
 func _ready():
 	hit_timer = _hit_delay;
+	$AttackTimer.max_value = _hit_delay;
 
 
 func _process(delta):
 	handle_input();
 	flip_sprite();
 	hit_timer -= delta;
+	$AttackTimer.value = _hit_delay - hit_timer;
 
 func _physics_process(_delta):		
 	if (hit_timer <= 0):
-		hit_closest_enemy();
-		hit_timer = _hit_delay;
+		hit_closest_enemy();		
 	move_and_slide();
 	
 func handle_input():
@@ -55,8 +56,12 @@ func hit_closest_enemy():
 	var closest: Node2D;
 	for body in bodies_hit:
 		if (!closest || body.global_position.distance_to(global_position) < closest.global_position.distance_to(global_position)):
-			closest = body;
+			closest = body;	
 
-	if (closest):
-		$Weapon.attack(closest.global_position);	
+	if (!closest):
+		return;
+
+	$Weapon.attack(closest.global_position);
+	hit_timer = _hit_delay;
+
 	

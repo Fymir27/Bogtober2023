@@ -1,0 +1,3 @@
+* better player attack
+* different enemy behaviour
+* Boss behaviour
