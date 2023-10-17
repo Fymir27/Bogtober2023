@@ -29,8 +29,7 @@ func _process(delta):
 		rotation_amount = diff;
 	rotate(rotation_amount);
 
-func _on_enemy_hit(body: Node2D):
-	print("hit" + body.name);
+func _on_enemy_hit(body: Node2D):	
 	body.queue_free();	
 
 func attack(point: Vector2):		

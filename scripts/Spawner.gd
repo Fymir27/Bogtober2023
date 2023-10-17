@@ -2,7 +2,7 @@ extends Node2D
 
 signal enemy_died(enemy: Enemy);
 
-@export var _player: Node2D;
+@export var _player: Player;
 @export var _spawn_delay: float;
 @export var _easy_enemy: PackedScene;
 @export var _hard_enemy: PackedScene;

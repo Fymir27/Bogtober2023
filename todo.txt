@@ -1,3 +1,5 @@
 * better player attack
 * different enemy behaviour
+    * shroomba aoe spore attack
+    * bob = slug?
 * Boss behaviour
