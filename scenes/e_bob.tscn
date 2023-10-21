@@ -1,7 +1,28 @@
-[gd_scene load_steps=5 format=3 uid="uid://byhibxvldv5vk"]
+[gd_scene load_steps=7 format=3 uid="uid://byhibxvldv5vk"]
 
 [ext_resource type="Script" path="res://scripts/Enemy.gd" id="1_8jluv"]
 [ext_resource type="Texture2D" uid="uid://pm2g6srkdu3m" path="res://sprites/Bob.png" id="2_32omx"]
+
+[sub_resource type="Animation" id="Animation_1or13"]
+resource_name = "walk2"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.5, 0.8, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(0.9, 1), Vector2(0.8, 1), Vector2(0.9, 1), Vector2(1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_nd6be"]
+_data = {
+"walk": SubResource("Animation_1or13")
+}
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_pt0o6"]
 radius = 36.0
@@ -22,7 +43,13 @@ _sprite = NodePath("Sprite2D")
 _hit_progress = NodePath("ProgressBar")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.969551, 1)
 texture = ExtResource("2_32omx")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Sprite2D"]
+libraries = {
+"": SubResource("AnimationLibrary_nd6be")
+}
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-6, 8)
@@ -38,3 +65,5 @@ offset_bottom = -26.0
 theme_override_styles/fill = SubResource("StyleBoxFlat_cwiwd")
 value = 75.0
 show_percentage = false
+
+[connection signal="ready" from="." to="Sprite2D/AnimationPlayer" method="play" binds= ["walk"]]
