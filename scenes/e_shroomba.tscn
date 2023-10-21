@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://dmy3nmj6kyst2"]
+[gd_scene load_steps=10 format=3 uid="uid://dmy3nmj6kyst2"]
 
 [ext_resource type="Script" path="res://scripts/Shroomba.gd" id="1_2ja6w"]
 [ext_resource type="Texture2D" uid="uid://cphbyiw8ycphg" path="res://sprites/ShroombaSmol.png" id="2_g7d8p"]
@@ -24,6 +24,27 @@ orbit_velocity_min = 0.0
 orbit_velocity_max = 0.0
 scale_min = 3.0
 scale_max = 3.0
+
+[sub_resource type="Animation" id="Animation_0iac7"]
+resource_name = "walk"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.5, 0.8, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1, 0.94), Vector2(1, 0.9), Vector2(1, 0.94), Vector2(1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_qdh8a"]
+_data = {
+"walk": SubResource("Animation_0iac7")
+}
 
 [node name="shroomba" type="CharacterBody2D" node_paths=PackedStringArray("_spores", "_sprite")]
 collision_layer = 2
@@ -75,3 +96,10 @@ process_material = SubResource("ParticleProcessMaterial_0yqfa")
 lifetime = 0.5
 one_shot = true
 explosiveness = 1.0
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_qdh8a")
+}
+
+[connection signal="ready" from="." to="AnimationPlayer" method="play" binds= ["walk"]]
