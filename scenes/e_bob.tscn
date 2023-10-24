@@ -1,7 +1,7 @@
-[gd_scene load_steps=7 format=3 uid="uid://byhibxvldv5vk"]
+[gd_scene load_steps=7 format=3 uid="uid://dkmaxy8d1sscl"]
 
-[ext_resource type="Script" path="res://scripts/Enemy.gd" id="1_8jluv"]
-[ext_resource type="Texture2D" uid="uid://pm2g6srkdu3m" path="res://sprites/Bob.png" id="2_32omx"]
+[ext_resource type="Script" path="res://scripts/Enemy.gd" id="1_r1l13"]
+[ext_resource type="Texture2D" uid="uid://pm2g6srkdu3m" path="res://sprites/Bob.png" id="2_7qsw1"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_pt0o6"]
 radius = 36.0
@@ -31,19 +31,24 @@ _data = {
 "walk": SubResource("Animation_1or13")
 }
 
-[node name="bob" type="CharacterBody2D" node_paths=PackedStringArray("_sprite", "_hit_progress")]
+[node name="bob" type="RigidBody2D" node_paths=PackedStringArray("_sprite")]
 collision_layer = 2
 collision_mask = 3
-motion_mode = 1
-script = ExtResource("1_8jluv")
-_speed = 100.0
-_damage = 7.0
+gravity_scale = 0.0
+max_contacts_reported = 10
+contact_monitor = true
+lock_rotation = true
+linear_damp = 5.0
+script = ExtResource("1_r1l13")
+_movement_speed = 500.0
+_damage = 1.0
+_health = 3.0
 _hit_delay = 1.0
 _sprite = NodePath("Sprite2D")
-_hit_progress = NodePath("ProgressBar")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("2_32omx")
+scale = Vector2(0.82514, 1)
+texture = ExtResource("2_7qsw1")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-6, 8)

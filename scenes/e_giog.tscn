@@ -10,16 +10,20 @@ height = 346.0
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cwiwd"]
 bg_color = Color(0.333333, 0, 0.815686, 1)
 
-[node name="giog" type="CharacterBody2D" node_paths=PackedStringArray("_sprite", "_hit_progress")]
+[node name="giog" type="RigidBody2D" node_paths=PackedStringArray("_sprite")]
 collision_layer = 2
 collision_mask = 3
-motion_mode = 1
+gravity_scale = 0.0
+max_contacts_reported = 10
+contact_monitor = true
+lock_rotation = true
+linear_damp = 5.0
 script = ExtResource("1_pt4ec")
-_speed = 100.0
-_damage = 7.0
+_movement_speed = 400.0
+_damage = 20.0
+_health = 10.0
 _hit_delay = 1.0
 _sprite = NodePath("Sprite2D")
-_hit_progress = NodePath("ProgressBar")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("2_y466r")

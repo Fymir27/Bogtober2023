@@ -1,5 +1,7 @@
 extends Node2D
 
+@export var player: Player;
+@export var force: float;
 @export var rotation_speed_attack: float;
 @export var rotation_speed_retract: float;
 
@@ -30,7 +32,10 @@ func _process(delta):
 	rotate(rotation_amount);
 
 func _on_enemy_hit(body: Node2D):	
-	body.queue_free();	
+	var enemy = body as Enemy;
+	if (!enemy):
+		return;
+	enemy.inflictAttack(1, (enemy.global_position - player.global_position).normalized() * force);	
 
 func attack(point: Vector2):		
 	var current_rotaion = rotation;

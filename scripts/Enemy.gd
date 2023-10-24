@@ -1,49 +1,49 @@
-class_name Enemy extends CharacterBody2D
+class_name Enemy extends RigidBody2D
 
-@export var _speed: float;	
+@export var _movement_speed: float
 @export var _damage: float;
+@export var _health: float;
 @export var _hit_delay: float;
 @export var _target: Player;
 @export var _sprite : Sprite2D;
-@export var _hit_progress: ProgressBar;
-
 var _hit_timer: float;
 
-func _ready():	
-	if (_hit_progress):
-		_hit_progress.max_value = _hit_delay;
-	pass;
 
 func _process(delta):
-	_hit_timer -= delta;
-	if (_hit_progress):
-		_hit_progress.value = _hit_progress.max_value - _hit_timer;
-		
+	_hit_timer -= delta;		
 	
 func _physics_process(_delta):
-	if (!_target):
-		return;
-	var direction = _target.global_position - global_position;
-	velocity = direction.normalized() * _speed;
-	move_and_slide();
+
+	var target_direction = _target.global_position - global_position;
+	constant_force = target_direction.normalized() * _movement_speed;
+	
 	flip_sprite();
+
 	if (_target && _hit_timer <= 0):
 		_try_attack();
 	
 func _try_attack():
-	for i in get_slide_collision_count():
-		var collision = get_slide_collision(i);
-		handle_collision(collision);
-	
-func handle_collision(collision: KinematicCollision2D):	
-	var player = collision.get_collider() as Player;	
+	for body in get_colliding_bodies():
+		handle_collision(body);
+
+func handle_collision(body: Node2D):	
+	var player = body as Player;	
 	if (!player):
-		return;	
+		return;
 	player.deal_damage(_damage);	
 	_hit_timer = _hit_delay;
 	
-func flip_sprite():
-	if (velocity.x > 0):
+func flip_sprite():	
+	if (abs(constant_force.angle_to(linear_velocity)) > PI / 2):
+		return; # knocked back
+	if (linear_velocity.x > 10):
 		_sprite.flip_h = true;	
-	else: if (velocity.x < 0):
+	else: if (linear_velocity.x < -10):
 		_sprite.flip_h = false;
+
+func inflictAttack(damage: float, knock_back: Vector2):
+	_health -= damage;
+	if (_health <= 0):
+		queue_free();	
+	apply_impulse(knock_back);	
+	

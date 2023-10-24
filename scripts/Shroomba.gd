@@ -14,8 +14,8 @@ func _process(delta):
 
 func _try_attack():
 	if(!is_exploding()  && is_player_in_range()):
-		_original_speed = _speed;
-		_speed = 0;
+		_original_speed = _movement_speed;
+		_movement_speed = 0;
 		$ChargeTimer.start();
 
 func is_exploding():
@@ -28,7 +28,7 @@ func is_player_in_range():
 	return $AttackRange.overlaps_body(_target);
 
 func explode():
-	_speed = _original_speed;
+	_movement_speed = _original_speed;
 	$SporeParticles.emitting = true;
 	if (is_player_in_range()):
 		_target.deal_damage(_damage);

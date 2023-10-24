@@ -1,7 +1,6 @@
-[gd_scene load_steps=4 format=3 uid="uid://c4ripm6u51joa"]
+[gd_scene load_steps=3 format=3 uid="uid://c4ripm6u51joa"]
 
 [ext_resource type="Script" path="res://scripts/Spawner.gd" id="1_ewoh8"]
-[ext_resource type="PackedScene" uid="uid://byhibxvldv5vk" path="res://scenes/e_bob.tscn" id="2_fr5nf"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_d7w66"]
 size = Vector2(2000, 1500)
@@ -10,7 +9,6 @@ size = Vector2(2000, 1500)
 scale = Vector2(2.02516, 2.15722)
 script = ExtResource("1_ewoh8")
 _spawn_delay = 1.0
-_easy_enemy = ExtResource("2_fr5nf")
 
 [node name="Area" type="Area2D" parent="."]
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://cbdeftm7hb34y"]
+[gd_scene load_steps=20 format=3 uid="uid://cbdeftm7hb34y"]
 
 [ext_resource type="Script" path="res://scripts/GameState.gd" id="1_boxcs"]
 [ext_resource type="TileSet" uid="uid://doey0ec6xxyh4" path="res://background.tres" id="2_w6q1b"]
@@ -10,6 +10,7 @@
 [ext_resource type="Script" path="res://scripts/Score.gd" id="8_tngyd"]
 [ext_resource type="PackedScene" uid="uid://c4ripm6u51joa" path="res://scenes/spawner.tscn" id="9_5755s"]
 [ext_resource type="PackedScene" uid="uid://da28es3vlw5qi" path="res://scenes/e_pog.tscn" id="10_mbw4p"]
+[ext_resource type="PackedScene" uid="uid://dkmaxy8d1sscl" path="res://scenes/e_bob.tscn" id="10_odwr6"]
 [ext_resource type="PackedScene" uid="uid://csoliin8k8lj0" path="res://scenes/e_giog.tscn" id="11_ngcgn"]
 [ext_resource type="PackedScene" uid="uid://dmy3nmj6kyst2" path="res://scenes/e_shroomba.tscn" id="12_tqki8"]
 
@@ -179,8 +180,10 @@ collision_mask = 2
 shape = SubResource("CircleShape2D_6ucjn")
 debug_color = Color(0.392157, 0.615686, 0.0235294, 0.0705882)
 
-[node name="Weapon" type="Node2D" parent="Player"]
+[node name="Weapon" type="Node2D" parent="Player" node_paths=PackedStringArray("player")]
 script = ExtResource("6_hc7te")
+player = NodePath("..")
+force = 2000.0
 rotation_speed_attack = 10.0
 rotation_speed_retract = 5.0
 
@@ -229,6 +232,7 @@ offset_bottom = 123.0
 [node name="SpawnerA" parent="." node_paths=PackedStringArray("_player") instance=ExtResource("9_5755s")]
 position = Vector2(-2764, -2046)
 _player = NodePath("../Player")
+_easy_enemy = ExtResource("10_odwr6")
 
 [node name="SpawnerB" parent="." node_paths=PackedStringArray("_player") instance=ExtResource("9_5755s")]
 position = Vector2(2699, -2033)
