@@ -3,26 +3,30 @@ extends Node2D
 signal enemy_died(enemy: Enemy);
 
 @export var _player: Player;
+@export var _game_time: GameTime;
 @export var _spawn_delay: float;
 @export var _easy_enemy: PackedScene;
 @export var _hard_enemy: PackedScene;
 @export var _boss_enemy: PackedScene;
 
 var _secondsUntilNextSpawn: float;
-var enemies: Array[Enemy] = [];	
+var enemies: Array[Enemy] = [];
+var time_active: float = 0;
+var boss_spawned: bool = false;
 
 func _ready():
 	set_process(false);
 
 func _process(delta):
 
+	time_active += delta;
 	_secondsUntilNextSpawn -= delta;
 
 	if (_secondsUntilNextSpawn > 0):
 		return;
 
 	var enemy_template = pick_enemy_to_spawn();
-	var enemy_count = pick_enemy_count();
+	var enemy_count = pick_enemy_count(enemy_template);
 
 	print("Spawning enemies: " + str(enemy_count) + " x " + enemy_template.resource_path);
 
@@ -46,12 +50,25 @@ func randf_between(min_val, max_val):
 	return min_val + randf() * (max_val - min_val);
 	
 func pick_enemy_to_spawn() -> PackedScene:
-	# TODO
+	
+	if (time_active >= 60 && !boss_spawned):
+		boss_spawned = true;
+		return _boss_enemy;
+
+	var chance_for_medium = _game_time.total_seconds_elapsed / 120;
+	if (randf() < chance_for_medium):
+		return _hard_enemy
+
 	return _easy_enemy;
 
-func pick_enemy_count() -> int:
-	# TODO
-	return 1;
+func pick_enemy_count(template: PackedScene) -> int:	
+	var unmod_count = _game_time.total_seconds_elapsed / 15;
+	if (template == _boss_enemy):
+		return 1;
+	if (template == _hard_enemy):
+		return ceili(unmod_count / 3);
+	return ceili(unmod_count);
+
 
 func spawn_enemy(enemy_template: PackedScene) -> Enemy:
 	var enemy = enemy_template.instantiate() as Enemy;

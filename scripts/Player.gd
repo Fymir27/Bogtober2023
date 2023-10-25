@@ -1,9 +1,10 @@
-class_name Player extends CharacterBody2D
+class_name Player extends RigidBody2D
 
 signal player_died;
 
 @export var _speed : float;
 @export var _hp_bar : ProgressBar;
+@export var _attack_timer: ProgressBar;
 @export var _sprite : Sprite2D;
 @export var _hit_delay: float;
 
@@ -12,19 +13,18 @@ var hit_timer: float;
 
 func _ready():
 	hit_timer = _hit_delay;
-	$AttackTimer.max_value = _hit_delay;
+	_attack_timer.max_value = _hit_delay;
 
 
 func _process(delta):
-	handle_input();
+	handle_input();	
 	flip_sprite();
 	hit_timer -= delta;
-	$AttackTimer.value = _hit_delay - hit_timer;
+	_attack_timer.value = _hit_delay - hit_timer;	
 
 func _physics_process(_delta):		
 	if (hit_timer <= 0):
 		hit_closest_enemy();		
-	move_and_slide();
 	
 func handle_input():
 	var direction = Vector2();
@@ -37,13 +37,13 @@ func handle_input():
 	if (Input.is_key_pressed(KEY_DOWN) || Input.is_key_pressed(KEY_S)):
 		direction.y =  1;	
 	var direction_norm = direction.normalized();
-	velocity = direction_norm * _speed;
+	constant_force = direction_norm * _speed;
 		
 		
 func flip_sprite():
-	if (velocity.x > 0):
+	if (linear_velocity.x > 0):
 		_sprite.flip_h = true;	
-	else: if (velocity.x < 0):
+	else: if (linear_velocity.x < 0):
 		_sprite.flip_h = false;
 
 func deal_damage(amount: float):

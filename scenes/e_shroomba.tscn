@@ -46,7 +46,7 @@ _data = {
 "walk": SubResource("Animation_0iac7")
 }
 
-[node name="shroomba" type="RigidBody2D" node_paths=PackedStringArray("_spores", "_sprite", "_hit_progress")]
+[node name="shroomba" type="RigidBody2D" node_paths=PackedStringArray("_spores", "_sprite")]
 collision_layer = 2
 collision_mask = 3
 gravity_scale = 0.0
@@ -59,7 +59,6 @@ _damage = 7.0
 _health = 3.0
 _hit_delay = 1.0
 _sprite = NodePath("Sprite2D")
-_hit_progress = NodePath("ProgressBar")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 z_index = 1
