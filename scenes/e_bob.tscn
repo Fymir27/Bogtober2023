@@ -47,7 +47,6 @@ _hit_delay = 1.0
 _sprite = NodePath("Sprite2D")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(0.802811, 1)
 texture = ExtResource("2_7qsw1")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
