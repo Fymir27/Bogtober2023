@@ -51,12 +51,12 @@ func randf_between(min_val, max_val):
 	
 func pick_enemy_to_spawn() -> PackedScene:
 	
-	if (time_active >= 60 && !boss_spawned):
+	if (time_active > 59 && !boss_spawned):
 		boss_spawned = true;
 		return _boss_enemy;
 
-	var chance_for_medium = _game_time.total_seconds_elapsed / 120;
-	if (randf() < chance_for_medium):
+	var chance_for_hard = min(0.95, _game_time.total_seconds_elapsed / 120);
+	if (randf() < chance_for_hard):
 		return _hard_enemy
 
 	return _easy_enemy;
