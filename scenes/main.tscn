@@ -1,10 +1,11 @@
-[gd_scene load_steps=30 format=3 uid="uid://cbdeftm7hb34y"]
+[gd_scene load_steps=31 format=3 uid="uid://cbdeftm7hb34y"]
 
 [ext_resource type="Script" path="res://scripts/GameState.gd" id="1_boxcs"]
 [ext_resource type="Texture2D" uid="uid://egksrxfe65eo" path="res://map.png" id="2_wyddl"]
 [ext_resource type="Script" path="res://scripts/Player.gd" id="3_ggh7u"]
 [ext_resource type="Script" path="res://scripts/Camera.gd" id="5_f8mkt"]
 [ext_resource type="Theme" uid="uid://gfe8yonjytoy" path="res://default_theme.tres" id="5_jm235"]
+[ext_resource type="Texture2D" uid="uid://c1tirdaed2ul2" path="res://sprites/item_frame.png" id="5_m7p16"]
 [ext_resource type="Script" path="res://scripts/Weapon.gd" id="6_hc7te"]
 [ext_resource type="Texture2D" uid="uid://dpcx5nipciom0" path="res://sprites/PhinoonSmol.png" id="7_0vnl8"]
 [ext_resource type="Script" path="res://scripts/GameTime.gd" id="9_w17am"]
@@ -117,6 +118,7 @@ offset_left = 3.0
 offset_top = -21.0
 offset_right = 43.0
 offset_bottom = 19.0
+theme = ExtResource("5_jm235")
 
 [node name="Bars" type="VBoxContainer" parent="UI"]
 layout_mode = 2
@@ -167,6 +169,7 @@ layout_mode = 2
 theme = ExtResource("5_jm235")
 theme_override_styles/fill = SubResource("StyleBoxFlat_xgv0x")
 max_value = 0.0
+allow_greater = true
 
 [node name="Label" type="Label" parent="UI/Bars/XPBar"]
 z_index = 100
@@ -182,8 +185,7 @@ text = "XP
 uppercase = true
 
 [node name="GameOver" type="Panel" parent="UI"]
-visible = false
-z_index = 100
+z_index = 1
 layout_mode = 0
 offset_left = -860.0
 offset_top = -427.0
@@ -192,8 +194,7 @@ offset_bottom = 467.0
 theme = ExtResource("5_jm235")
 
 [node name="Text" type="Label" parent="UI/GameOver"]
-z_index = 100
-z_as_relative = false
+z_index = 1
 layout_mode = 0
 offset_left = 3.0
 offset_top = 54.0
@@ -206,8 +207,7 @@ vertical_alignment = 1
 uppercase = true
 
 [node name="Quit" type="Button" parent="UI/GameOver"]
-z_index = 100
-z_as_relative = false
+z_index = 1
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -223,8 +223,7 @@ text = "Quit
 "
 
 [node name="Retry" type="Button" parent="UI/GameOver"]
-z_index = 100
-z_as_relative = false
+z_index = 1
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -245,9 +244,37 @@ offset_top = -803.0
 offset_right = 1362.0
 offset_bottom = -742.0
 theme = ExtResource("5_jm235")
+theme_override_font_sizes/font_size = 100
 text = "59:59
 "
 script = ExtResource("9_w17am")
+
+[node name="GridContainer" type="HBoxContainer" parent="UI"]
+layout_mode = 1
+offset_left = -1559.0
+offset_top = -850.0
+offset_right = -699.0
+offset_bottom = -650.0
+
+[node name="TextureRect" type="TextureRect" parent="UI/GridContainer"]
+layout_mode = 2
+texture = ExtResource("5_m7p16")
+expand_mode = 2
+
+[node name="TextureRect2" type="TextureRect" parent="UI/GridContainer"]
+layout_mode = 2
+texture = ExtResource("5_m7p16")
+expand_mode = 2
+
+[node name="TextureRect3" type="TextureRect" parent="UI/GridContainer"]
+layout_mode = 2
+texture = ExtResource("5_m7p16")
+expand_mode = 2
+
+[node name="TextureRect4" type="TextureRect" parent="UI/GridContainer"]
+layout_mode = 2
+texture = ExtResource("5_m7p16")
+expand_mode = 2
 
 [node name="Player" type="RigidBody2D" parent="." node_paths=PackedStringArray("_hp_bar", "_xp_bar", "_lvl_label", "_attack_timer", "_sprite")]
 collision_mask = 10

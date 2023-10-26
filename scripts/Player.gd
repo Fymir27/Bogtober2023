@@ -56,7 +56,7 @@ func deal_damage(amount: float):
 
 func awardXp(amount):
 	_xp_bar.value += amount;
-	if (_xp_bar.value == _xp_bar.max_value):
+	if (_xp_bar.value >= _xp_bar.max_value):
 		level_up();
 
 func hit_closest_enemy():
@@ -76,5 +76,5 @@ func hit_closest_enemy():
 func level_up():
 	level += 1;
 	_lvl_label.text = str(level);
-	_xp_bar.value = 0;
+	_xp_bar.value -= _xp_bar.max_value;
 	_xp_bar.max_value += 10;
