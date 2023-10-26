@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c2bl6qxsboflf"
-path="res://.godot/imported/weapon.png-41f01ed2966a6a33faf2e7180f2a7fa4.ctex"
+uid="uid://bu2ldcdguo6no"
+path="res://.godot/imported/Urchin3.png-f6537ea9c87bdc5bc648529c015a1d0a.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/weapon.png"
-dest_files=["res://.godot/imported/weapon.png-41f01ed2966a6a33faf2e7180f2a7fa4.ctex"]
+source_file="res://enemies/rocky/Urchin3.png"
+dest_files=["res://.godot/imported/Urchin3.png-f6537ea9c87bdc5bc648529c015a1d0a.ctex"]
 
 [params]
 

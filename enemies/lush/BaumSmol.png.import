@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://budj0fp5oavyj"
-path="res://.godot/imported/rook.png-f27df0d789b57f16fa3aafbf5704e62f.ctex"
+uid="uid://b4ewhdmm82e72"
+path="res://.godot/imported/BaumSmol.png-8eb1ef44f3287463e02f7810841647e7.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/rook.png"
-dest_files=["res://.godot/imported/rook.png-f27df0d789b57f16fa3aafbf5704e62f.ctex"]
+source_file="res://enemies/lush/BaumSmol.png"
+dest_files=["res://.godot/imported/BaumSmol.png-8eb1ef44f3287463e02f7810841647e7.ctex"]
 
 [params]
 

@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://dkmaxy8d1sscl"]
 
 [ext_resource type="Script" path="res://scripts/Enemy.gd" id="1_r1l13"]
-[ext_resource type="Texture2D" uid="uid://pm2g6srkdu3m" path="res://sprites/Bob.png" id="2_7qsw1"]
+[ext_resource type="Texture2D" uid="uid://pm2g6srkdu3m" path="res://enemies/sparky/Bob.png" id="2_7qsw1"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_pt0o6"]
 radius = 36.0

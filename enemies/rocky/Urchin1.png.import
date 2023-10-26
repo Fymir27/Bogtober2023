@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://rh4spei8sj05"
-path="res://.godot/imported/Smear.png-b29264ee2abf33513de89fe940b77dbc.ctex"
+uid="uid://bcn62e3ybxsh8"
+path="res://.godot/imported/Urchin1.png-8cb909a3fcc196fab0766d42630fe152.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/Smear.png"
-dest_files=["res://.godot/imported/Smear.png-b29264ee2abf33513de89fe940b77dbc.ctex"]
+source_file="res://enemies/rocky/Urchin1.png"
+dest_files=["res://.godot/imported/Urchin1.png-8cb909a3fcc196fab0766d42630fe152.ctex"]
 
 [params]
 

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dcsy05gptpn8f"
-path="res://.godot/imported/spores.png-5507728fea14e35da38804dcdb5d0556.ctex"
+uid="uid://cg6r6ipxx4ue2"
+path="res://.godot/imported/Giog.png-7fb79379542d9504f5bbe92b7980b9ad.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/spores.png"
-dest_files=["res://.godot/imported/spores.png-5507728fea14e35da38804dcdb5d0556.ctex"]
+source_file="res://enemies/sparky/Giog.png"
+dest_files=["res://.godot/imported/Giog.png-7fb79379542d9504f5bbe92b7980b9ad.ctex"]
 
 [params]
 

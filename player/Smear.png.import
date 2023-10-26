@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cg6r6ipxx4ue2"
-path="res://.godot/imported/Giog.png-9462d1d35023362233bab08c47a8c8f3.ctex"
+uid="uid://rh4spei8sj05"
+path="res://.godot/imported/Smear.png-c5d9d3a973c2aa2190832e9af63081eb.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/Giog.png"
-dest_files=["res://.godot/imported/Giog.png-9462d1d35023362233bab08c47a8c8f3.ctex"]
+source_file="res://player/Smear.png"
+dest_files=["res://.godot/imported/Smear.png-c5d9d3a973c2aa2190832e9af63081eb.ctex"]
 
 [params]
 

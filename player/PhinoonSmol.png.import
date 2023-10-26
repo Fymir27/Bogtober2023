@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dpcx5nipciom0"
-path="res://.godot/imported/PhinoonSmol.png-8b189b4ea16c2c55e39239708f47f76b.ctex"
+path="res://.godot/imported/PhinoonSmol.png-d9a913e33bd504837379747d6e87b114.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/PhinoonSmol.png"
-dest_files=["res://.godot/imported/PhinoonSmol.png-8b189b4ea16c2c55e39239708f47f76b.ctex"]
+source_file="res://player/PhinoonSmol.png"
+dest_files=["res://.godot/imported/PhinoonSmol.png-d9a913e33bd504837379747d6e87b114.ctex"]
 
 [params]
 

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bqjaichdx2t53"
-path="res://.godot/imported/Pog.png-a2bd00c316892ba35c695711ecf11173.ctex"
+uid="uid://pm2g6srkdu3m"
+path="res://.godot/imported/Bob.png-368cee64af830c870ad0852467ed3658.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/Pog.png"
-dest_files=["res://.godot/imported/Pog.png-a2bd00c316892ba35c695711ecf11173.ctex"]
+source_file="res://enemies/sparky/Bob.png"
+dest_files=["res://.godot/imported/Bob.png-368cee64af830c870ad0852467ed3658.ctex"]
 
 [params]
 

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://pm2g6srkdu3m"
-path="res://.godot/imported/Bob.png-f875cc15a67c69bf165e5411dc3ff519.ctex"
+uid="uid://b7wxjqokfjy12"
+path="res://.godot/imported/CorpsySmol.png-defb0a97ac93934eb0421f6c81ed5144.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/Bob.png"
-dest_files=["res://.godot/imported/Bob.png-f875cc15a67c69bf165e5411dc3ff519.ctex"]
+source_file="res://enemies/lush/CorpsySmol.png"
+dest_files=["res://.godot/imported/CorpsySmol.png-defb0a97ac93934eb0421f6c81ed5144.ctex"]
 
 [params]
 

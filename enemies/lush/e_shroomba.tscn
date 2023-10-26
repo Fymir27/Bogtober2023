@@ -1,8 +1,8 @@
 [gd_scene load_steps=10 format=3 uid="uid://dmy3nmj6kyst2"]
 
 [ext_resource type="Script" path="res://scripts/Shroomba.gd" id="1_2ja6w"]
-[ext_resource type="Texture2D" uid="uid://cphbyiw8ycphg" path="res://sprites/ShroombaSmol.png" id="2_g7d8p"]
-[ext_resource type="Texture2D" uid="uid://dcsy05gptpn8f" path="res://sprites/spores.png" id="3_7ugjs"]
+[ext_resource type="Texture2D" uid="uid://cphbyiw8ycphg" path="res://enemies/lush/ShroombaSmol.png" id="2_g7d8p"]
+[ext_resource type="Texture2D" uid="uid://dcsy05gptpn8f" path="res://enemies/lush/spores.png" id="3_7ugjs"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_pt0o6"]
 radius = 36.0

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://pwroljxqddpq"
-path="res://.godot/imported/phinoon.png-34b0f6d6a6f45f3586d13f37d8bf8108.ctex"
+uid="uid://diymkpx8c7tcg"
+path="res://.godot/imported/Urchin2.png-a681c6cfcb1029d3b600d307899e6f78.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/phinoon.png"
-dest_files=["res://.godot/imported/phinoon.png-34b0f6d6a6f45f3586d13f37d8bf8108.ctex"]
+source_file="res://enemies/rocky/Urchin2.png"
+dest_files=["res://.godot/imported/Urchin2.png-a681c6cfcb1029d3b600d307899e6f78.ctex"]
 
 [params]
 
