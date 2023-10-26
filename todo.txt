@@ -1,5 +1,5 @@
 * better player attack
-    * wind down too long
 * different enemy behaviour
-    * palette swap urchins
+	* shroomba aoe spore attack
+	* bob = slug?
 * Boss behaviour
