@@ -1,16 +1,16 @@
-[gd_scene load_steps=5 format=3 uid="uid://cnrhb0xgc0h38"]
+[gd_scene load_steps=5 format=3 uid="uid://dguj1itax57s3"]
 
-[ext_resource type="Script" path="res://scripts/Enemy.gd" id="1_fraqo"]
-[ext_resource type="Texture2D" uid="uid://cg6r6ipxx4ue2" path="res://enemies/sparky/Giog.png" id="2_0lihc"]
+[ext_resource type="Script" path="res://scripts/Enemy.gd" id="1_qlpln"]
+[ext_resource type="Texture2D" uid="uid://b4ewhdmm82e72" path="res://enemies/lush/BaumSmol.png" id="2_2ldeg"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_pt0o6"]
-radius = 118.0
-height = 346.0
+radius = 57.0
+height = 156.0
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cwiwd"]
 bg_color = Color(0.333333, 0, 0.815686, 1)
 
-[node name="giog" type="RigidBody2D" node_paths=PackedStringArray("_sprite")]
+[node name="baum" type="RigidBody2D" node_paths=PackedStringArray("_sprite")]
 collision_layer = 2
 collision_mask = 3
 gravity_scale = 0.0
@@ -18,19 +18,19 @@ max_contacts_reported = 10
 contact_monitor = true
 lock_rotation = true
 linear_damp = 5.0
-script = ExtResource("1_fraqo")
-_movement_speed = 400.0
-_damage = 20.0
-_health = 10.0
-_xp = 20.0
+script = ExtResource("1_qlpln")
+_movement_speed = 500.0
+_damage = 1.0
+_health = 3.0
+_xp = 1.0
 _hit_delay = 1.0
 _sprite = NodePath("Sprite2D")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("2_0lihc")
+texture = ExtResource("2_2ldeg")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(15, 24)
+position = Vector2(9, 17)
 shape = SubResource("CapsuleShape2D_pt0o6")
 
 [node name="ProgressBar" type="ProgressBar" parent="."]

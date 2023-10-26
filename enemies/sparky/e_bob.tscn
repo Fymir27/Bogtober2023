@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://dkmaxy8d1sscl"]
 
 [ext_resource type="Script" path="res://scripts/Enemy.gd" id="1_r1l13"]
-[ext_resource type="Texture2D" uid="uid://pm2g6srkdu3m" path="res://enemies/sparky/Bob.png" id="2_7qsw1"]
+[ext_resource type="Texture2D" uid="uid://pm2g6srkdu3m" path="res://enemies/sparky/Bob.png" id="2_n6ap8"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_pt0o6"]
 radius = 36.0
@@ -48,7 +48,8 @@ _hit_delay = 1.0
 _sprite = NodePath("Sprite2D")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("2_7qsw1")
+scale = Vector2(0.801156, 1)
+texture = ExtResource("2_n6ap8")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-6, 8)

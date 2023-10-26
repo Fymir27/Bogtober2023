@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=3 uid="uid://cbdeftm7hb34y"]
+[gd_scene load_steps=35 format=3 uid="uid://cbdeftm7hb34y"]
 
 [ext_resource type="Script" path="res://scripts/GameState.gd" id="1_t4v82"]
 [ext_resource type="Texture2D" uid="uid://egksrxfe65eo" path="res://map.png" id="2_ynyvf"]
@@ -13,9 +13,13 @@
 [ext_resource type="Texture2D" uid="uid://rh4spei8sj05" path="res://player/Smear.png" id="11_0q3wb"]
 [ext_resource type="Script" path="res://scripts/Spawner.gd" id="12_yy7m0"]
 [ext_resource type="PackedScene" uid="uid://dmy3nmj6kyst2" path="res://enemies/lush/e_shroomba.tscn" id="13_74sh1"]
+[ext_resource type="PackedScene" uid="uid://dguj1itax57s3" path="res://enemies/lush/e_baum.tscn" id="14_7k3in"]
 [ext_resource type="PackedScene" uid="uid://da28es3vlw5qi" path="res://enemies/sparky/e_pog.tscn" id="14_e2776"]
 [ext_resource type="PackedScene" uid="uid://csoliin8k8lj0" path="res://enemies/sparky/e_giog.tscn" id="15_i4dcb"]
+[ext_resource type="PackedScene" uid="uid://cya3kfckd314d" path="res://enemies/lush/e_corpsy.tscn" id="15_i5knq"]
 [ext_resource type="PackedScene" uid="uid://dkmaxy8d1sscl" path="res://enemies/sparky/e_bob.tscn" id="16_0pgkg"]
+[ext_resource type="PackedScene" uid="uid://caf48hth62ghq" path="res://enemies/rocky/e_urchin.tscn" id="16_w0sj6"]
+[ext_resource type="PackedScene" uid="uid://ul6xlb5gwyd1" path="res://enemies/rocky/e_urchin_horde.tscn" id="17_lnryc"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xgv0x"]
 bg_color = Color(0.288184, 0.401598, 1, 1)
@@ -378,8 +382,8 @@ _player = NodePath("../Player")
 _game_time = NodePath("../UI/GameTime")
 _spawn_delay = 5.0
 _easy_enemy = ExtResource("13_74sh1")
-_hard_enemy = ExtResource("14_e2776")
-_boss_enemy = ExtResource("15_i4dcb")
+_hard_enemy = ExtResource("14_7k3in")
+_boss_enemy = ExtResource("15_i5knq")
 
 [node name="Area" type="Area2D" parent="BiomeLush"]
 
@@ -395,8 +399,8 @@ script = ExtResource("12_yy7m0")
 _player = NodePath("../Player")
 _game_time = NodePath("../UI/GameTime")
 _spawn_delay = 5.0
-_easy_enemy = ExtResource("16_0pgkg")
-_hard_enemy = ExtResource("14_e2776")
+_easy_enemy = ExtResource("16_w0sj6")
+_hard_enemy = ExtResource("17_lnryc")
 _boss_enemy = ExtResource("15_i4dcb")
 
 [node name="Area" type="Area2D" parent="BiomeRocky"]
