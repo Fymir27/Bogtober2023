@@ -7,7 +7,6 @@
 [ext_resource type="Theme" uid="uid://gfe8yonjytoy" path="res://default_theme.tres" id="5_jm235"]
 [ext_resource type="Script" path="res://scripts/Weapon.gd" id="6_hc7te"]
 [ext_resource type="Texture2D" uid="uid://dpcx5nipciom0" path="res://sprites/PhinoonSmol.png" id="7_0vnl8"]
-[ext_resource type="Script" path="res://scripts/Score.gd" id="8_tngyd"]
 [ext_resource type="Script" path="res://scripts/GameTime.gd" id="9_w17am"]
 [ext_resource type="Texture2D" uid="uid://caq2xtnmvc4cg" path="res://sprites/SpearSmol.png" id="10_20rln"]
 [ext_resource type="Script" path="res://scripts/Spawner.gd" id="10_m8a57"]
@@ -16,6 +15,9 @@
 [ext_resource type="Texture2D" uid="uid://rh4spei8sj05" path="res://sprites/Smear.png" id="11_f5ox6"]
 [ext_resource type="PackedScene" uid="uid://csoliin8k8lj0" path="res://scenes/e_giog.tscn" id="11_ngcgn"]
 [ext_resource type="PackedScene" uid="uid://dmy3nmj6kyst2" path="res://scenes/e_shroomba.tscn" id="12_tqki8"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xgv0x"]
+bg_color = Color(0.288184, 0.401598, 1, 1)
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_xafwk"]
 radius = 21.0
@@ -108,6 +110,7 @@ texture = ExtResource("2_wyddl")
 
 [node name="UI" type="Control" parent="."]
 z_index = 100
+z_as_relative = false
 layout_mode = 3
 anchors_preset = 0
 offset_left = 3.0
@@ -115,25 +118,67 @@ offset_top = -21.0
 offset_right = 43.0
 offset_bottom = 19.0
 
-[node name="HPBar" type="ProgressBar" parent="UI"]
-layout_mode = 0
-offset_left = -1085.0
-offset_top = -850.0
-offset_right = 1065.0
-offset_bottom = -712.0
+[node name="Bars" type="VBoxContainer" parent="UI"]
+layout_mode = 2
+offset_left = -500.0
+offset_top = -871.0
+offset_right = 500.0
+offset_bottom = -671.0
+grow_horizontal = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UI/Bars"]
+layout_mode = 2
+theme = ExtResource("5_jm235")
+
+[node name="Name" type="Label" parent="UI/Bars/HBoxContainer"]
+layout_mode = 2
+text = "Phinoon"
+
+[node name="Level" type="Label" parent="UI/Bars/HBoxContainer"]
+layout_mode = 2
+text = "Level
+"
+
+[node name="LevelValue" type="Label" parent="UI/Bars/HBoxContainer"]
+layout_mode = 2
+text = "69
+"
+
+[node name="HPBar" type="ProgressBar" parent="UI/Bars"]
+layout_mode = 2
 theme = ExtResource("5_jm235")
 value = 100.0
 
-[node name="Label" type="Label" parent="UI/HPBar"]
+[node name="Label" type="Label" parent="UI/Bars/HPBar"]
 z_index = 100
 z_as_relative = false
 layout_mode = 0
-offset_left = 986.0
-offset_top = -4.0
-offset_right = 1184.0
-offset_bottom = 71.0
+offset_left = 5.0
+offset_top = -1.0
+offset_right = 203.0
+offset_bottom = 74.0
 theme = ExtResource("5_jm235")
-text = "Health"
+text = "HP
+"
+uppercase = true
+
+[node name="XPBar" type="ProgressBar" parent="UI/Bars"]
+layout_mode = 2
+theme = ExtResource("5_jm235")
+theme_override_styles/fill = SubResource("StyleBoxFlat_xgv0x")
+max_value = 0.0
+
+[node name="Label" type="Label" parent="UI/Bars/XPBar"]
+z_index = 100
+z_as_relative = false
+layout_mode = 0
+offset_left = 5.0
+offset_top = -1.0
+offset_right = 203.0
+offset_bottom = 74.0
+theme = ExtResource("5_jm235")
+text = "XP
+"
 uppercase = true
 
 [node name="GameOver" type="Panel" parent="UI"]
@@ -193,24 +238,6 @@ grow_vertical = 2
 theme = ExtResource("5_jm235")
 text = "Retry"
 
-[node name="ScoreLabel" type="Label" parent="UI"]
-layout_mode = 0
-offset_left = -1507.0
-offset_top = -803.0
-offset_right = -1383.0
-offset_bottom = -742.0
-theme = ExtResource("5_jm235")
-text = "Score:"
-
-[node name="ScoreValue" type="Label" parent="UI/ScoreLabel"]
-layout_mode = 0
-offset_left = 133.0
-offset_right = 253.0
-offset_bottom = 61.0
-text = "99999
-"
-script = ExtResource("8_tngyd")
-
 [node name="GameTime" type="Label" parent="UI"]
 layout_mode = 0
 offset_left = 1238.0
@@ -222,7 +249,7 @@ text = "59:59
 "
 script = ExtResource("9_w17am")
 
-[node name="Player" type="RigidBody2D" parent="." node_paths=PackedStringArray("_hp_bar", "_attack_timer", "_sprite")]
+[node name="Player" type="RigidBody2D" parent="." node_paths=PackedStringArray("_hp_bar", "_xp_bar", "_lvl_label", "_attack_timer", "_sprite")]
 collision_mask = 10
 mass = 0.5
 gravity_scale = 0.0
@@ -230,7 +257,9 @@ lock_rotation = true
 linear_damp = 5.0
 script = ExtResource("3_ggh7u")
 _speed = 2500.0
-_hp_bar = NodePath("../UI/HPBar")
+_hp_bar = NodePath("../UI/Bars/HPBar")
+_xp_bar = NodePath("../UI/Bars/XPBar")
+_lvl_label = NodePath("../UI/Bars/HBoxContainer/LevelValue")
 _attack_timer = NodePath("AttackTimer")
 _sprite = NodePath("PlayerSprite")
 _hit_delay = 2.0
@@ -410,15 +439,11 @@ shape = SubResource("RectangleShape2D_q47f4")
 [connection signal="pressed" from="UI/GameOver/Retry" to="GameState" method="retry"]
 [connection signal="player_died" from="Player" to="GameState" method="_on_player_died"]
 [connection signal="body_entered" from="Player/Weapon/WeaponSprite/WeaponHitbox" to="Player/Weapon" method="_on_enemy_hit"]
-[connection signal="enemy_died" from="SpawnerA" to="UI/ScoreLabel/ScoreValue" method="_on_spawner_enemy_died"]
 [connection signal="body_entered" from="SpawnerA/Area" to="SpawnerA" method="_on_body_entered" flags=18]
 [connection signal="body_exited" from="SpawnerA/Area" to="SpawnerA" method="_on_body_exited" flags=18]
-[connection signal="enemy_died" from="SpawnerB" to="UI/ScoreLabel/ScoreValue" method="_on_spawner_enemy_died"]
 [connection signal="body_entered" from="SpawnerB/Area" to="SpawnerB" method="_on_body_entered" flags=18]
 [connection signal="body_exited" from="SpawnerB/Area" to="SpawnerB" method="_on_body_exited" flags=18]
-[connection signal="enemy_died" from="SpawnerC" to="UI/ScoreLabel/ScoreValue" method="_on_spawner_enemy_died"]
 [connection signal="body_entered" from="SpawnerC/Area" to="SpawnerC" method="_on_body_entered" flags=18]
 [connection signal="body_exited" from="SpawnerC/Area" to="SpawnerC" method="_on_body_exited" flags=18]
-[connection signal="enemy_died" from="SpawnerD" to="UI/ScoreLabel/ScoreValue" method="_on_spawner_enemy_died"]
 [connection signal="body_entered" from="SpawnerD/Area" to="SpawnerD" method="_on_body_entered" flags=18]
 [connection signal="body_exited" from="SpawnerD/Area" to="SpawnerD" method="_on_body_exited" flags=18]

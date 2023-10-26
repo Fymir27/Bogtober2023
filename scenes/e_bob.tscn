@@ -43,6 +43,7 @@ script = ExtResource("1_r1l13")
 _movement_speed = 500.0
 _damage = 1.0
 _health = 3.0
+_xp = 1.0
 _hit_delay = 1.0
 _sprite = NodePath("Sprite2D")
 

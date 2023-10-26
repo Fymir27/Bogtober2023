@@ -3,6 +3,7 @@ class_name Enemy extends RigidBody2D
 @export var _movement_speed: float
 @export var _damage: float;
 @export var _health: float;
+@export var _xp: float;
 @export var _hit_delay: float;
 @export var _target: Player;
 @export var _sprite : Sprite2D;
@@ -41,9 +42,12 @@ func flip_sprite():
 	else: if (linear_velocity.x < -10):
 		_sprite.flip_h = false;
 
-func inflictAttack(damage: float, knock_back: Vector2):
+# returns xp gained
+func inflictAttack(damage: float, knock_back: Vector2) -> float:
 	_health -= damage;
 	if (_health <= 0):
 		queue_free();	
+		return _xp;
 	apply_impulse(knock_back);	
+	return 0;
 	

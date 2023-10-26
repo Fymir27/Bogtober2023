@@ -36,7 +36,8 @@ func _on_enemy_hit(body: Node2D):
 	var enemy = body as Enemy;
 	if (!enemy):
 		return;
-	enemy.inflictAttack(1, (enemy.global_position - player.global_position).normalized() * force);	
+	var xp_gained = enemy.inflictAttack(player.level, (enemy.global_position - player.global_position).normalized() * force);
+	player.awardXp(xp_gained);
 
 func attack(point: Vector2):		
 	var current_rotaion = rotation;

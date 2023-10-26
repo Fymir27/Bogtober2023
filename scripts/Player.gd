@@ -4,16 +4,19 @@ signal player_died;
 
 @export var _speed : float;
 @export var _hp_bar : ProgressBar;
+@export var _xp_bar : ProgressBar;
+@export var _lvl_label: Label;
 @export var _attack_timer: ProgressBar;
 @export var _sprite : Sprite2D;
 @export var _hit_delay: float;
 
 var hit_timer: float;
+var level = 0;
 
-
-func _ready():
+func _ready():	
 	hit_timer = _hit_delay;
 	_attack_timer.max_value = _hit_delay;
+	level_up();
 
 
 func _process(delta):
@@ -49,7 +52,12 @@ func flip_sprite():
 func deal_damage(amount: float):
 	_hp_bar.value -= amount;
 	if (_hp_bar.value <= 0):		
-		player_died.emit();		
+		player_died.emit();	
+
+func awardXp(amount):
+	_xp_bar.value += amount;
+	if (_xp_bar.value == _xp_bar.max_value):
+		level_up();
 
 func hit_closest_enemy():
 	var bodies_hit = $AttackRange.get_overlapping_bodies();
@@ -65,3 +73,8 @@ func hit_closest_enemy():
 	hit_timer = _hit_delay;
 
 	
+func level_up():
+	level += 1;
+	_lvl_label.text = str(level);
+	_xp_bar.value = 0;
+	_xp_bar.max_value += 10;

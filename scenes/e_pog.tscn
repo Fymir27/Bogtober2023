@@ -22,6 +22,7 @@ script = ExtResource("1_tqalv")
 _movement_speed = 500.0
 _damage = 10.0
 _health = 5.0
+_xp = 5.0
 _hit_delay = 1.0
 _sprite = NodePath("Sprite2D")
 
