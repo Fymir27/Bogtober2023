@@ -1,24 +1,25 @@
-[gd_scene load_steps=28 format=3 uid="uid://cbdeftm7hb34y"]
+[gd_scene load_steps=30 format=3 uid="uid://cbdeftm7hb34y"]
 
 [ext_resource type="Script" path="res://scripts/GameState.gd" id="1_boxcs"]
 [ext_resource type="Texture2D" uid="uid://egksrxfe65eo" path="res://map.png" id="2_wyddl"]
 [ext_resource type="Script" path="res://scripts/Player.gd" id="3_ggh7u"]
-[ext_resource type="Texture2D" uid="uid://pwroljxqddpq" path="res://sprites/phinoon.png" id="4_ykkfk"]
 [ext_resource type="Script" path="res://scripts/Camera.gd" id="5_f8mkt"]
 [ext_resource type="Theme" uid="uid://gfe8yonjytoy" path="res://default_theme.tres" id="5_jm235"]
 [ext_resource type="Script" path="res://scripts/Weapon.gd" id="6_hc7te"]
-[ext_resource type="Texture2D" uid="uid://c2bl6qxsboflf" path="res://sprites/weapon.png" id="7_xun4g"]
+[ext_resource type="Texture2D" uid="uid://dpcx5nipciom0" path="res://sprites/PhinoonSmol.png" id="7_0vnl8"]
 [ext_resource type="Script" path="res://scripts/Score.gd" id="8_tngyd"]
 [ext_resource type="Script" path="res://scripts/GameTime.gd" id="9_w17am"]
+[ext_resource type="Texture2D" uid="uid://caq2xtnmvc4cg" path="res://sprites/SpearSmol.png" id="10_20rln"]
 [ext_resource type="Script" path="res://scripts/Spawner.gd" id="10_m8a57"]
 [ext_resource type="PackedScene" uid="uid://da28es3vlw5qi" path="res://scenes/e_pog.tscn" id="10_mbw4p"]
 [ext_resource type="PackedScene" uid="uid://dkmaxy8d1sscl" path="res://scenes/e_bob.tscn" id="10_odwr6"]
+[ext_resource type="Texture2D" uid="uid://rh4spei8sj05" path="res://sprites/Smear.png" id="11_f5ox6"]
 [ext_resource type="PackedScene" uid="uid://csoliin8k8lj0" path="res://scenes/e_giog.tscn" id="11_ngcgn"]
 [ext_resource type="PackedScene" uid="uid://dmy3nmj6kyst2" path="res://scenes/e_shroomba.tscn" id="12_tqki8"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_xafwk"]
-radius = 31.0
-height = 174.0
+radius = 21.0
+height = 168.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_6ucjn"]
 radius = 221.081
@@ -28,7 +29,7 @@ length = 0.001
 
 [sub_resource type="Animation" id="Animation_xgv5f"]
 resource_name = "stab"
-step = 0.05
+step = 0.01
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -36,10 +37,10 @@ tracks/0/path = NodePath("Weapon/WeaponSprite:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 1),
-"transitions": PackedFloat32Array(1, 1, 1),
+"times": PackedFloat32Array(0, 0.1, 0.2, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
-"values": [Vector2(64, 0), Vector2(149, 0), Vector2(64, 0)]
+"values": [Vector2(64, 0), Vector2(120, 30), Vector2(120, 30), Vector2(64, 0)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -48,10 +49,22 @@ tracks/1/path = NodePath("Weapon/WeaponSprite:rotation")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.05, 0.1, 1),
+"times": PackedFloat32Array(0, 0.1, 0.2, 1),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
-"values": [0.0, 1.5708, 1.5708, 0.0]
+"values": [0.0, 2.0944, 2.0944, 0.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Weapon/WeaponSprite/Smear:self_modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.18, 0.2, 1),
+"transitions": PackedFloat32Array(1, 0.1, 1, 1, 1e-05),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 0)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ps31q"]
@@ -61,7 +74,10 @@ _data = {
 }
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tpuvh"]
-size = Vector2(20, 127)
+size = Vector2(11, 199)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qrhkh"]
+size = Vector2(14, 62)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5ecaa"]
 size = Vector2(1941.67, 1844.02)
@@ -220,7 +236,7 @@ _sprite = NodePath("PlayerSprite")
 _hit_delay = 2.0
 
 [node name="PlayerSprite" type="Sprite2D" parent="Player"]
-texture = ExtResource("4_ykkfk")
+texture = ExtResource("7_0vnl8")
 region_rect = Rect2(1, 1, 100, 100)
 
 [node name="Camera2D" type="Camera2D" parent="Player" node_paths=PackedStringArray("ui")]
@@ -236,7 +252,7 @@ script = ExtResource("5_f8mkt")
 ui = NodePath("../../UI")
 
 [node name="PlayerShape" type="CollisionShape2D" parent="Player"]
-position = Vector2(-5, 15)
+position = Vector2(-6, 10)
 shape = SubResource("CapsuleShape2D_xafwk")
 
 [node name="AttackRange" type="Area2D" parent="Player"]
@@ -255,8 +271,11 @@ rotation_speed_attack = 10.0
 rotation_speed_retract = 5.0
 
 [node name="WeaponSprite" type="Sprite2D" parent="Player/Weapon"]
+z_index = 1
+z_as_relative = false
 position = Vector2(64, 0)
-texture = ExtResource("7_xun4g")
+scale = Vector2(-1, 1)
+texture = ExtResource("10_20rln")
 
 [node name="WeaponAnimations" type="AnimationPlayer" parent="Player/Weapon/WeaponSprite"]
 root_node = NodePath("../../..")
@@ -268,10 +287,24 @@ libraries = {
 collision_layer = 4
 collision_mask = 2
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Player/Weapon/WeaponSprite/WeaponHitbox"]
-position = Vector2(0, 0.5)
+[node name="Hilt" type="CollisionShape2D" parent="Player/Weapon/WeaponSprite/WeaponHitbox"]
+position = Vector2(2.5, 1.5)
 shape = SubResource("RectangleShape2D_tpuvh")
 debug_color = Color(0.811765, 0, 0.137255, 0.419608)
+
+[node name="Blade" type="CollisionShape2D" parent="Player/Weapon/WeaponSprite/WeaponHitbox"]
+position = Vector2(-9, -57)
+shape = SubResource("RectangleShape2D_qrhkh")
+debug_color = Color(0.760784, 0, 0.196078, 0.419608)
+
+[node name="Smear" type="Sprite2D" parent="Player/Weapon/WeaponSprite"]
+self_modulate = Color(1, 1, 1, 0)
+z_index = -1
+position = Vector2(23, 0)
+rotation = 1.5708
+scale = Vector2(-1, 1)
+texture = ExtResource("11_f5ox6")
+flip_h = true
 
 [node name="AttackTimer" type="ProgressBar" parent="Player"]
 offset_left = -39.0

@@ -11,7 +11,7 @@ var rotation_speed: float;
 var attacking: bool;
 
 func _ready():	
-	$WeaponSprite/WeaponHitbox.monitoring = false;
+	$WeaponSprite/WeaponHitbox.monitoring = false;	
 	idle_rotation = rotation;
 
 func _process(delta):
@@ -20,6 +20,7 @@ func _process(delta):
 		$WeaponSprite/WeaponHitbox.monitoring = false;
 		target_rotation = idle_rotation;	
 		rotation_speed = rotation_speed_retract;
+		$WeaponSprite.scale.x = -1;		
 
 	var diff = target_rotation - rotation;		
 	var abs_diff = abs(diff);
@@ -40,6 +41,9 @@ func _on_enemy_hit(body: Node2D):
 func attack(point: Vector2):		
 	var current_rotaion = rotation;
 	look_at(point);
+	print(rotation_degrees)
+	if (rotation_degrees < -60):
+		$WeaponSprite.scale.x = 1;		
 	target_rotation = rotation;	
 	rotation_speed = rotation_speed_attack;
 	rotation = current_rotaion;
