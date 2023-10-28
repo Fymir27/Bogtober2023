@@ -81,9 +81,14 @@ func spawn_enemy(enemy_template: PackedScene) -> Enemy:
 	enemy.tree_exited.connect(func(): enemy_died.emit(enemy));
 
 	enemy._target = _player;
-	enemy.global_position = global_position;
-	enemy.global_position.x += randf_between(-200, 200);
-	enemy.global_position.y += randf_between(-2000, 200);
+	var random_angle = randf_between(0, 2 * PI);	
+
+	var view = get_viewport();
+	var camera = view.get_camera_2d();		
+	var visible_size_world = view.get_visible_rect().size / camera.zoom;
+	var diagonal_length = (visible_size_world / 2).length();
+	var spawn_offset = Vector2.from_angle(random_angle) * (diagonal_length + 100)	
+	enemy.global_position = camera.get_screen_center_position() + spawn_offset;	
 	return enemy;
 
 func _on_body_entered(body):
