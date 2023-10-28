@@ -41,10 +41,7 @@ func _on_enemy_hit(body: Node2D):
 
 func attack(point: Vector2):		
 	var current_rotaion = rotation;
-	look_at(point);
-	print(rotation_degrees)
-	if (rotation_degrees < -60):
-		$WeaponSprite.scale.x = 1;		
+	look_at(point);	
 	target_rotation = rotation;	
 	rotation_speed = rotation_speed_attack;
 	rotation = current_rotaion;
