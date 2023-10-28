@@ -1,0 +1,43 @@
+[gd_scene load_steps=5 format=3 uid="uid://da28es3vlw5qi"]
+
+[ext_resource type="Script" path="res://scripts/Enemy.gd" id="1_tqalv"]
+[ext_resource type="Texture2D" uid="uid://bqjaichdx2t53" path="res://biomes/sparky/enemies/Pog.png" id="2_wb3pm"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_pt0o6"]
+radius = 44.0
+height = 204.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cwiwd"]
+bg_color = Color(0.333333, 0, 0.815686, 1)
+
+[node name="pog" type="RigidBody2D" node_paths=PackedStringArray("_sprite")]
+collision_layer = 2
+collision_mask = 3
+gravity_scale = 0.0
+max_contacts_reported = 10
+contact_monitor = true
+lock_rotation = true
+linear_damp = 5.0
+script = ExtResource("1_tqalv")
+_movement_speed = 500.0
+_damage = 10.0
+_health = 5.0
+_xp = 5.0
+_hit_delay = 1.0
+_sprite = NodePath("Sprite2D")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_wb3pm")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_pt0o6")
+
+[node name="ProgressBar" type="ProgressBar" parent="."]
+visible = false
+offset_left = -23.0
+offset_top = -36.0
+offset_right = 23.0
+offset_bottom = -26.0
+theme_override_styles/fill = SubResource("StyleBoxFlat_cwiwd")
+value = 75.0
+show_percentage = false

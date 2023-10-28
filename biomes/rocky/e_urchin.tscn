@@ -1,0 +1,49 @@
+[gd_scene load_steps=8 format=3 uid="uid://caf48hth62ghq"]
+
+[ext_resource type="Script" path="res://scripts/Enemy.gd" id="1_3dfor"]
+[ext_resource type="Texture2D" uid="uid://bcn62e3ybxsh8" path="res://biomes/rocky/Urchin1.png" id="2_rnwl7"]
+[ext_resource type="Script" path="res://scripts/RandomSprite.gd" id="3_jy3st"]
+[ext_resource type="Texture2D" uid="uid://diymkpx8c7tcg" path="res://biomes/rocky/Urchin2.png" id="4_xd3rl"]
+[ext_resource type="Texture2D" uid="uid://bu2ldcdguo6no" path="res://biomes/rocky/Urchin3.png" id="5_0rxfq"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_pt0o6"]
+radius = 37.0
+height = 98.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cwiwd"]
+bg_color = Color(0.333333, 0, 0.815686, 1)
+
+[node name="urchin" type="RigidBody2D" node_paths=PackedStringArray("_sprite")]
+collision_layer = 2
+collision_mask = 3
+gravity_scale = 0.0
+max_contacts_reported = 10
+contact_monitor = true
+lock_rotation = true
+linear_damp = 5.0
+script = ExtResource("1_3dfor")
+_movement_speed = 500.0
+_damage = 1.0
+_health = 3.0
+_xp = 1.0
+_hit_delay = 1.0
+_sprite = NodePath("Sprite2D")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_rnwl7")
+script = ExtResource("3_jy3st")
+_variations = Array[Texture]([ExtResource("2_rnwl7"), ExtResource("4_xd3rl"), ExtResource("5_0rxfq")])
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-10, 4)
+shape = SubResource("CapsuleShape2D_pt0o6")
+
+[node name="ProgressBar" type="ProgressBar" parent="."]
+visible = false
+offset_left = -23.0
+offset_top = -36.0
+offset_right = 23.0
+offset_bottom = -26.0
+theme_override_styles/fill = SubResource("StyleBoxFlat_cwiwd")
+value = 75.0
+show_percentage = false
