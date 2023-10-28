@@ -1,0 +1,19 @@
+[gd_scene load_steps=2 format=3 uid="uid://bck23t3bkweiu"]
+
+[ext_resource type="Texture2D" uid="uid://ccp65d5o5koqe" path="res://biomes/lush/obstacles/LushObstacleLarge2.png" id="1_sywrf"]
+
+[node name="big" type="Node2D"]
+
+[node name="obstacle" type="StaticBody2D" parent="."]
+z_as_relative = false
+y_sort_enabled = true
+position = Vector2(0, 259)
+collision_layer = 8
+collision_mask = 0
+
+[node name="Sprite2D" type="Sprite2D" parent="obstacle"]
+position = Vector2(9, -34)
+texture = ExtResource("1_sywrf")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="obstacle"]
+polygon = PackedVector2Array(-260, -258, 237, -259, 255, -117, 162, 49, 52, 141, 110, 337, 94, 464, -2, 289, -228, 288, -312, 238, -339, 127, -290, 31, -159, -30, -251, -133)

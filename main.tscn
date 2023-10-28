@@ -1,4 +1,4 @@
-[gd_scene load_steps=41 format=3 uid="uid://cbdeftm7hb34y"]
+[gd_scene load_steps=46 format=3 uid="uid://cbdeftm7hb34y"]
 
 [ext_resource type="Script" path="res://scripts/GameState.gd" id="1_t4v82"]
 [ext_resource type="Texture2D" uid="uid://egksrxfe65eo" path="res://map.png" id="2_ynyvf"]
@@ -16,8 +16,11 @@
 [ext_resource type="PackedScene" uid="uid://bajtyj4f4sh4q" path="res://biomes/lush/enemies/e_baum.tscn" id="14_n51tq"]
 [ext_resource type="PackedScene" uid="uid://cya3kfckd314d" path="res://biomes/lush/enemies/e_corpsy.tscn" id="15_cjkdu"]
 [ext_resource type="PackedScene" uid="uid://caf48hth62ghq" path="res://biomes/rocky/e_urchin.tscn" id="16_d4w7b"]
+[ext_resource type="PackedScene" uid="uid://cyug8tcg6hn6c" path="res://biomes/lush/obstacles/big.tscn" id="16_ueqgk"]
+[ext_resource type="PackedScene" uid="uid://bck23t3bkweiu" path="res://biomes/lush/obstacles/big2.tscn" id="17_ldp6n"]
 [ext_resource type="PackedScene" uid="uid://ul6xlb5gwyd1" path="res://biomes/rocky/e_urchin_horde.tscn" id="17_vbdiw"]
 [ext_resource type="PackedScene" uid="uid://m7xyyoh7ytqh" path="res://biomes/rocky/e_urchin_lord.tscn" id="18_0hcve"]
+[ext_resource type="PackedScene" uid="uid://cg2h5f5bhopsx" path="res://biomes/lush/obstacles/medium.tscn" id="18_v3jq3"]
 [ext_resource type="PackedScene" uid="uid://dkmaxy8d1sscl" path="res://biomes/sparky/enemies/e_bob.tscn" id="19_7pygj"]
 [ext_resource type="PackedScene" uid="uid://da28es3vlw5qi" path="res://biomes/sparky/enemies/e_pog.tscn" id="20_nhi3m"]
 [ext_resource type="PackedScene" uid="uid://csoliin8k8lj0" path="res://biomes/sparky/enemies/e_giog.tscn" id="21_ynqu8"]
@@ -26,6 +29,8 @@
 [ext_resource type="PackedScene" uid="uid://bd0e2isid5adw" path="res://biomes/sparky/obstacles/medium2.tscn" id="24_e4umj"]
 [ext_resource type="PackedScene" uid="uid://bgfy0f81mpjtj" path="res://biomes/sparky/obstacles/smol.tscn" id="25_yx50a"]
 [ext_resource type="PackedScene" uid="uid://frwdcvy6vowc" path="res://biomes/sparky/obstacles/smol2.tscn" id="26_4l3qb"]
+[ext_resource type="PackedScene" uid="uid://ctyo8w2usl0ob" path="res://biomes/lush/obstacles/smol.tscn" id="30_p7xu8"]
+[ext_resource type="PackedScene" uid="uid://cs55c8n1u4lgt" path="res://biomes/lush/obstacles/smol2.tscn" id="31_ybpmv"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xgv0x"]
 bg_color = Color(0.288184, 0.401598, 1, 1)
@@ -405,6 +410,15 @@ position = Vector2(346.103, -168.505)
 shape = SubResource("RectangleShape2D_5ecaa")
 debug_color = Color(0.85098, 0.635294, 0, 0.12549)
 
+[node name="big" parent="BiomeLush" instance=ExtResource("16_ueqgk")]
+position = Vector2(-579, -988)
+
+[node name="big2" parent="BiomeLush" instance=ExtResource("17_ldp6n")]
+position = Vector2(1212, 1207)
+
+[node name="medium" parent="BiomeLush" instance=ExtResource("18_v3jq3")]
+position = Vector2(2284, -362)
+
 [node name="BiomeRocky" type="Node2D" parent="." node_paths=PackedStringArray("_player", "_game_time")]
 y_sort_enabled = true
 position = Vector2(2699, -2033)
@@ -503,6 +517,18 @@ shape = SubResource("RectangleShape2D_q47f4")
 position = Vector2(624, 4745)
 rotation = 1.5708
 shape = SubResource("RectangleShape2D_q47f4")
+
+[node name="smol" parent="." instance=ExtResource("30_p7xu8")]
+position = Vector2(-210, -1147)
+
+[node name="smol2" parent="." instance=ExtResource("30_p7xu8")]
+position = Vector2(-2602, -443)
+
+[node name="smol3" parent="." instance=ExtResource("30_p7xu8")]
+position = Vector2(-2458, -3803)
+
+[node name="smol4" parent="." instance=ExtResource("31_ybpmv")]
+position = Vector2(-2468, -1744)
 
 [connection signal="pressed" from="UI/GameOver/Quit" to="GameState" method="quit"]
 [connection signal="pressed" from="UI/GameOver/Retry" to="GameState" method="retry"]

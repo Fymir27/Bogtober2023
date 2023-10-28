@@ -1,5 +1,4 @@
-* better player attack
+* improve enemy spawning
+* Upgrades
 * different enemy behaviour
-	* shroomba aoe spore attack
-	* bob = slug?
-* Boss behaviour
+	* Boss behaviour

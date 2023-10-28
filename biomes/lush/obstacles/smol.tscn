@@ -1,0 +1,19 @@
+[gd_scene load_steps=2 format=3 uid="uid://ctyo8w2usl0ob"]
+
+[ext_resource type="Texture2D" uid="uid://c7aeij231mp1e" path="res://biomes/lush/obstacles/LushObstacleSmol1.png" id="1_bl6uo"]
+
+[node name="smol" type="Node2D"]
+
+[node name="obstacle" type="StaticBody2D" parent="."]
+z_as_relative = false
+y_sort_enabled = true
+position = Vector2(-332, 177)
+collision_layer = 8
+collision_mask = 0
+
+[node name="Sprite2D" type="Sprite2D" parent="obstacle"]
+position = Vector2(9, -34)
+texture = ExtResource("1_bl6uo")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="obstacle"]
+polygon = PackedVector2Array(419, -129, 233, -129, 207, -187, 462, -184)
