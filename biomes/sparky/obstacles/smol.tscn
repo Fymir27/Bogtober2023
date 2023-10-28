@@ -1,0 +1,18 @@
+[gd_scene load_steps=2 format=3 uid="uid://bgfy0f81mpjtj"]
+
+[ext_resource type="Texture2D" uid="uid://b6rhj4rnsaodg" path="res://biomes/sparky/obstacles/SparkObstacleSmol1.png" id="1_g5kk0"]
+
+[node name="smol" type="Node2D"]
+
+[node name="obstacle" type="StaticBody2D" parent="."]
+z_as_relative = false
+y_sort_enabled = true
+collision_layer = 8
+collision_mask = 0
+
+[node name="Sprite2D" type="Sprite2D" parent="obstacle"]
+position = Vector2(-177, 34)
+texture = ExtResource("1_g5kk0")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="obstacle"]
+polygon = PackedVector2Array(98, 29, 58, 55, -21, 60, -99, 35, -8, -57, 30, -46)

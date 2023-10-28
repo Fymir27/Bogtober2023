@@ -76,7 +76,7 @@ func spawn_enemy(enemy_template: PackedScene) -> Enemy:
 		print("Invalid enemy: " + enemy_template.name)
 		return null;
 
-	get_tree().get_root().add_child(enemy);
+	add_child(enemy);
 
 	enemy.tree_exited.connect(func(): enemy_died.emit(enemy));
 

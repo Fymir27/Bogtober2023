@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=3 uid="uid://cbdeftm7hb34y"]
+[gd_scene load_steps=41 format=3 uid="uid://cbdeftm7hb34y"]
 
 [ext_resource type="Script" path="res://scripts/GameState.gd" id="1_t4v82"]
 [ext_resource type="Texture2D" uid="uid://egksrxfe65eo" path="res://map.png" id="2_ynyvf"]
@@ -21,13 +21,18 @@
 [ext_resource type="PackedScene" uid="uid://dkmaxy8d1sscl" path="res://biomes/sparky/enemies/e_bob.tscn" id="19_7pygj"]
 [ext_resource type="PackedScene" uid="uid://da28es3vlw5qi" path="res://biomes/sparky/enemies/e_pog.tscn" id="20_nhi3m"]
 [ext_resource type="PackedScene" uid="uid://csoliin8k8lj0" path="res://biomes/sparky/enemies/e_giog.tscn" id="21_ynqu8"]
+[ext_resource type="PackedScene" uid="uid://cbeh63c3erw0y" path="res://biomes/sparky/obstacles/big.tscn" id="22_d7pcb"]
+[ext_resource type="PackedScene" uid="uid://c1x6bu7sj3vv3" path="res://biomes/sparky/obstacles/medium.tscn" id="23_yvpkn"]
+[ext_resource type="PackedScene" uid="uid://bd0e2isid5adw" path="res://biomes/sparky/obstacles/medium2.tscn" id="24_e4umj"]
+[ext_resource type="PackedScene" uid="uid://bgfy0f81mpjtj" path="res://biomes/sparky/obstacles/smol.tscn" id="25_yx50a"]
+[ext_resource type="PackedScene" uid="uid://frwdcvy6vowc" path="res://biomes/sparky/obstacles/smol2.tscn" id="26_4l3qb"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xgv0x"]
 bg_color = Color(0.288184, 0.401598, 1, 1)
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_xafwk"]
-radius = 21.0
-height = 168.0
+radius = 23.0
+height = 148.74
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_6ucjn"]
 radius = 221.081
@@ -89,16 +94,16 @@ size = Vector2(11, 199)
 size = Vector2(14, 62)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5ecaa"]
-size = Vector2(1941.67, 1844.02)
+size = Vector2(4435.79, 4041.01)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2xpk6"]
-size = Vector2(2072.12, 1785.59)
+size = Vector2(4501, 3979)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6fmx8"]
-size = Vector2(2013.67, 1890.84)
+size = Vector2(4199, 4168)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2e4q1"]
-size = Vector2(1964.86, 1816.19)
+size = Vector2(4409, 4161)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_q47f4"]
 size = Vector2(720, 11783)
@@ -107,12 +112,15 @@ size = Vector2(720, 11783)
 size = Vector2(1236, 11783)
 
 [node name="Root" type="Node2D"]
+y_sort_enabled = true
 
 [node name="GameState" type="Node" parent="." node_paths=PackedStringArray("_game_over_panel")]
 script = ExtResource("1_t4v82")
 _game_over_panel = NodePath("../UI/GameOver")
 
 [node name="Background" type="Sprite2D" parent="."]
+z_index = -100
+z_as_relative = false
 texture = ExtResource("2_ynyvf")
 
 [node name="UI" type="Control" parent="."]
@@ -285,6 +293,8 @@ texture = ExtResource("5_5u7tj")
 expand_mode = 2
 
 [node name="Player" type="RigidBody2D" parent="." node_paths=PackedStringArray("_hp_bar", "_xp_bar", "_lvl_label", "_attack_timer", "_sprite")]
+z_as_relative = false
+y_sort_enabled = true
 collision_mask = 10
 mass = 0.5
 gravity_scale = 0.0
@@ -300,6 +310,7 @@ _sprite = NodePath("PlayerSprite")
 _hit_delay = 2.0
 
 [node name="PlayerSprite" type="Sprite2D" parent="Player"]
+y_sort_enabled = true
 texture = ExtResource("7_5k478")
 region_rect = Rect2(1, 1, 100, 100)
 
@@ -316,7 +327,7 @@ script = ExtResource("8_7nwj7")
 ui = NodePath("../../UI")
 
 [node name="PlayerShape" type="CollisionShape2D" parent="Player"]
-position = Vector2(-6, 10)
+position = Vector2(-4, 26.63)
 shape = SubResource("CapsuleShape2D_xafwk")
 
 [node name="AttackRange" type="Area2D" parent="Player"]
@@ -328,6 +339,7 @@ shape = SubResource("CircleShape2D_6ucjn")
 debug_color = Color(0.392157, 0.615686, 0.0235294, 0.0705882)
 
 [node name="Weapon" type="Node2D" parent="Player" node_paths=PackedStringArray("player")]
+y_sort_enabled = true
 script = ExtResource("9_o67k4")
 player = NodePath("..")
 force = 2000.0
@@ -335,8 +347,7 @@ rotation_speed_attack = 100.0
 rotation_speed_retract = 50.0
 
 [node name="WeaponSprite" type="Sprite2D" parent="Player/Weapon"]
-z_index = 1
-z_as_relative = false
+y_sort_enabled = true
 position = Vector2(64, 0)
 scale = Vector2(-1, 1)
 texture = ExtResource("10_s56v3")
@@ -377,8 +388,8 @@ offset_right = 39.0
 offset_bottom = 102.0
 
 [node name="BiomeLush" type="Node2D" parent="." node_paths=PackedStringArray("_player", "_game_time")]
+y_sort_enabled = true
 position = Vector2(-2764, -2046)
-scale = Vector2(2.02516, 2.15722)
 script = ExtResource("12_yy7m0")
 _player = NodePath("../Player")
 _game_time = NodePath("../UI/GameTime")
@@ -390,13 +401,13 @@ _boss_enemy = ExtResource("15_cjkdu")
 [node name="Area" type="Area2D" parent="BiomeLush"]
 
 [node name="Shape" type="CollisionShape2D" parent="BiomeLush/Area"]
-position = Vector2(77.0768, -156.693)
+position = Vector2(346.103, -168.505)
 shape = SubResource("RectangleShape2D_5ecaa")
 debug_color = Color(0.85098, 0.635294, 0, 0.12549)
 
 [node name="BiomeRocky" type="Node2D" parent="." node_paths=PackedStringArray("_player", "_game_time")]
+y_sort_enabled = true
 position = Vector2(2699, -2033)
-scale = Vector2(2.02516, 2.15722)
 script = ExtResource("12_yy7m0")
 _player = NodePath("../Player")
 _game_time = NodePath("../UI/GameTime")
@@ -408,13 +419,13 @@ _boss_enemy = ExtResource("18_0hcve")
 [node name="Area" type="Area2D" parent="BiomeRocky"]
 
 [node name="Shape" type="CollisionShape2D" parent="BiomeRocky/Area"]
-position = Vector2(-29.2255, -142.796)
+position = Vector2(-294.5, -174.5)
 shape = SubResource("RectangleShape2D_2xpk6")
 debug_color = Color(0.85098, 0.635294, 0, 0.12549)
 
 [node name="BiomeSparky" type="Node2D" parent="." node_paths=PackedStringArray("_player", "_game_time")]
+y_sort_enabled = true
 position = Vector2(-2833, 2041)
-scale = Vector2(2.02516, 2.15722)
 script = ExtResource("12_yy7m0")
 _player = NodePath("../Player")
 _game_time = NodePath("../UI/GameTime")
@@ -426,13 +437,36 @@ _boss_enemy = ExtResource("21_ynqu8")
 [node name="Area" type="Area2D" parent="BiomeSparky"]
 
 [node name="Shape" type="CollisionShape2D" parent="BiomeSparky/Area"]
-position = Vector2(115.546, 180.103)
+position = Vector2(465.5, 278)
 shape = SubResource("RectangleShape2D_6fmx8")
 debug_color = Color(0.85098, 0.635294, 0, 0.12549)
 
+[node name="big" parent="BiomeSparky" instance=ExtResource("22_d7pcb")]
+
+[node name="medium" parent="BiomeSparky" instance=ExtResource("23_yvpkn")]
+position = Vector2(1510, 1110)
+
+[node name="medium2" parent="BiomeSparky" instance=ExtResource("23_yvpkn")]
+position = Vector2(-975, -619)
+
+[node name="medium3" parent="BiomeSparky" instance=ExtResource("24_e4umj")]
+position = Vector2(1383, -424)
+
+[node name="medium4" parent="BiomeSparky" instance=ExtResource("25_yx50a")]
+position = Vector2(1617, 316)
+
+[node name="smol" parent="BiomeSparky" instance=ExtResource("25_yx50a")]
+position = Vector2(-790, -1626)
+
+[node name="smol2" parent="BiomeSparky" instance=ExtResource("26_4l3qb")]
+position = Vector2(2142, -1572)
+
+[node name="smol3" parent="BiomeSparky" instance=ExtResource("26_4l3qb")]
+position = Vector2(-912, 1089)
+
 [node name="BiomeMud" type="Node2D" parent="." node_paths=PackedStringArray("_player", "_game_time")]
+y_sort_enabled = true
 position = Vector2(2699, 2147)
-scale = Vector2(2.02516, 2.15722)
 script = ExtResource("12_yy7m0")
 _player = NodePath("../Player")
 _game_time = NodePath("../UI/GameTime")
@@ -444,7 +478,7 @@ _boss_enemy = ExtResource("21_ynqu8")
 [node name="Area" type="Area2D" parent="BiomeMud"]
 
 [node name="Shape" type="CollisionShape2D" parent="BiomeMud/Area"]
-position = Vector2(-17.569, 158.094)
+position = Vector2(-256.5, 183.5)
 shape = SubResource("RectangleShape2D_2e4q1")
 debug_color = Color(0.85098, 0.635294, 0, 0.12549)
 

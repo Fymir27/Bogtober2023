@@ -1,0 +1,18 @@
+[gd_scene load_steps=2 format=3 uid="uid://cbeh63c3erw0y"]
+
+[ext_resource type="Texture2D" uid="uid://c2ydw83m0q227" path="res://biomes/sparky/obstacles/SparkObstacleLarge.png" id="1_frnqe"]
+
+[node name="big" type="Node2D"]
+
+[node name="obstacle" type="StaticBody2D" parent="."]
+z_as_relative = false
+y_sort_enabled = true
+position = Vector2(0, -216)
+collision_layer = 8
+collision_mask = 0
+
+[node name="Sprite2D" type="Sprite2D" parent="obstacle"]
+texture = ExtResource("1_frnqe")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="obstacle"]
+polygon = PackedVector2Array(289, 448, 357, 434, 476, 413, 399, 271, 354, 214, 147, 172, -74, 182, -284, 254, -351, 308, -451, 423, -298, 469, -78, 461)

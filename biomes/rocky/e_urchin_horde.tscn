@@ -15,7 +15,7 @@ bg_color = Color(0.333333, 0, 0.815686, 1)
 
 [node name="urchin_horde" type="RigidBody2D" node_paths=PackedStringArray("_sprite")]
 collision_layer = 2
-collision_mask = 3
+collision_mask = 11
 gravity_scale = 0.0
 max_contacts_reported = 10
 contact_monitor = true

@@ -48,7 +48,7 @@ _data = {
 
 [node name="shroomba" type="RigidBody2D" node_paths=PackedStringArray("_spores", "_sprite")]
 collision_layer = 2
-collision_mask = 3
+collision_mask = 11
 gravity_scale = 0.0
 lock_rotation = true
 linear_damp = 5.0
@@ -62,8 +62,7 @@ _hit_delay = 1.0
 _sprite = NodePath("Sprite2D")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-z_index = 1
-scale = Vector2(1, 0.83792)
+scale = Vector2(1, 0.833244)
 texture = ExtResource("2_a6sq0")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -83,6 +82,7 @@ show_percentage = false
 collision_layer = 0
 
 [node name="Spores" type="Sprite2D" parent="AttackRange"]
+z_index = -1
 texture_filter = 1
 scale = Vector2(3, 3)
 texture = ExtResource("3_5eyg4")
