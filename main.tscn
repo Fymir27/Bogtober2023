@@ -99,7 +99,7 @@ size = Vector2(11, 199)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qrhkh"]
 size = Vector2(14, 62)
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_md611"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_n8kdc"]
 radius = 500.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5ecaa"]
@@ -420,13 +420,11 @@ scale = Vector2(-1, 1)
 texture = ExtResource("11_0q3wb")
 flip_h = true
 
-[node name="ChainLightningTester" type="Area2D" parent="Player/Weapon"]
+[node name="ChainLightningTester" type="ShapeCast2D" parent="Player/Weapon"]
 position = Vector2(600, 0)
-collision_layer = 0
+shape = SubResource("CircleShape2D_n8kdc")
+target_position = Vector2(0, 0)
 collision_mask = 2
-
-[node name="Circle" type="CollisionShape2D" parent="Player/Weapon/ChainLightningTester"]
-shape = SubResource("CircleShape2D_md611")
 
 [node name="AttackTimer" type="ProgressBar" parent="Player"]
 offset_left = -39.0
@@ -578,7 +576,7 @@ z_index = 1
 z_as_relative = false
 points = PackedVector2Array(299, 189, 530, -209, 713, 157, 971, -164)
 width_curve = SubResource("Curve_mt2ay")
-default_color = Color(0.152941, 0.8, 1, 1)
+default_color = Color(0.976563, 0.535156, 0.0585938, 1)
 script = ExtResource("32_nbm8c")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Lightning"]

@@ -14,6 +14,8 @@ var enemies: Array[Enemy] = [];
 var time_active: float = 0;
 var boss_spawned: bool = false;
 
+var running_id = 0;
+
 func _ready():
 	set_process(false);
 
@@ -75,6 +77,9 @@ func spawn_enemy(enemy_template: PackedScene) -> Enemy:
 	if (!enemy):
 		print("Invalid enemy: " + enemy_template.name)
 		return null;
+
+	enemy.name = enemy.name + str(running_id)
+	running_id += 1;
 
 	add_child(enemy);
 

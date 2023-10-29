@@ -7,7 +7,7 @@ extends Node2D
 
 @export var chain_lightning_bounces: int;
 @export var chain_lightning_damage: int;
-@export var chain_lightning_tester: Area2D;
+@export var chain_lightning_tester: ShapeCast2D;
 @export var chain_lightning_line: Lightning;
 
 var idle_rotation: float;
@@ -46,7 +46,8 @@ func _on_enemy_hit(body: Node2D):
 	var xp_gained = enemy.inflictAttack(player.level, (enemy.global_position - player.global_position).normalized() * force);
 	player.awardXp(xp_gained);
 	
-	if (player.chain_lightning_unlocked):			
+	if (player.chain_lightning_unlocked):		
+		# print("lighnting");
 		chain_lightning_line.clear_points();
 		chain_lightning_bounce(enemy, chain_lightning_bounces, []);	
 		chain_lightning_line.play_animation();	
@@ -63,12 +64,21 @@ func attack(point: Vector2):
 
 func chain_lightning_bounce(enemy: Enemy, bounces_left: int, excluded: Array[Enemy]):
 	
+	enemy.inflictAttack(chain_lightning_damage, Vector2()); # TODO knockback based on impact direction
+	excluded.append(enemy);
+	chain_lightning_line.add_point(enemy.global_position);	
+
 	if (bounces_left <= 0):
 		return bounces_left;
 
-	chain_lightning_line.add_point(enemy.global_position);
-	chain_lightning_tester.global_position = enemy.global_position;
-	var nodes_found = chain_lightning_tester.get_overlapping_bodies();
+	chain_lightning_tester.global_position = enemy.global_position;	
+	chain_lightning_tester.force_shapecast_update();
+	var nodes_found : Array[Enemy] = []; 
+	for i in chain_lightning_tester.get_collision_count():
+		var collider = chain_lightning_tester.get_collider(i);		
+		var next_enemy = collider as Enemy;
+		if (next_enemy):
+			nodes_found.append(next_enemy);
 	
 	if (nodes_found.size() == 0):
 		return bounces_left;	
@@ -80,11 +90,9 @@ func chain_lightning_bounce(enemy: Enemy, bounces_left: int, excluded: Array[Ene
 	);
 
 	for i in nodes_found.size():
-		var next_target = nodes_found[i] as Enemy;		
+		var next_target = nodes_found[i];		
 		if (excluded.find(next_target) >= 0):
 			continue;
-		next_target.inflictAttack(chain_lightning_damage, Vector2()); # TODO knockback based on impact direction
-		excluded.append(next_target);
 		return chain_lightning_bounce(next_target, bounces_left - 1, excluded);
 
 	return bounces_left;
