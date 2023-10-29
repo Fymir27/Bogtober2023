@@ -43,7 +43,9 @@ func flip_sprite():
 		_sprite.flip_h = false;
 
 # returns xp gained
-func inflictAttack(damage: float, knock_back: Vector2) -> float:
+func inflictAttack(damage: float, knock_back: Vector2) -> float:	
+	if (_health == 0):
+		return 0; # prevent killing again (e.g. chain lightning)
 	_health -= damage;
 	if (_health <= 0):
 		queue_free();	

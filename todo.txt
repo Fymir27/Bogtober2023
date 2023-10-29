@@ -1,4 +1,3 @@
-* improve enemy spawning
 * Upgrades
 * different enemy behaviour
 	* Boss behaviour

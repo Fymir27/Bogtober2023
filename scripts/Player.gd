@@ -12,6 +12,7 @@ signal player_died;
 
 var hit_timer: float;
 var level = 0;
+var chain_lightning_unlocked: bool = true; # TODO
 
 func _ready():	
 	hit_timer = _hit_delay;
