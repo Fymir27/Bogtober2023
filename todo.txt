@@ -1,3 +1,11 @@
 * Upgrades
+	* Upgrade/Unlock system
+	* Rocky/Urchin: Movement speed
+	* Lush/Plant: HP regen
+	* Icons
+	* display on character?
+* SOUND!
+	* background
+	* effects
 * different enemy behaviour
 	* Boss behaviour

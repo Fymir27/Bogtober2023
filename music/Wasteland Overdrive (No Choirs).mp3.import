@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://deko7roqqd1y5"
+path="res://.godot/imported/Wasteland Overdrive (No Choirs).mp3-af5201a7f8bd95f54ce7b71491b17b42.mp3str"
+
+[deps]
+
+source_file="res://music/Wasteland Overdrive (No Choirs).mp3"
+dest_files=["res://.godot/imported/Wasteland Overdrive (No Choirs).mp3-af5201a7f8bd95f54ce7b71491b17b42.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

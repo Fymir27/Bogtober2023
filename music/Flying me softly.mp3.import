@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://cmgu0etgtujln"
+path="res://.godot/imported/Flying me softly.mp3-5851e4c3582eba1bbd09810ca55e7183.mp3str"
+
+[deps]
+
+source_file="res://music/Flying me softly.mp3"
+dest_files=["res://.godot/imported/Flying me softly.mp3-5851e4c3582eba1bbd09810ca55e7183.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

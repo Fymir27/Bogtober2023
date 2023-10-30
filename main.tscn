@@ -1,4 +1,4 @@
-[gd_scene load_steps=51 format=3 uid="uid://cbdeftm7hb34y"]
+[gd_scene load_steps=56 format=3 uid="uid://cbdeftm7hb34y"]
 
 [ext_resource type="Script" path="res://scripts/GameState.gd" id="1_t4v82"]
 [ext_resource type="Texture2D" uid="uid://egksrxfe65eo" path="res://map.png" id="2_ynyvf"]
@@ -32,6 +32,10 @@
 [ext_resource type="PackedScene" uid="uid://ctyo8w2usl0ob" path="res://biomes/lush/obstacles/smol.tscn" id="30_p7xu8"]
 [ext_resource type="PackedScene" uid="uid://cs55c8n1u4lgt" path="res://biomes/lush/obstacles/smol2.tscn" id="31_ybpmv"]
 [ext_resource type="Script" path="res://Lightning.gd" id="32_nbm8c"]
+[ext_resource type="AudioStream" uid="uid://cmgu0etgtujln" path="res://music/Flying me softly.mp3" id="33_k0gud"]
+[ext_resource type="AudioStream" uid="uid://cxr8e0amafhwf" path="res://music/GameMusic_ForestTheme_24.mp3" id="34_16klb"]
+[ext_resource type="AudioStream" uid="uid://6h78tfi8wpyq" path="res://music/oioioioioioi.mp3" id="35_b8lvj"]
+[ext_resource type="AudioStream" uid="uid://deko7roqqd1y5" path="res://music/Wasteland Overdrive (No Choirs).mp3" id="36_ultmn"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xgv0x"]
 bg_color = Color(0.288184, 0.401598, 1, 1)
@@ -145,6 +149,19 @@ tracks/0/keys = {
 _data = {
 "flash_then_fade_out": SubResource("Animation_ehlko")
 }
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_x1wet"]
+streams_count = 4
+random_pitch = 1.0
+random_volume_offset_db = 0.0
+stream_0/stream = ExtResource("33_k0gud")
+stream_0/weight = 1.0
+stream_1/stream = ExtResource("34_16klb")
+stream_1/weight = 1.0
+stream_2/stream = ExtResource("35_b8lvj")
+stream_2/weight = 1.0
+stream_3/stream = ExtResource("36_ultmn")
+stream_3/weight = 1.0
 
 [node name="Root" type="Node2D"]
 y_sort_enabled = true
@@ -584,6 +601,11 @@ root_node = NodePath("../..")
 libraries = {
 "": SubResource("AnimationLibrary_2q8ja")
 }
+
+[node name="BackgroundMusic" type="AudioStreamPlayer" parent="."]
+stream = SubResource("AudioStreamRandomizer_x1wet")
+volume_db = 5.0
+autoplay = true
 
 [connection signal="pressed" from="UI/GameOver/Quit" to="GameState" method="quit"]
 [connection signal="pressed" from="UI/GameOver/Retry" to="GameState" method="retry"]
