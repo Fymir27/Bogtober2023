@@ -1,6 +1,6 @@
 extends Node2D
 
-signal enemy_died(enemy: Enemy);
+signal boss_defeated();
 
 @export var _player: Player;
 @export var _game_time: GameTime;
@@ -83,7 +83,8 @@ func spawn_enemy(enemy_template: PackedScene) -> Enemy:
 
 	add_child(enemy);
 
-	enemy.tree_exited.connect(func(): enemy_died.emit(enemy));
+	if (enemy_template == _boss_enemy):
+		enemy.tree_exited.connect(func(): boss_defeated.emit());
 
 	enemy._target = _player;
 	var random_angle = randf_between(0, 2 * PI);	
@@ -93,7 +94,7 @@ func spawn_enemy(enemy_template: PackedScene) -> Enemy:
 	var visible_size_world = view.get_visible_rect().size / camera.zoom;
 	var diagonal_length = (visible_size_world / 2).length();
 	var spawn_offset = Vector2.from_angle(random_angle) * (diagonal_length + 100)	
-	enemy.global_position = camera.get_screen_center_position() + spawn_offset;	
+	enemy.global_position = camera.get_screen_center_position() + spawn_offset;
 	return enemy;
 
 func _on_body_entered(body):

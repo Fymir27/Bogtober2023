@@ -1,18 +1,24 @@
-[gd_scene load_steps=56 format=3 uid="uid://cbdeftm7hb34y"]
+[gd_scene load_steps=62 format=3 uid="uid://cbdeftm7hb34y"]
 
 [ext_resource type="Script" path="res://scripts/GameState.gd" id="1_t4v82"]
 [ext_resource type="Texture2D" uid="uid://egksrxfe65eo" path="res://map.png" id="2_ynyvf"]
 [ext_resource type="Theme" uid="uid://gfe8yonjytoy" path="res://default_theme.tres" id="3_2lxyu"]
 [ext_resource type="Script" path="res://scripts/GameTime.gd" id="4_0k0ri"]
 [ext_resource type="Texture2D" uid="uid://c1tirdaed2ul2" path="res://item_frame.png" id="5_5u7tj"]
+[ext_resource type="Script" path="res://Items.gd" id="5_87041"]
+[ext_resource type="Texture2D" uid="uid://dbirml0mjpsox" path="res://biomes/sparky/SparkItem.png" id="6_81a8v"]
 [ext_resource type="Script" path="res://scripts/Player.gd" id="6_tc2es"]
 [ext_resource type="Texture2D" uid="uid://dpcx5nipciom0" path="res://player/PhinoonSmol.png" id="7_5k478"]
 [ext_resource type="Script" path="res://scripts/Camera.gd" id="8_7nwj7"]
+[ext_resource type="Texture2D" uid="uid://bbl0rlrjwl4c7" path="res://biomes/lush/PlantItem.png" id="8_d2mug"]
+[ext_resource type="Texture2D" uid="uid://b8e3lgiev3tgb" path="res://biomes/rocky/UrchinItem.png" id="9_7dvby"]
 [ext_resource type="Script" path="res://scripts/Weapon.gd" id="9_o67k4"]
 [ext_resource type="Texture2D" uid="uid://caq2xtnmvc4cg" path="res://player/SpearSmol.png" id="10_s56v3"]
 [ext_resource type="Texture2D" uid="uid://rh4spei8sj05" path="res://player/Smear.png" id="11_0q3wb"]
+[ext_resource type="AudioStream" uid="uid://rn56v31os2pn" path="res://music/effects/level_up.wav" id="12_i22si"]
 [ext_resource type="Script" path="res://scripts/Spawner.gd" id="12_yy7m0"]
 [ext_resource type="PackedScene" uid="uid://dmy3nmj6kyst2" path="res://biomes/lush/enemies/e_shroomba.tscn" id="13_h7kcm"]
+[ext_resource type="AudioStream" uid="uid://blqf23f885cgh" path="res://music/effects/pick_up.wav" id="13_tw66y"]
 [ext_resource type="PackedScene" uid="uid://bajtyj4f4sh4q" path="res://biomes/lush/enemies/e_baum.tscn" id="14_n51tq"]
 [ext_resource type="PackedScene" uid="uid://cya3kfckd314d" path="res://biomes/lush/enemies/e_corpsy.tscn" id="15_cjkdu"]
 [ext_resource type="PackedScene" uid="uid://caf48hth62ghq" path="res://biomes/rocky/e_urchin.tscn" id="16_d4w7b"]
@@ -317,32 +323,75 @@ text = "59:59
 "
 script = ExtResource("4_0k0ri")
 
-[node name="GridContainer" type="HBoxContainer" parent="UI"]
+[node name="Items" type="HBoxContainer" parent="UI" node_paths=PackedStringArray("player", "icons")]
 layout_mode = 1
 offset_left = -1559.0
 offset_top = -850.0
 offset_right = -699.0
 offset_bottom = -650.0
+script = ExtResource("5_87041")
+player = NodePath("../../Player")
+icons = [NodePath("TextureRect/chain_lightning"), NodePath("TextureRect2/symbiosis"), NodePath("TextureRect3/speed"), NodePath("TextureRect4/tbd")]
 
-[node name="TextureRect" type="TextureRect" parent="UI/GridContainer"]
+[node name="TextureRect" type="TextureRect" parent="UI/Items"]
 layout_mode = 2
 texture = ExtResource("5_5u7tj")
 expand_mode = 2
 
-[node name="TextureRect2" type="TextureRect" parent="UI/GridContainer"]
+[node name="chain_lightning" type="TextureRect" parent="UI/Items/TextureRect"]
+visible = false
+layout_mode = 0
+offset_left = 7.0
+offset_top = -3.0
+offset_right = 205.0
+offset_bottom = 203.0
+texture = ExtResource("6_81a8v")
+stretch_mode = 2
+
+[node name="TextureRect2" type="TextureRect" parent="UI/Items"]
 layout_mode = 2
 texture = ExtResource("5_5u7tj")
 expand_mode = 2
 
-[node name="TextureRect3" type="TextureRect" parent="UI/GridContainer"]
+[node name="symbiosis" type="TextureRect" parent="UI/Items/TextureRect2"]
+visible = false
+offset_left = 7.0
+offset_top = 6.0
+offset_right = 205.0
+offset_bottom = 212.0
+texture = ExtResource("8_d2mug")
+stretch_mode = 2
+
+[node name="TextureRect3" type="TextureRect" parent="UI/Items"]
 layout_mode = 2
 texture = ExtResource("5_5u7tj")
 expand_mode = 2
 
-[node name="TextureRect4" type="TextureRect" parent="UI/GridContainer"]
+[node name="speed" type="TextureRect" parent="UI/Items/TextureRect3"]
+visible = false
+offset_left = 11.0
+offset_top = 10.0
+offset_right = 209.0
+offset_bottom = 216.0
+texture = ExtResource("9_7dvby")
+stretch_mode = 2
+
+[node name="TextureRect4" type="TextureRect" parent="UI/Items"]
 layout_mode = 2
 texture = ExtResource("5_5u7tj")
 expand_mode = 2
+
+[node name="tbd" type="TextureRect" parent="UI/Items/TextureRect4"]
+visible = false
+offset_left = 7.0
+offset_top = -3.0
+offset_right = 205.0
+offset_bottom = 203.0
+texture = ExtResource("6_81a8v")
+stretch_mode = 2
+
+[node name="PickUpSound" type="AudioStreamPlayer" parent="UI/Items"]
+stream = ExtResource("13_tw66y")
 
 [node name="Player" type="RigidBody2D" parent="." node_paths=PackedStringArray("_hp_bar", "_xp_bar", "_lvl_label", "_attack_timer", "_sprite")]
 z_as_relative = false
@@ -353,7 +402,7 @@ gravity_scale = 0.0
 lock_rotation = true
 linear_damp = 5.0
 script = ExtResource("6_tc2es")
-_speed = 2500.0
+_speed = 2000.0
 _hp_bar = NodePath("../UI/Bars/HPBar")
 _xp_bar = NodePath("../UI/Bars/XPBar")
 _lvl_label = NodePath("../UI/Bars/HBoxContainer/LevelValue")
@@ -449,6 +498,12 @@ offset_top = 75.0
 offset_right = 39.0
 offset_bottom = 102.0
 
+[node name="LevelUpSound" type="AudioStreamPlayer" parent="Player"]
+stream = ExtResource("12_i22si")
+
+[node name="SymbiosisTimer" type="Timer" parent="Player"]
+wait_time = 5.0
+
 [node name="BiomeLush" type="Node2D" parent="." node_paths=PackedStringArray("_player", "_game_time")]
 y_sort_enabled = true
 position = Vector2(-2764, -2046)
@@ -475,6 +530,18 @@ position = Vector2(1212, 1207)
 
 [node name="medium" parent="BiomeLush" instance=ExtResource("18_v3jq3")]
 position = Vector2(2284, -362)
+
+[node name="smol" parent="BiomeLush" instance=ExtResource("30_p7xu8")]
+position = Vector2(2554, 899)
+
+[node name="smol2" parent="BiomeLush" instance=ExtResource("30_p7xu8")]
+position = Vector2(162, 1603)
+
+[node name="smol3" parent="BiomeLush" instance=ExtResource("30_p7xu8")]
+position = Vector2(306, -1757)
+
+[node name="smol4" parent="BiomeLush" instance=ExtResource("31_ybpmv")]
+position = Vector2(296, 302)
 
 [node name="BiomeRocky" type="Node2D" parent="." node_paths=PackedStringArray("_player", "_game_time")]
 y_sort_enabled = true
@@ -575,18 +642,6 @@ position = Vector2(624, 4745)
 rotation = 1.5708
 shape = SubResource("RectangleShape2D_q47f4")
 
-[node name="smol" parent="." instance=ExtResource("30_p7xu8")]
-position = Vector2(-210, -1147)
-
-[node name="smol2" parent="." instance=ExtResource("30_p7xu8")]
-position = Vector2(-2602, -443)
-
-[node name="smol3" parent="." instance=ExtResource("30_p7xu8")]
-position = Vector2(-2458, -3803)
-
-[node name="smol4" parent="." instance=ExtResource("31_ybpmv")]
-position = Vector2(-2468, -1744)
-
 [node name="Lightning" type="Line2D" parent="."]
 self_modulate = Color(1, 1, 1, 0)
 z_index = 1
@@ -604,17 +659,20 @@ libraries = {
 
 [node name="BackgroundMusic" type="AudioStreamPlayer" parent="."]
 stream = SubResource("AudioStreamRandomizer_x1wet")
-volume_db = 5.0
 autoplay = true
 
 [connection signal="pressed" from="UI/GameOver/Quit" to="GameState" method="quit"]
 [connection signal="pressed" from="UI/GameOver/Retry" to="GameState" method="retry"]
 [connection signal="player_died" from="Player" to="GameState" method="_on_player_died"]
 [connection signal="body_entered" from="Player/Weapon/WeaponSprite/WeaponHitbox" to="Player/Weapon" method="_on_enemy_hit"]
+[connection signal="timeout" from="Player/SymbiosisTimer" to="Player" method="heal" binds= [1.0]]
+[connection signal="boss_defeated" from="BiomeLush" to="UI/Items" method="unlock_symbiosis"]
 [connection signal="body_entered" from="BiomeLush/Area" to="BiomeLush" method="_on_body_entered" flags=18]
 [connection signal="body_exited" from="BiomeLush/Area" to="BiomeLush" method="_on_body_exited" flags=18]
+[connection signal="boss_defeated" from="BiomeRocky" to="UI/Items" method="unlock_speed"]
 [connection signal="body_entered" from="BiomeRocky/Area" to="BiomeRocky" method="_on_body_entered" flags=18]
 [connection signal="body_exited" from="BiomeRocky/Area" to="BiomeRocky" method="_on_body_exited" flags=18]
+[connection signal="boss_defeated" from="BiomeSparky" to="UI/Items" method="unlock_chain_lightning"]
 [connection signal="body_entered" from="BiomeSparky/Area" to="BiomeSparky" method="_on_body_entered" flags=18]
 [connection signal="body_exited" from="BiomeSparky/Area" to="BiomeSparky" method="_on_body_exited" flags=18]
 [connection signal="body_entered" from="BiomeMud/Area" to="BiomeMud" method="_on_body_entered" flags=18]

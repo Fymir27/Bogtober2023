@@ -9,10 +9,12 @@ signal player_died;
 @export var _attack_timer: ProgressBar;
 @export var _sprite : Sprite2D;
 @export var _hit_delay: float;
+@export var chain_lightning_unlocked: bool;
+@export var symbiosis_unlocked: bool;
 
 var hit_timer: float;
 var level = 0;
-var chain_lightning_unlocked: bool = true; # TODO
+
 
 func _ready():	
 	hit_timer = _hit_delay;
@@ -24,7 +26,7 @@ func _process(delta):
 	handle_input();	
 	flip_sprite();
 	hit_timer -= delta;
-	_attack_timer.value = _hit_delay - hit_timer;	
+	_attack_timer.value = _hit_delay - hit_timer;
 
 func _physics_process(_delta):		
 	if (hit_timer <= 0):
@@ -55,6 +57,9 @@ func deal_damage(amount: float):
 	if (_hp_bar.value <= 0):		
 		player_died.emit();	
 
+func heal(amount: float):
+	_hp_bar.value += amount;
+
 func awardXp(amount):
 	_xp_bar.value += amount;
 	if (_xp_bar.value >= _xp_bar.max_value):
@@ -79,3 +84,4 @@ func level_up():
 	_lvl_label.text = str(level);
 	_xp_bar.value -= _xp_bar.max_value;
 	_xp_bar.max_value += 10;
+	$LevelUpSound.play();
