@@ -1,9 +1,9 @@
 [gd_scene load_steps=14 format=3 uid="uid://cpvxq3j1cflhi"]
 
 [ext_resource type="Theme" uid="uid://gfe8yonjytoy" path="res://default_theme.tres" id="1_ysv66"]
-[ext_resource type="Script" path="res://Volume.gd" id="2_8v053"]
+[ext_resource type="Script" path="res://scripts/Volume.gd" id="2_efnni"]
 [ext_resource type="AudioStream" uid="uid://cxr8e0amafhwf" path="res://music/GameMusic_ForestTheme_24.mp3" id="3_826su"]
-[ext_resource type="Script" path="res://PlayButton.gd" id="4_1m155"]
+[ext_resource type="Script" path="res://scripts/PlayButton.gd" id="4_mhgfe"]
 [ext_resource type="Texture2D" uid="uid://s4wll33npy1n" path="res://biomes/rocky/UHorde3.png" id="5_ehc5w"]
 [ext_resource type="Texture2D" uid="uid://ppov0ashaj5r" path="res://biomes/lush/obstacles/LushObstacleLarge1.png" id="6_p14d2"]
 [ext_resource type="Texture2D" uid="uid://cphbyiw8ycphg" path="res://biomes/lush/enemies/ShroombaSmol.png" id="7_75m0a"]
@@ -30,7 +30,7 @@ offset_top = 130.0
 offset_right = 229.0
 offset_bottom = 146.0
 value = 50.0
-script = ExtResource("2_8v053")
+script = ExtResource("2_efnni")
 
 [node name="Label" type="Label" parent="Volume"]
 layout_mode = 0
@@ -53,7 +53,7 @@ offset_top = -47.0
 offset_right = 217.0
 offset_bottom = 53.0
 text = "Play"
-script = ExtResource("4_1m155")
+script = ExtResource("4_mhgfe")
 
 [node name="Title" type="Label" parent="."]
 layout_mode = 0
@@ -78,6 +78,7 @@ text = "OneTinyBee & Fymir27"
 horizontal_alignment = 1
 
 [node name="Credits" type="Label" parent="."]
+layout_mode = 0
 offset_left = -940.0
 offset_top = 350.0
 offset_right = 519.0

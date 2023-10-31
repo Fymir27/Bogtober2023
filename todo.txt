@@ -1,7 +1,5 @@
-* Game State (Death/Retry)
 * Upgrades
 	* display on character?
 * different enemy behaviour
 	* Boss behaviour
 * BALANCING
-* Credits
