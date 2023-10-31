@@ -61,9 +61,12 @@ offset_left = -380.0
 offset_top = -538.0
 offset_right = 377.0
 offset_bottom = -166.0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 3
+theme_override_constants/shadow_offset_y = 3
 text = "Bogtober 2023
 -
-Phinoons Bog Adventure"
+Phinoon's Bog Adventure"
 horizontal_alignment = 1
 vertical_alignment = 1
 
