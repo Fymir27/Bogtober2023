@@ -5,5 +5,4 @@
 * Music
 	* varying intensitiy?
 * BALANCING
-	* shroombas useless
 	* chain lightning op?
