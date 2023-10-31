@@ -248,7 +248,7 @@ uppercase = true
 layout_mode = 2
 theme = ExtResource("3_2lxyu")
 theme_override_styles/fill = SubResource("StyleBoxFlat_xgv0x")
-max_value = 0.0
+max_value = 10.0
 allow_greater = true
 
 [node name="Label" type="Label" parent="UI/Bars/XPBar"]
@@ -330,7 +330,7 @@ text = "59:59
 "
 script = ExtResource("4_0k0ri")
 
-[node name="Items" type="HBoxContainer" parent="UI" node_paths=PackedStringArray("player", "icons")]
+[node name="Items" type="HBoxContainer" parent="UI" node_paths=PackedStringArray("player", "symbiosis_timer", "icons")]
 layout_mode = 1
 offset_left = -1559.0
 offset_top = -850.0
@@ -338,6 +338,7 @@ offset_right = -699.0
 offset_bottom = -650.0
 script = ExtResource("5_87041")
 player = NodePath("../../Player")
+symbiosis_timer = NodePath("../../Player/SymbiosisTimer")
 icons = [NodePath("TextureRect/chain_lightning"), NodePath("TextureRect2/symbiosis"), NodePath("TextureRect3/speed"), NodePath("TextureRect4/tbd")]
 
 [node name="TextureRect" type="TextureRect" parent="UI/Items"]
@@ -379,6 +380,7 @@ texture = ExtResource("8_d2mug")
 stretch_mode = 2
 
 [node name="Label" type="Label" parent="UI/Items/TextureRect2/symbiosis"]
+layout_mode = 0
 offset_left = -3.0
 offset_top = 131.0
 offset_right = 188.0
@@ -404,6 +406,7 @@ texture = ExtResource("9_7dvby")
 stretch_mode = 2
 
 [node name="Label" type="Label" parent="UI/Items/TextureRect3/speed"]
+layout_mode = 0
 offset_left = -7.0
 offset_top = 127.0
 offset_right = 184.0

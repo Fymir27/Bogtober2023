@@ -11,6 +11,7 @@ func quit():
 	get_tree().quit();
 
 func retry():
+	Engine.time_scale = 1;
 	restart_scene.emit();
 	get_tree().reload_current_scene();
 

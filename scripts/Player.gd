@@ -13,14 +13,13 @@ signal player_died;
 @export var symbiosis_unlocked: bool;
 
 var hit_timer: float;
-var level = 0;
+var level = 1;
 
 
 func _ready():	
 	hit_timer = _hit_delay;
 	_attack_timer.max_value = _hit_delay;
-	level_up();
-
+	_lvl_label.text = str(level);	
 
 func _process(delta):
 	handle_input();	

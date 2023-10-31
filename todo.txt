@@ -3,3 +3,5 @@
 * different enemy behaviour
 	* Boss behaviour
 * BALANCING
+	* shroombas useless
+	* chain lightning op?
