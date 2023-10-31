@@ -4,7 +4,7 @@
 [ext_resource type="Script" path="res://scripts/Volume.gd" id="2_efnni"]
 [ext_resource type="AudioStream" uid="uid://cxr8e0amafhwf" path="res://music/GameMusic_ForestTheme_24.mp3" id="3_826su"]
 [ext_resource type="Script" path="res://scripts/PlayButton.gd" id="4_mhgfe"]
-[ext_resource type="Texture2D" uid="uid://s4wll33npy1n" path="res://biomes/rocky/UHorde3.png" id="5_ehc5w"]
+[ext_resource type="Texture2D" uid="uid://s4wll33npy1n" path="res://biomes/rocky/enemies/UHorde3.png" id="5_hp5i0"]
 [ext_resource type="Texture2D" uid="uid://ppov0ashaj5r" path="res://biomes/lush/obstacles/LushObstacleLarge1.png" id="6_p14d2"]
 [ext_resource type="Texture2D" uid="uid://cphbyiw8ycphg" path="res://biomes/lush/enemies/ShroombaSmol.png" id="7_75m0a"]
 [ext_resource type="Texture2D" uid="uid://c7aeij231mp1e" path="res://biomes/lush/obstacles/LushObstacleSmol1.png" id="8_est7d"]
@@ -92,7 +92,7 @@ Dark Forest Theme - The Cynic Project / cynicmusic.com / pixelsphere.org"
 
 [node name="UHorde3" type="Sprite2D" parent="."]
 position = Vector2(886, -464)
-texture = ExtResource("5_ehc5w")
+texture = ExtResource("5_hp5i0")
 
 [node name="LushObstacleLarge1" type="Sprite2D" parent="."]
 position = Vector2(-1013, -513)

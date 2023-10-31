@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bcn62e3ybxsh8"
-path="res://.godot/imported/Urchin1.png-86c9aa3dea0a64c537f03b8afbec86a8.ctex"
+path="res://.godot/imported/Urchin1.png-53809cd0b5fac301beba86adac3d36cf.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://biomes/rocky/Urchin1.png"
-dest_files=["res://.godot/imported/Urchin1.png-86c9aa3dea0a64c537f03b8afbec86a8.ctex"]
+source_file="res://biomes/rocky/enemies/Urchin1.png"
+dest_files=["res://.godot/imported/Urchin1.png-53809cd0b5fac301beba86adac3d36cf.ctex"]
 
 [params]
 

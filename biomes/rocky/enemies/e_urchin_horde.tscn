@@ -1,10 +1,10 @@
 [gd_scene load_steps=8 format=3 uid="uid://ul6xlb5gwyd1"]
 
-[ext_resource type="Script" path="res://scripts/Enemy.gd" id="1_qgi0w"]
-[ext_resource type="Texture2D" uid="uid://cc7wxpltq4g5t" path="res://biomes/rocky/UHorde1.png" id="2_4vej6"]
-[ext_resource type="Script" path="res://scripts/RandomSprite.gd" id="3_c0oa5"]
-[ext_resource type="Texture2D" uid="uid://2jbh0uq8tanr" path="res://biomes/rocky/UHorde2.png" id="4_vxwu5"]
-[ext_resource type="Texture2D" uid="uid://s4wll33npy1n" path="res://biomes/rocky/UHorde3.png" id="5_nt2p3"]
+[ext_resource type="Script" path="res://scripts/Enemy.gd" id="1_hycwp"]
+[ext_resource type="Texture2D" uid="uid://cc7wxpltq4g5t" path="res://biomes/rocky/enemies/UHorde1.png" id="2_036em"]
+[ext_resource type="Script" path="res://scripts/RandomSprite.gd" id="3_v776j"]
+[ext_resource type="Texture2D" uid="uid://2jbh0uq8tanr" path="res://biomes/rocky/enemies/UHorde2.png" id="4_fhiqb"]
+[ext_resource type="Texture2D" uid="uid://s4wll33npy1n" path="res://biomes/rocky/enemies/UHorde3.png" id="5_w35nr"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_pt0o6"]
 radius = 37.0
@@ -21,7 +21,7 @@ max_contacts_reported = 10
 contact_monitor = true
 lock_rotation = true
 linear_damp = 5.0
-script = ExtResource("1_qgi0w")
+script = ExtResource("1_hycwp")
 _movement_speed = 1500.0
 _damage = 9.0
 _health = 4.0
@@ -30,9 +30,9 @@ _hit_delay = 0.8
 _sprite = NodePath("Sprite2D")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("2_4vej6")
-script = ExtResource("3_c0oa5")
-_variations = Array[Texture]([ExtResource("2_4vej6"), ExtResource("4_vxwu5"), ExtResource("5_nt2p3")])
+texture = ExtResource("2_036em")
+script = ExtResource("3_v776j")
+_variations = Array[Texture]([ExtResource("2_036em"), ExtResource("4_fhiqb"), ExtResource("5_w35nr")])
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-50, 27)

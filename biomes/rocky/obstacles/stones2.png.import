@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bu2ldcdguo6no"
-path="res://.godot/imported/Urchin3.png-0d41b25d9da4a1e78a576c2e45a174d0.ctex"
+uid="uid://wikhs6x6t7pk"
+path="res://.godot/imported/stones2.png-5a2e303d56a9348fd02a31b08343ce0e.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://biomes/rocky/Urchin3.png"
-dest_files=["res://.godot/imported/Urchin3.png-0d41b25d9da4a1e78a576c2e45a174d0.ctex"]
+source_file="res://biomes/rocky/obstacles/stones2.png"
+dest_files=["res://.godot/imported/stones2.png-5a2e303d56a9348fd02a31b08343ce0e.ctex"]
 
 [params]
 

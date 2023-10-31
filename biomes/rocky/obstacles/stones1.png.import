@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://s4wll33npy1n"
-path="res://.godot/imported/UHorde3.png-571fcf0e284638cfb7e37f4f52f9762b.ctex"
+uid="uid://ckgroc0c2808q"
+path="res://.godot/imported/stones1.png-29969a6f2afe663c64992305458f891f.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://biomes/rocky/UHorde3.png"
-dest_files=["res://.godot/imported/UHorde3.png-571fcf0e284638cfb7e37f4f52f9762b.ctex"]
+source_file="res://biomes/rocky/obstacles/stones1.png"
+dest_files=["res://.godot/imported/stones1.png-29969a6f2afe663c64992305458f891f.ctex"]
 
 [params]
 

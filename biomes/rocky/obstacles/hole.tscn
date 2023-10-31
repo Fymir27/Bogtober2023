@@ -1,0 +1,23 @@
+[gd_scene load_steps=3 format=3 uid="uid://bomskyecynw86"]
+
+[ext_resource type="Texture2D" uid="uid://2di4sm0xs1c2" path="res://biomes/rocky/obstacles/hole.png" id="1_pvbmg"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_p7cy4"]
+radius = 72.0
+height = 324.0
+
+[node name="hole" type="Node2D"]
+
+[node name="obstacle" type="StaticBody2D" parent="."]
+position = Vector2(-332, 177)
+collision_layer = 8
+collision_mask = 0
+
+[node name="Sprite2D" type="Sprite2D" parent="obstacle"]
+position = Vector2(327, -236)
+texture = ExtResource("1_pvbmg")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="obstacle"]
+position = Vector2(333, -211)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_p7cy4")

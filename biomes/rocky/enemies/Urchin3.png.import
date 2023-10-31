@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://caqudfchtv0ye"
-path="res://.godot/imported/UrchinLord.png-dce9f2f65fff182578506c4a79c0dedd.ctex"
+uid="uid://bu2ldcdguo6no"
+path="res://.godot/imported/Urchin3.png-82d25c6a907c5f37a730643f5c08c87c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://biomes/rocky/UrchinLord.png"
-dest_files=["res://.godot/imported/UrchinLord.png-dce9f2f65fff182578506c4a79c0dedd.ctex"]
+source_file="res://biomes/rocky/enemies/Urchin3.png"
+dest_files=["res://.godot/imported/Urchin3.png-82d25c6a907c5f37a730643f5c08c87c.ctex"]
 
 [params]
 

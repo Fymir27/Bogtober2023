@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cc7wxpltq4g5t"
-path="res://.godot/imported/UHorde1.png-c003a1a6b3ffa72f03865ffaf219c365.ctex"
+uid="uid://2di4sm0xs1c2"
+path="res://.godot/imported/hole.png-95d2676567915b1c4fd8791d6cd08b15.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://biomes/rocky/UHorde1.png"
-dest_files=["res://.godot/imported/UHorde1.png-c003a1a6b3ffa72f03865ffaf219c365.ctex"]
+source_file="res://biomes/rocky/obstacles/hole.png"
+dest_files=["res://.godot/imported/hole.png-95d2676567915b1c4fd8791d6cd08b15.ctex"]
 
 [params]
 

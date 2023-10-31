@@ -1,4 +1,4 @@
-[gd_scene load_steps=64 format=3 uid="uid://cbdeftm7hb34y"]
+[gd_scene load_steps=67 format=3 uid="uid://cbdeftm7hb34y"]
 
 [ext_resource type="Script" path="res://scripts/GameState.gd" id="1_t4v82"]
 [ext_resource type="Texture2D" uid="uid://egksrxfe65eo" path="res://map.png" id="2_ynyvf"]
@@ -21,11 +21,8 @@
 [ext_resource type="AudioStream" uid="uid://blqf23f885cgh" path="res://music/effects/pick_up.wav" id="13_tw66y"]
 [ext_resource type="PackedScene" uid="uid://bajtyj4f4sh4q" path="res://biomes/lush/enemies/e_baum.tscn" id="14_n51tq"]
 [ext_resource type="PackedScene" uid="uid://cya3kfckd314d" path="res://biomes/lush/enemies/e_corpsy.tscn" id="15_cjkdu"]
-[ext_resource type="PackedScene" uid="uid://caf48hth62ghq" path="res://biomes/rocky/e_urchin.tscn" id="16_d4w7b"]
 [ext_resource type="PackedScene" uid="uid://cyug8tcg6hn6c" path="res://biomes/lush/obstacles/big.tscn" id="16_ueqgk"]
 [ext_resource type="PackedScene" uid="uid://bck23t3bkweiu" path="res://biomes/lush/obstacles/big2.tscn" id="17_ldp6n"]
-[ext_resource type="PackedScene" uid="uid://ul6xlb5gwyd1" path="res://biomes/rocky/e_urchin_horde.tscn" id="17_vbdiw"]
-[ext_resource type="PackedScene" uid="uid://m7xyyoh7ytqh" path="res://biomes/rocky/e_urchin_lord.tscn" id="18_0hcve"]
 [ext_resource type="PackedScene" uid="uid://cg2h5f5bhopsx" path="res://biomes/lush/obstacles/medium.tscn" id="18_v3jq3"]
 [ext_resource type="PackedScene" uid="uid://dkmaxy8d1sscl" path="res://biomes/sparky/enemies/e_bob.tscn" id="19_7pygj"]
 [ext_resource type="PackedScene" uid="uid://da28es3vlw5qi" path="res://biomes/sparky/enemies/e_pog.tscn" id="20_nhi3m"]
@@ -35,14 +32,20 @@
 [ext_resource type="PackedScene" uid="uid://bd0e2isid5adw" path="res://biomes/sparky/obstacles/medium2.tscn" id="24_e4umj"]
 [ext_resource type="PackedScene" uid="uid://bgfy0f81mpjtj" path="res://biomes/sparky/obstacles/smol.tscn" id="25_yx50a"]
 [ext_resource type="PackedScene" uid="uid://frwdcvy6vowc" path="res://biomes/sparky/obstacles/smol2.tscn" id="26_4l3qb"]
+[ext_resource type="PackedScene" uid="uid://caf48hth62ghq" path="res://biomes/rocky/enemies/e_urchin.tscn" id="27_6kb45"]
+[ext_resource type="PackedScene" uid="uid://ul6xlb5gwyd1" path="res://biomes/rocky/enemies/e_urchin_horde.tscn" id="28_j28df"]
+[ext_resource type="PackedScene" uid="uid://m7xyyoh7ytqh" path="res://biomes/rocky/enemies/e_urchin_lord.tscn" id="29_0bhk5"]
 [ext_resource type="PackedScene" uid="uid://ctyo8w2usl0ob" path="res://biomes/lush/obstacles/smol.tscn" id="30_p7xu8"]
+[ext_resource type="PackedScene" uid="uid://nphu2fmby1ya" path="res://biomes/rocky/obstacles/stones.tscn" id="31_gxxgh"]
 [ext_resource type="PackedScene" uid="uid://cs55c8n1u4lgt" path="res://biomes/lush/obstacles/smol2.tscn" id="31_ybpmv"]
+[ext_resource type="PackedScene" uid="uid://dcoeteihrslqh" path="res://biomes/rocky/obstacles/stones2.tscn" id="32_qdtte"]
 [ext_resource type="AudioStream" uid="uid://cmgu0etgtujln" path="res://music/Flying me softly.mp3" id="33_k0gud"]
 [ext_resource type="AudioStream" uid="uid://cxr8e0amafhwf" path="res://music/GameMusic_ForestTheme_24.mp3" id="34_16klb"]
 [ext_resource type="AudioStream" uid="uid://6h78tfi8wpyq" path="res://music/oioioioioioi.mp3" id="35_b8lvj"]
 [ext_resource type="AudioStream" uid="uid://deko7roqqd1y5" path="res://music/Wasteland Overdrive (No Choirs).mp3" id="36_ultmn"]
 [ext_resource type="Script" path="res://scripts/Lightning.gd" id="38_38805"]
 [ext_resource type="Texture2D" uid="uid://fusup5dfalf8" path="res://fence.png" id="43_ceau8"]
+[ext_resource type="PackedScene" uid="uid://bomskyecynw86" path="res://biomes/rocky/obstacles/hole.tscn" id="44_6tk8r"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xgv0x"]
 bg_color = Color(0.288184, 0.401598, 1, 1)
@@ -551,15 +554,16 @@ position = Vector2(306, -1757)
 position = Vector2(296, 302)
 
 [node name="BiomeRocky" type="Node2D" parent="." node_paths=PackedStringArray("_player", "_game_time")]
+z_as_relative = false
 y_sort_enabled = true
 position = Vector2(2699, -2033)
 script = ExtResource("12_yy7m0")
 _player = NodePath("../Player")
 _game_time = NodePath("../UI/GameTime")
 _spawn_delay = 5.0
-_easy_enemy = ExtResource("16_d4w7b")
-_hard_enemy = ExtResource("17_vbdiw")
-_boss_enemy = ExtResource("18_0hcve")
+_easy_enemy = ExtResource("27_6kb45")
+_hard_enemy = ExtResource("28_j28df")
+_boss_enemy = ExtResource("29_0bhk5")
 
 [node name="Area" type="Area2D" parent="BiomeRocky"]
 
@@ -567,6 +571,26 @@ _boss_enemy = ExtResource("18_0hcve")
 position = Vector2(-294.5, -174.5)
 shape = SubResource("RectangleShape2D_2xpk6")
 debug_color = Color(0.85098, 0.635294, 0, 0.12549)
+
+[node name="hole" parent="BiomeRocky" instance=ExtResource("44_6tk8r")]
+z_index = -1
+position = Vector2(-1665, -1050)
+
+[node name="hole2" parent="BiomeRocky" instance=ExtResource("44_6tk8r")]
+z_index = -1
+position = Vector2(-101, 483)
+
+[node name="stones" parent="BiomeRocky" instance=ExtResource("31_gxxgh")]
+position = Vector2(-1700, 1184)
+
+[node name="stones2" parent="BiomeRocky" instance=ExtResource("31_gxxgh")]
+position = Vector2(560, -477)
+
+[node name="stone2" parent="BiomeRocky" instance=ExtResource("32_qdtte")]
+position = Vector2(-1296, -175)
+
+[node name="stone3" parent="BiomeRocky" instance=ExtResource("32_qdtte")]
+position = Vector2(698, 1158)
 
 [node name="BiomeSparky" type="Node2D" parent="." node_paths=PackedStringArray("_player", "_game_time")]
 y_sort_enabled = true
@@ -668,14 +692,14 @@ libraries = {
 stream = SubResource("AudioStreamRandomizer_x1wet")
 autoplay = true
 
-[node name="StaticBody2D" type="StaticBody2D" parent="."]
+[node name="Fence" type="StaticBody2D" parent="."]
 position = Vector2(2347, 2558)
 collision_layer = 8
 
-[node name="Fence" type="Sprite2D" parent="StaticBody2D"]
+[node name="Fence" type="Sprite2D" parent="Fence"]
 texture = ExtResource("43_ceau8")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Fence"]
 position = Vector2(154, 566.5)
 shape = SubResource("RectangleShape2D_mpfkh")
 

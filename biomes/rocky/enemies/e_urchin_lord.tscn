@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://m7xyyoh7ytqh"]
 
-[ext_resource type="Script" path="res://scripts/Enemy.gd" id="1_lerb2"]
-[ext_resource type="Texture2D" uid="uid://caqudfchtv0ye" path="res://biomes/rocky/UrchinLord.png" id="2_4bvvh"]
+[ext_resource type="Script" path="res://scripts/Enemy.gd" id="1_epcrf"]
+[ext_resource type="Texture2D" uid="uid://caqudfchtv0ye" path="res://biomes/rocky/enemies/UrchinLord.png" id="2_upldd"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_pt0o6"]
 radius = 174.0
@@ -18,7 +18,7 @@ max_contacts_reported = 10
 contact_monitor = true
 lock_rotation = true
 linear_damp = 5.0
-script = ExtResource("1_lerb2")
+script = ExtResource("1_epcrf")
 _movement_speed = 1000.0
 _damage = 20.0
 _health = 8.0
@@ -27,7 +27,7 @@ _hit_delay = 0.8
 _sprite = NodePath("Sprite2D")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("2_4bvvh")
+texture = ExtResource("2_upldd")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(11, -24)

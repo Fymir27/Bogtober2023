@@ -1,0 +1,17 @@
+[gd_scene load_steps=2 format=3 uid="uid://nphu2fmby1ya"]
+
+[ext_resource type="Texture2D" uid="uid://ckgroc0c2808q" path="res://biomes/rocky/obstacles/stones1.png" id="1_63qcl"]
+
+[node name="stones" type="Node2D"]
+
+[node name="obstacle" type="StaticBody2D" parent="."]
+position = Vector2(-332, 177)
+collision_layer = 8
+collision_mask = 0
+
+[node name="Sprite2D" type="Sprite2D" parent="obstacle"]
+position = Vector2(327, -236)
+texture = ExtResource("1_63qcl")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="obstacle"]
+polygon = PackedVector2Array(122, -177, 466, -181, 488, -204, 466, -273, 321, -262, 287, -238, 173, -232, 143, -205)

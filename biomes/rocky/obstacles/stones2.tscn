@@ -1,0 +1,23 @@
+[gd_scene load_steps=3 format=3 uid="uid://dcoeteihrslqh"]
+
+[ext_resource type="Texture2D" uid="uid://wikhs6x6t7pk" path="res://biomes/rocky/obstacles/stones2.png" id="1_nl24v"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_72vea"]
+radius = 31.0
+height = 204.0
+
+[node name="stone2" type="Node2D"]
+
+[node name="obstacle" type="StaticBody2D" parent="."]
+position = Vector2(-332, 177)
+collision_layer = 8
+collision_mask = 0
+
+[node name="Sprite2D" type="Sprite2D" parent="obstacle"]
+position = Vector2(327, -236)
+texture = ExtResource("1_nl24v")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="obstacle"]
+position = Vector2(322, -188)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_72vea")
