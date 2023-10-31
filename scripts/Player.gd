@@ -81,6 +81,9 @@ func hit_closest_enemy():
 	
 func level_up():
 	level += 1;
+	_hit_delay *= 0.9;
+	_hp_bar.max_value += 2;
+	_hp_bar.value += 2;
 	_lvl_label.text = str(level);
 	_xp_bar.value -= _xp_bar.max_value;
 	_xp_bar.max_value += 10;

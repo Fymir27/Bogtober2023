@@ -355,6 +355,14 @@ offset_bottom = 203.0
 texture = ExtResource("6_81a8v")
 stretch_mode = 2
 
+[node name="Label" type="Label" parent="UI/Items/TextureRect/chain_lightning"]
+layout_mode = 0
+offset_left = -1.0
+offset_top = 138.0
+offset_right = 184.0
+offset_bottom = 196.0
+text = "Lightning"
+
 [node name="TextureRect2" type="TextureRect" parent="UI/Items"]
 layout_mode = 2
 texture = ExtResource("5_5u7tj")
@@ -370,6 +378,16 @@ offset_bottom = 212.0
 texture = ExtResource("8_d2mug")
 stretch_mode = 2
 
+[node name="Label" type="Label" parent="UI/Items/TextureRect2/symbiosis"]
+offset_left = -3.0
+offset_top = 131.0
+offset_right = 188.0
+offset_bottom = 192.0
+text = "HP/s
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="TextureRect3" type="TextureRect" parent="UI/Items"]
 layout_mode = 2
 texture = ExtResource("5_5u7tj")
@@ -384,6 +402,15 @@ offset_right = 209.0
 offset_bottom = 216.0
 texture = ExtResource("9_7dvby")
 stretch_mode = 2
+
+[node name="Label" type="Label" parent="UI/Items/TextureRect3/speed"]
+offset_left = -7.0
+offset_top = 127.0
+offset_right = 184.0
+offset_bottom = 188.0
+text = "+Speed"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="TextureRect4" type="TextureRect" parent="UI/Items"]
 layout_mode = 2
