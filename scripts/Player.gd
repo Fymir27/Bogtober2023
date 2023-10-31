@@ -55,6 +55,9 @@ func deal_damage(amount: float):
 	_hp_bar.value -= amount;
 	if (_hp_bar.value <= 0):		
 		player_died.emit();	
+		set_process(false);
+		set_physics_process(false);
+		constant_force = Vector2();
 
 func heal(amount: float):
 	_hp_bar.value += amount;

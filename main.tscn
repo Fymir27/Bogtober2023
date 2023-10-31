@@ -179,9 +179,10 @@ size = Vector2(5608, 4273)
 [node name="Root" type="Node2D"]
 y_sort_enabled = true
 
-[node name="GameState" type="Node" parent="." node_paths=PackedStringArray("_game_over_panel")]
+[node name="GameState" type="Node" parent="." node_paths=PackedStringArray("_game_over_panel", "_game_time")]
 script = ExtResource("1_t4v82")
 _game_over_panel = NodePath("../UI/GameOver")
+_game_time = NodePath("../UI/GameTime")
 
 [node name="Background" type="Sprite2D" parent="."]
 z_index = -100
@@ -228,8 +229,8 @@ text = "69
 [node name="HPBar" type="ProgressBar" parent="UI/Bars"]
 layout_mode = 2
 theme = ExtResource("3_2lxyu")
-max_value = 25.0
-value = 25.0
+max_value = 1.0
+value = 1.0
 
 [node name="Label" type="Label" parent="UI/Bars/HPBar"]
 z_index = 100
@@ -736,6 +737,10 @@ shape = SubResource("RectangleShape2D_mpfkh")
 [connection signal="pressed" from="UI/GameOver/Quit" to="GameState" method="quit"]
 [connection signal="pressed" from="UI/GameOver/Retry" to="GameState" method="retry"]
 [connection signal="player_died" from="Player" to="GameState" method="_on_player_died"]
+[connection signal="player_died" from="Player" to="BiomeLush" method="disable_all_enemies"]
+[connection signal="player_died" from="Player" to="BiomeRocky" method="disable_all_enemies"]
+[connection signal="player_died" from="Player" to="BiomeSparky" method="disable_all_enemies"]
+[connection signal="player_died" from="Player" to="BiomeMud" method="disable_all_enemies"]
 [connection signal="body_entered" from="Player/Weapon/WeaponSprite/WeaponHitbox" to="Player/Weapon" method="_on_enemy_hit"]
 [connection signal="timeout" from="Player/SymbiosisTimer" to="Player" method="heal" binds= [1.0]]
 [connection signal="boss_defeated" from="BiomeLush" to="UI/Items" method="unlock_symbiosis"]

@@ -41,9 +41,19 @@ func _process(delta):
 
 	_secondsUntilNextSpawn = _spawn_delay;
 
+func disable_all_enemies():
+	set_process(false);
+	for enemy in enemies:
+		if (enemy == null):
+			continue;
+		enemy.constant_force = Vector2();
+		enemy.set_process(false);
+		enemy.set_physics_process(false);		
 
 func kill_all_enemies():
 	for enemy in enemies:
+		if (enemy == null):
+			continue;
 		enemy.get_parent().remove_child(enemy);
 		enemy.free();
 	enemies.clear();	
@@ -82,6 +92,7 @@ func spawn_enemy(enemy_template: PackedScene) -> Enemy:
 	running_id += 1;
 
 	add_child(enemy);
+	enemies.append(enemy);
 
 	if (enemy_template == _boss_enemy):
 		enemy.tree_exited.connect(func(): boss_defeated.emit());
