@@ -55,14 +55,14 @@ linear_damp = 5.0
 script = ExtResource("1_uhha4")
 _spores = NodePath("AttackRange/Spores")
 _movement_speed = 500.0
-_damage = 7.0
-_health = 3.0
+_damage = 5.0
+_health = 4.0
 _xp = 1.0
 _hit_delay = 1.0
 _sprite = NodePath("Sprite2D")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(1, 0.833244)
+scale = Vector2(1, 0.940884)
 texture = ExtResource("2_a6sq0")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

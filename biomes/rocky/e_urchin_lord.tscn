@@ -19,11 +19,11 @@ contact_monitor = true
 lock_rotation = true
 linear_damp = 5.0
 script = ExtResource("1_lerb2")
-_movement_speed = 500.0
-_damage = 1.0
-_health = 3.0
-_xp = 1.0
-_hit_delay = 1.0
+_movement_speed = 1000.0
+_damage = 20.0
+_health = 8.0
+_xp = 20.0
+_hit_delay = 0.8
 _sprite = NodePath("Sprite2D")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]

@@ -221,7 +221,7 @@ text = "69
 [node name="HPBar" type="ProgressBar" parent="UI/Bars"]
 layout_mode = 2
 theme = ExtResource("3_2lxyu")
-max_value = 10.0
+max_value = 25.0
 value = 10.0
 
 [node name="Label" type="Label" parent="UI/Bars/HPBar"]
@@ -355,6 +355,7 @@ expand_mode = 2
 
 [node name="symbiosis" type="TextureRect" parent="UI/Items/TextureRect2"]
 visible = false
+layout_mode = 0
 offset_left = 7.0
 offset_top = 6.0
 offset_right = 205.0
@@ -369,6 +370,7 @@ expand_mode = 2
 
 [node name="speed" type="TextureRect" parent="UI/Items/TextureRect3"]
 visible = false
+layout_mode = 0
 offset_left = 11.0
 offset_top = 10.0
 offset_right = 209.0
@@ -383,6 +385,7 @@ expand_mode = 2
 
 [node name="tbd" type="TextureRect" parent="UI/Items/TextureRect4"]
 visible = false
+layout_mode = 0
 offset_left = 7.0
 offset_top = -3.0
 offset_right = 205.0
