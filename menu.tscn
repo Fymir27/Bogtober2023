@@ -1,9 +1,18 @@
-[gd_scene load_steps=5 format=3 uid="uid://cpvxq3j1cflhi"]
+[gd_scene load_steps=14 format=3 uid="uid://cpvxq3j1cflhi"]
 
 [ext_resource type="Theme" uid="uid://gfe8yonjytoy" path="res://default_theme.tres" id="1_ysv66"]
 [ext_resource type="Script" path="res://Volume.gd" id="2_8v053"]
 [ext_resource type="AudioStream" uid="uid://cxr8e0amafhwf" path="res://music/GameMusic_ForestTheme_24.mp3" id="3_826su"]
 [ext_resource type="Script" path="res://PlayButton.gd" id="4_1m155"]
+[ext_resource type="Texture2D" uid="uid://s4wll33npy1n" path="res://biomes/rocky/UHorde3.png" id="5_ehc5w"]
+[ext_resource type="Texture2D" uid="uid://ppov0ashaj5r" path="res://biomes/lush/obstacles/LushObstacleLarge1.png" id="6_p14d2"]
+[ext_resource type="Texture2D" uid="uid://cphbyiw8ycphg" path="res://biomes/lush/enemies/ShroombaSmol.png" id="7_75m0a"]
+[ext_resource type="Texture2D" uid="uid://c7aeij231mp1e" path="res://biomes/lush/obstacles/LushObstacleSmol1.png" id="8_est7d"]
+[ext_resource type="Texture2D" uid="uid://pm2g6srkdu3m" path="res://biomes/sparky/enemies/Bob.png" id="9_v2xe2"]
+[ext_resource type="Texture2D" uid="uid://b6rhj4rnsaodg" path="res://biomes/sparky/obstacles/SparkObstacleSmol1.png" id="10_kl5d5"]
+[ext_resource type="Texture2D" uid="uid://dpcx5nipciom0" path="res://player/PhinoonSmol.png" id="11_4s6oq"]
+[ext_resource type="Texture2D" uid="uid://caq2xtnmvc4cg" path="res://player/SpearSmol.png" id="12_bmr77"]
+[ext_resource type="Texture2D" uid="uid://egksrxfe65eo" path="res://map.png" id="13_rygxp"]
 
 [node name="menu" type="Control"]
 layout_mode = 3
@@ -17,9 +26,9 @@ theme = ExtResource("1_ysv66")
 [node name="Volume" type="HSlider" parent="."]
 layout_mode = 0
 offset_left = -226.0
-offset_top = 490.0
+offset_top = 130.0
 offset_right = 229.0
-offset_bottom = 506.0
+offset_bottom = 146.0
 value = 50.0
 script = ExtResource("2_8v053")
 
@@ -40,18 +49,18 @@ autoplay = true
 [node name="PlayButton" type="Button" parent="."]
 layout_mode = 0
 offset_left = -204.0
-offset_top = 313.0
+offset_top = -47.0
 offset_right = 217.0
-offset_bottom = 413.0
+offset_bottom = 53.0
 text = "Play"
 script = ExtResource("4_1m155")
 
 [node name="Title" type="Label" parent="."]
 layout_mode = 0
-offset_left = -377.0
-offset_top = -378.0
-offset_right = 380.0
-offset_bottom = -6.0
+offset_left = -380.0
+offset_top = -538.0
+offset_right = 377.0
+offset_bottom = -166.0
 text = "Bogtober 2023
 -
 Phinoons Bog Adventure"
@@ -60,13 +69,64 @@ vertical_alignment = 1
 
 [node name="Authors" type="Label" parent="."]
 layout_mode = 0
-offset_left = -226.0
-offset_top = 60.0
-offset_right = 236.0
-offset_bottom = 121.0
+offset_left = -231.0
+offset_top = -180.0
+offset_right = 231.0
+offset_bottom = -119.0
 theme_override_font_sizes/font_size = 32
 text = "OneTinyBee & Fymir27"
 horizontal_alignment = 1
+
+[node name="Credits" type="Label" parent="."]
+offset_left = -940.0
+offset_top = 350.0
+offset_right = 519.0
+offset_bottom = 521.0
+theme_override_font_sizes/font_size = 20
+text = "[Music]
+Flying me softly - Alexandr Zhelanov https://soundcloud.com/alexandr-zhelanov
+Wasteland Overdrive - Composed/Authored by Matthew Pablo http://www.matthewpablo.com
+OIOIOIOIOIOI - James Gargette
+Dark Forest Theme - The Cynic Project / cynicmusic.com / pixelsphere.org"
+
+[node name="UHorde3" type="Sprite2D" parent="."]
+position = Vector2(886, -464)
+texture = ExtResource("5_ehc5w")
+
+[node name="LushObstacleLarge1" type="Sprite2D" parent="."]
+position = Vector2(-1013, -513)
+texture = ExtResource("6_p14d2")
+
+[node name="ShroombaSmol" type="Sprite2D" parent="."]
+position = Vector2(291, -3)
+texture = ExtResource("7_75m0a")
+
+[node name="LushObstacleSmol1" type="Sprite2D" parent="."]
+position = Vector2(566, 641)
+texture = ExtResource("8_est7d")
+
+[node name="Bob" type="Sprite2D" parent="."]
+position = Vector2(-320, -5)
+texture = ExtResource("9_v2xe2")
+flip_h = true
+
+[node name="SparkObstacleSmol1" type="Sprite2D" parent="."]
+position = Vector2(-1011, 305)
+texture = ExtResource("10_kl5d5")
+
+[node name="PhinoonSmol" type="Sprite2D" parent="."]
+position = Vector2(657, -4)
+texture = ExtResource("11_4s6oq")
+
+[node name="SpearSmol" type="Sprite2D" parent="."]
+position = Vector2(585, -15)
+texture = ExtResource("12_bmr77")
+
+[node name="Map" type="Sprite2D" parent="."]
+z_index = -1
+z_as_relative = false
+position = Vector2(232, 11)
+texture = ExtResource("13_rygxp")
 
 [connection signal="value_changed" from="Volume" to="Volume" method="_on_value_changed"]
 [connection signal="finished" from="AudioStreamPlayer" to="AudioStreamPlayer" method="_set_playing" binds= [true]]
