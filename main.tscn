@@ -129,10 +129,10 @@ size = Vector2(4199, 4168)
 size = Vector2(1365, 1206)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_q47f4"]
-size = Vector2(720, 11783)
+size = Vector2(473, 11783)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_m67i8"]
-size = Vector2(1236, 11783)
+size = Vector2(1093, 11783)
 
 [sub_resource type="Curve" id="Curve_mt2ay"]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.169231, 0), 0.0, 0.0, 0, 0, Vector2(0.313846, 1), 0.0, 0.0, 0, 0, Vector2(0.513846, 0.0105263), 0.0, 0.0, 0, 0, Vector2(0.689231, 1), 0.0, 0.0, 0, 0, Vector2(0.790769, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
@@ -229,8 +229,8 @@ text = "69
 [node name="HPBar" type="ProgressBar" parent="UI/Bars"]
 layout_mode = 2
 theme = ExtResource("3_2lxyu")
-max_value = 1.0
-value = 1.0
+max_value = 25.0
+value = 25.0
 
 [node name="Label" type="Label" parent="UI/Bars/HPBar"]
 z_index = 100
@@ -434,7 +434,7 @@ stretch_mode = 2
 [node name="PickUpSound" type="AudioStreamPlayer" parent="UI/Items"]
 stream = ExtResource("13_tw66y")
 
-[node name="Player" type="RigidBody2D" parent="." node_paths=PackedStringArray("_hp_bar", "_xp_bar", "_lvl_label", "_attack_timer", "_sprite")]
+[node name="Player" type="RigidBody2D" parent="." node_paths=PackedStringArray("_hp_bar", "_xp_bar", "_lvl_label", "_sprite")]
 z_as_relative = false
 y_sort_enabled = true
 collision_mask = 10
@@ -447,7 +447,6 @@ _speed = 2000.0
 _hp_bar = NodePath("../UI/Bars/HPBar")
 _xp_bar = NodePath("../UI/Bars/XPBar")
 _lvl_label = NodePath("../UI/Bars/HBoxContainer/LevelValue")
-_attack_timer = NodePath("AttackTimer")
 _sprite = NodePath("PlayerSprite")
 _hit_delay = 2.0
 
@@ -532,12 +531,6 @@ position = Vector2(600, 0)
 shape = SubResource("CircleShape2D_n8kdc")
 target_position = Vector2(0, 0)
 collision_mask = 2
-
-[node name="AttackTimer" type="ProgressBar" parent="Player"]
-offset_left = -39.0
-offset_top = 75.0
-offset_right = 39.0
-offset_bottom = 102.0
 
 [node name="LevelUpSound" type="AudioStreamPlayer" parent="Player"]
 stream = ExtResource("12_i22si")
@@ -687,11 +680,11 @@ collision_layer = 8
 collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Walls"]
-position = Vector2(-4841, -145)
+position = Vector2(-4886, -145)
 shape = SubResource("RectangleShape2D_q47f4")
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="Walls"]
-position = Vector2(556.499, -4791)
+position = Vector2(556.499, -4862.5)
 rotation = 1.5708
 shape = SubResource("RectangleShape2D_m67i8")
 
@@ -700,7 +693,7 @@ position = Vector2(4987, -149)
 shape = SubResource("RectangleShape2D_q47f4")
 
 [node name="CollisionShape2D4" type="CollisionShape2D" parent="Walls"]
-position = Vector2(624, 4745)
+position = Vector2(624, 4823.5)
 rotation = 1.5708
 shape = SubResource("RectangleShape2D_q47f4")
 

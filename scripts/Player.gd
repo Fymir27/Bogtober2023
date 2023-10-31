@@ -6,7 +6,6 @@ signal player_died;
 @export var _hp_bar : ProgressBar;
 @export var _xp_bar : ProgressBar;
 @export var _lvl_label: Label;
-@export var _attack_timer: ProgressBar;
 @export var _sprite : Sprite2D;
 @export var _hit_delay: float;
 @export var chain_lightning_unlocked: bool;
@@ -18,14 +17,12 @@ var level = 1;
 
 func _ready():	
 	hit_timer = _hit_delay;
-	_attack_timer.max_value = _hit_delay;
 	_lvl_label.text = str(level);	
 
 func _process(delta):
 	handle_input();	
 	flip_sprite();
 	hit_timer -= delta;
-	_attack_timer.value = _hit_delay - hit_timer;
 
 func _physics_process(_delta):		
 	if (hit_timer <= 0):

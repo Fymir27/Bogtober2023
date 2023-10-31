@@ -98,15 +98,26 @@ func spawn_enemy(enemy_template: PackedScene) -> Enemy:
 		enemy.tree_exited.connect(func(): boss_defeated.emit());
 
 	enemy._target = _player;
-	var random_angle = randf_between(0, 2 * PI);	
 
+	var spawn_position = Vector2();
+		
+	while(spawn_position_invalid(spawn_position)):
+		spawn_position = get_random_spawn_position();
+
+	enemy.global_position = spawn_position;
+	return enemy;
+
+func spawn_position_invalid(pos: Vector2) -> bool:
+	return pos.x == 0 || abs(pos.x) > 4300 || pos.y == 0 || abs(pos.y) > 4300;
+
+func get_random_spawn_position() -> Vector2:	
+	var random_angle = randf_between(0, 2 * PI);	
 	var view = get_viewport();
 	var camera = view.get_camera_2d();		
 	var visible_size_world = view.get_visible_rect().size / camera.zoom;
 	var diagonal_length = (visible_size_world / 2).length();
 	var spawn_offset = Vector2.from_angle(random_angle) * (diagonal_length + 100)	
-	enemy.global_position = camera.get_screen_center_position() + spawn_offset;
-	return enemy;
+	return camera.get_screen_center_position() + spawn_offset;
 
 func _on_body_entered(body):
 	if (body.collision_layer != 1):
