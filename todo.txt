@@ -1,3 +1,4 @@
+* Game State (Death/Retry)
 * Upgrades
 	* display on character?
 * SOUND!
@@ -5,3 +6,4 @@
 * different enemy behaviour
 	* Boss behaviour
 * BALANCING
+* Credits

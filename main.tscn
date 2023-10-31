@@ -222,7 +222,7 @@ text = "69
 layout_mode = 2
 theme = ExtResource("3_2lxyu")
 max_value = 25.0
-value = 10.0
+value = 25.0
 
 [node name="Label" type="Label" parent="UI/Bars/HPBar"]
 z_index = 100
@@ -680,3 +680,4 @@ autoplay = true
 [connection signal="body_exited" from="BiomeSparky/Area" to="BiomeSparky" method="_on_body_exited" flags=18]
 [connection signal="body_entered" from="BiomeMud/Area" to="BiomeMud" method="_on_body_entered" flags=18]
 [connection signal="body_exited" from="BiomeMud/Area" to="BiomeMud" method="_on_body_exited" flags=18]
+[connection signal="finished" from="BackgroundMusic" to="BackgroundMusic" method="_set_playing" binds= [true]]
