@@ -16,4 +16,5 @@ func retry():
 
 
 func _on_player_died():
+	Engine.time_scale = 0;
 	_game_over_panel.show();

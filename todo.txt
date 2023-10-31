@@ -1,8 +1,6 @@
 * Game State (Death/Retry)
 * Upgrades
 	* display on character?
-* SOUND!
-	* background: does it loop?	
 * different enemy behaviour
 	* Boss behaviour
 * BALANCING
