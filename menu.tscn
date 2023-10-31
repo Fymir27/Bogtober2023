@@ -29,7 +29,9 @@ offset_left = -226.0
 offset_top = 130.0
 offset_right = 229.0
 offset_bottom = 146.0
-value = 50.0
+max_value = 1.0
+step = 0.01
+value = 0.5
 script = ExtResource("2_efnni")
 
 [node name="Label" type="Label" parent="Volume"]
@@ -132,5 +134,4 @@ z_as_relative = false
 position = Vector2(232, 11)
 texture = ExtResource("13_rygxp")
 
-[connection signal="value_changed" from="Volume" to="Volume" method="_on_value_changed"]
 [connection signal="finished" from="AudioStreamPlayer" to="AudioStreamPlayer" method="_set_playing" binds= [true]]
