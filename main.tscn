@@ -1,8 +1,7 @@
-[gd_scene load_steps=67 format=3 uid="uid://cbdeftm7hb34y"]
+[gd_scene load_steps=71 format=3 uid="uid://cbdeftm7hb34y"]
 
 [ext_resource type="Script" path="res://scripts/GameState.gd" id="1_t4v82"]
 [ext_resource type="Texture2D" uid="uid://egksrxfe65eo" path="res://map.png" id="2_ynyvf"]
-[ext_resource type="Theme" uid="uid://gfe8yonjytoy" path="res://default_theme.tres" id="3_2lxyu"]
 [ext_resource type="Script" path="res://scripts/GameTime.gd" id="4_0k0ri"]
 [ext_resource type="Texture2D" uid="uid://c1tirdaed2ul2" path="res://item_frame.png" id="5_5u7tj"]
 [ext_resource type="Script" path="res://Items.gd" id="5_87041"]
@@ -15,6 +14,7 @@
 [ext_resource type="Script" path="res://scripts/Weapon.gd" id="9_o67k4"]
 [ext_resource type="Texture2D" uid="uid://caq2xtnmvc4cg" path="res://player/SpearSmol.png" id="10_s56v3"]
 [ext_resource type="Texture2D" uid="uid://rh4spei8sj05" path="res://player/Smear.png" id="11_0q3wb"]
+[ext_resource type="Texture2D" uid="uid://cg1qqf044fqkv" path="res://ui/skull2.png" id="11_snup6"]
 [ext_resource type="AudioStream" uid="uid://rn56v31os2pn" path="res://music/effects/level_up.wav" id="12_i22si"]
 [ext_resource type="Script" path="res://scripts/Spawner.gd" id="12_yy7m0"]
 [ext_resource type="PackedScene" uid="uid://dmy3nmj6kyst2" path="res://biomes/lush/enemies/e_shroomba.tscn" id="13_h7kcm"]
@@ -47,8 +47,27 @@
 [ext_resource type="Texture2D" uid="uid://fusup5dfalf8" path="res://fence.png" id="43_ceau8"]
 [ext_resource type="PackedScene" uid="uid://bomskyecynw86" path="res://biomes/rocky/obstacles/hole.tscn" id="44_6tk8r"]
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vhali"]
+bg_color = Color(0.254902, 0.4, 0.203922, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tm56y"]
+bg_color = Color(0.784314, 0, 0.227451, 1)
+
+[sub_resource type="Theme" id="Theme_wdh6d"]
+Button/font_sizes/font_size = 42
+HBoxContainer/constants/separation = 20
+Label/font_sizes/font_size = 42
+Panel/styles/panel = SubResource("StyleBoxFlat_vhali")
+ProgressBar/font_sizes/font_size = 42
+ProgressBar/styles/fill = SubResource("StyleBoxFlat_tm56y")
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xgv0x"]
 bg_color = Color(0.288184, 0.401598, 1, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_vsg47"]
+texture = ExtResource("11_snup6")
+axis_stretch_horizontal = 2
+axis_stretch_vertical = 1
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_xafwk"]
 radius = 23.0
@@ -198,7 +217,7 @@ offset_left = 3.0
 offset_top = -21.0
 offset_right = 43.0
 offset_bottom = 19.0
-theme = ExtResource("3_2lxyu")
+theme = SubResource("Theme_wdh6d")
 
 [node name="Bars" type="VBoxContainer" parent="UI"]
 layout_mode = 2
@@ -210,7 +229,7 @@ grow_horizontal = 2
 
 [node name="HBoxContainer" type="HBoxContainer" parent="UI/Bars"]
 layout_mode = 2
-theme = ExtResource("3_2lxyu")
+theme = SubResource("Theme_wdh6d")
 
 [node name="Name" type="Label" parent="UI/Bars/HBoxContainer"]
 layout_mode = 2
@@ -228,7 +247,7 @@ text = "69
 
 [node name="HPBar" type="ProgressBar" parent="UI/Bars"]
 layout_mode = 2
-theme = ExtResource("3_2lxyu")
+theme = SubResource("Theme_wdh6d")
 max_value = 25.0
 value = 25.0
 
@@ -240,14 +259,14 @@ offset_left = 5.0
 offset_top = -1.0
 offset_right = 203.0
 offset_bottom = 74.0
-theme = ExtResource("3_2lxyu")
+theme = SubResource("Theme_wdh6d")
 text = "HP
 "
 uppercase = true
 
 [node name="XPBar" type="ProgressBar" parent="UI/Bars"]
 layout_mode = 2
-theme = ExtResource("3_2lxyu")
+theme = SubResource("Theme_wdh6d")
 theme_override_styles/fill = SubResource("StyleBoxFlat_xgv0x")
 max_value = 10.0
 allow_greater = true
@@ -260,7 +279,7 @@ offset_left = 5.0
 offset_top = -1.0
 offset_right = 203.0
 offset_bottom = 74.0
-theme = ExtResource("3_2lxyu")
+theme = SubResource("Theme_wdh6d")
 text = "XP
 "
 uppercase = true
@@ -273,7 +292,7 @@ offset_left = -860.0
 offset_top = -427.0
 offset_right = 864.0
 offset_bottom = 467.0
-theme = ExtResource("3_2lxyu")
+theme = SubResource("Theme_wdh6d")
 
 [node name="Text" type="Label" parent="UI/GameOver"]
 z_index = 1
@@ -300,7 +319,7 @@ offset_right = -1119.0
 offset_bottom = -88.0
 grow_horizontal = 2
 grow_vertical = 2
-theme = ExtResource("3_2lxyu")
+theme = SubResource("Theme_wdh6d")
 text = "Quit
 "
 
@@ -316,7 +335,7 @@ offset_right = -263.0
 offset_bottom = -88.0
 grow_horizontal = 2
 grow_vertical = 2
-theme = ExtResource("3_2lxyu")
+theme = SubResource("Theme_wdh6d")
 text = "Retry"
 
 [node name="GameTime" type="Label" parent="UI"]
@@ -325,7 +344,7 @@ offset_left = 1238.0
 offset_top = -803.0
 offset_right = 1362.0
 offset_bottom = -742.0
-theme = ExtResource("3_2lxyu")
+theme = SubResource("Theme_wdh6d")
 theme_override_font_sizes/font_size = 100
 text = "59:59
 "
@@ -434,6 +453,19 @@ stretch_mode = 2
 [node name="PickUpSound" type="AudioStreamPlayer" parent="UI/Items"]
 stream = ExtResource("13_tw66y")
 
+[node name="BossProgress" type="ProgressBar" parent="UI"]
+texture_filter = 1
+texture_repeat = 2
+layout_mode = 0
+offset_left = 1500.0
+offset_top = -433.0
+offset_right = 1576.0
+offset_bottom = 471.0
+theme_override_styles/fill = SubResource("StyleBoxTexture_vsg47")
+value = 50.0
+fill_mode = 3
+show_percentage = false
+
 [node name="Player" type="RigidBody2D" parent="." node_paths=PackedStringArray("_hp_bar", "_xp_bar", "_lvl_label", "_sprite")]
 z_as_relative = false
 y_sort_enabled = true
@@ -538,13 +570,15 @@ stream = ExtResource("12_i22si")
 [node name="SymbiosisTimer" type="Timer" parent="Player"]
 wait_time = 5.0
 
-[node name="BiomeLush" type="Node2D" parent="." node_paths=PackedStringArray("_player", "_game_time")]
+[node name="BiomeLush" type="Node2D" parent="." node_paths=PackedStringArray("_player", "_game_time", "_boss_progress")]
 y_sort_enabled = true
 position = Vector2(-2764, -2046)
 script = ExtResource("12_yy7m0")
 _player = NodePath("../Player")
 _game_time = NodePath("../UI/GameTime")
 _spawn_delay = 5.0
+_boss_spawns_after_seconds = 60.0
+_boss_progress = NodePath("../UI/BossProgress")
 _easy_enemy = ExtResource("13_h7kcm")
 _hard_enemy = ExtResource("14_n51tq")
 _boss_enemy = ExtResource("15_cjkdu")
@@ -577,7 +611,7 @@ position = Vector2(306, -1757)
 [node name="smol4" parent="BiomeLush" instance=ExtResource("31_ybpmv")]
 position = Vector2(296, 302)
 
-[node name="BiomeRocky" type="Node2D" parent="." node_paths=PackedStringArray("_player", "_game_time")]
+[node name="BiomeRocky" type="Node2D" parent="." node_paths=PackedStringArray("_player", "_game_time", "_boss_progress")]
 z_as_relative = false
 y_sort_enabled = true
 position = Vector2(2699, -2033)
@@ -585,6 +619,8 @@ script = ExtResource("12_yy7m0")
 _player = NodePath("../Player")
 _game_time = NodePath("../UI/GameTime")
 _spawn_delay = 5.0
+_boss_spawns_after_seconds = 60.0
+_boss_progress = NodePath("../UI/BossProgress")
 _easy_enemy = ExtResource("27_6kb45")
 _hard_enemy = ExtResource("28_j28df")
 _boss_enemy = ExtResource("29_0bhk5")
@@ -616,13 +652,15 @@ position = Vector2(-1296, -175)
 [node name="stone3" parent="BiomeRocky" instance=ExtResource("32_qdtte")]
 position = Vector2(698, 1158)
 
-[node name="BiomeSparky" type="Node2D" parent="." node_paths=PackedStringArray("_player", "_game_time")]
+[node name="BiomeSparky" type="Node2D" parent="." node_paths=PackedStringArray("_player", "_game_time", "_boss_progress")]
 y_sort_enabled = true
 position = Vector2(-2833, 2041)
 script = ExtResource("12_yy7m0")
 _player = NodePath("../Player")
 _game_time = NodePath("../UI/GameTime")
 _spawn_delay = 5.0
+_boss_spawns_after_seconds = 60.0
+_boss_progress = NodePath("../UI/BossProgress")
 _easy_enemy = ExtResource("19_7pygj")
 _hard_enemy = ExtResource("20_nhi3m")
 _boss_enemy = ExtResource("21_ynqu8")
@@ -657,13 +695,15 @@ position = Vector2(2142, -1572)
 [node name="smol3" parent="BiomeSparky" instance=ExtResource("26_4l3qb")]
 position = Vector2(-912, 1089)
 
-[node name="BiomeMud" type="Node2D" parent="." node_paths=PackedStringArray("_player", "_game_time")]
+[node name="BiomeMud" type="Node2D" parent="." node_paths=PackedStringArray("_player", "_game_time", "_boss_progress")]
 y_sort_enabled = true
 position = Vector2(2699, 2147)
 script = ExtResource("12_yy7m0")
 _player = NodePath("../Player")
 _game_time = NodePath("../UI/GameTime")
 _spawn_delay = 5.0
+_boss_spawns_after_seconds = 60.0
+_boss_progress = NodePath("../UI/BossProgress")
 _easy_enemy = ExtResource("13_h7kcm")
 _hard_enemy = ExtResource("20_nhi3m")
 _boss_enemy = ExtResource("21_ynqu8")
