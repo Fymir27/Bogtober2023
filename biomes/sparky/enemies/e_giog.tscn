@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://csoliin8k8lj0"]
+[gd_scene load_steps=10 format=3 uid="uid://csoliin8k8lj0"]
 
-[ext_resource type="Script" path="res://scripts/Enemy.gd" id="1_yt3hi"]
 [ext_resource type="Texture2D" uid="uid://cg6r6ipxx4ue2" path="res://biomes/sparky/enemies/Giog.png" id="2_6q8el"]
+[ext_resource type="Texture2D" uid="uid://oqjmumm7lopi" path="res://biomes/sparky/enemies/ground_lightning.png" id="3_424y4"]
+[ext_resource type="Script" path="res://scripts/Giog.gd" id="3_hms3x"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_pt0o6"]
 radius = 118.0
@@ -10,7 +11,77 @@ height = 346.0
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cwiwd"]
 bg_color = Color(0.333333, 0, 0.815686, 1)
 
-[node name="giog" type="RigidBody2D" node_paths=PackedStringArray("_sprite")]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5pk76"]
+size = Vector2(799, 213)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_npw2h"]
+size = Vector2(600, 100)
+
+[sub_resource type="Animation" id="Animation_fx50m"]
+resource_name = "area_attack"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AttackTelegraph:self_modulate")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0.392157), Color(1, 0, 0, 1), Color(1, 1, 1, 0.392157)]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("..")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"values": [{
+"args": [],
+"method": &"stop"
+}, {
+"args": [],
+"method": &"attack"
+}, {
+"args": [],
+"method": &"unstop"
+}]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("AttackTelegraph:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("..:_aiming")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_umupl"]
+_data = {
+"area_attack": SubResource("Animation_fx50m")
+}
+
+[node name="giog" type="RigidBody2D" node_paths=PackedStringArray("_attack_anchor", "_attack_area", "_detection_area", "_sprite")]
 y_sort_enabled = true
 collision_layer = 2
 collision_mask = 11
@@ -19,7 +90,10 @@ max_contacts_reported = 10
 contact_monitor = true
 lock_rotation = true
 linear_damp = 5.0
-script = ExtResource("1_yt3hi")
+script = ExtResource("3_hms3x")
+_attack_anchor = NodePath("Attack")
+_attack_area = NodePath("Attack/AttackArea")
+_detection_area = NodePath("Attack/DetectionArea")
 _movement_speed = 400.0
 _damage = 20.0
 _health = 10.0
@@ -43,3 +117,47 @@ offset_bottom = -26.0
 theme_override_styles/fill = SubResource("StyleBoxFlat_cwiwd")
 value = 75.0
 show_percentage = false
+
+[node name="Attack" type="Node2D" parent="."]
+
+[node name="AttackTelegraph" type="Sprite2D" parent="Attack"]
+visible = false
+self_modulate = Color(1, 1, 1, 0.392157)
+z_index = -1
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(493, 31)
+texture = ExtResource("3_424y4")
+region_enabled = true
+region_rect = Rect2(-98.76, -88.695, 800, 225.471)
+
+[node name="AttackArea" type="Area2D" parent="Attack"]
+position = Vector2(493, 31)
+collision_layer = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Attack/AttackArea"]
+position = Vector2(1.5, -2.5)
+shape = SubResource("RectangleShape2D_5pk76")
+debug_color = Color(1, 0, 0.137255, 0.141176)
+
+[node name="DetectionArea" type="Area2D" parent="Attack"]
+position = Vector2(494, 33)
+collision_layer = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Attack/DetectionArea"]
+position = Vector2(-98, -5)
+shape = SubResource("RectangleShape2D_npw2h")
+debug_color = Color(0.243137, 0.509804, 1, 0.141176)
+
+[node name="Timer" type="Timer" parent="Attack"]
+wait_time = 0.5
+one_shot = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+root_node = NodePath("../Attack")
+libraries = {
+"": SubResource("AnimationLibrary_umupl")
+}
+
+[connection signal="timeout" from="Attack/Timer" to="." method="attack"]
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="unstop"]

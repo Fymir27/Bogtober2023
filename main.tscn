@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://egksrxfe65eo" path="res://map.png" id="2_ynyvf"]
 [ext_resource type="Script" path="res://scripts/GameTime.gd" id="4_0k0ri"]
 [ext_resource type="Texture2D" uid="uid://c1tirdaed2ul2" path="res://item_frame.png" id="5_5u7tj"]
-[ext_resource type="Script" path="res://Items.gd" id="5_87041"]
+[ext_resource type="Script" path="res://scripts/Items.gd" id="5_87041"]
 [ext_resource type="Texture2D" uid="uid://dbirml0mjpsox" path="res://biomes/sparky/SparkItem.png" id="6_81a8v"]
 [ext_resource type="Script" path="res://scripts/Player.gd" id="6_tc2es"]
 [ext_resource type="Texture2D" uid="uid://dpcx5nipciom0" path="res://player/PhinoonSmol.png" id="7_5k478"]
