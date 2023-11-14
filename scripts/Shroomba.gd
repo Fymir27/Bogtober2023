@@ -2,8 +2,6 @@ extends Enemy
 
 @export var _spores: Sprite2D
 
-var _original_speed: float
-
 
 func _ready():
 	$ChargeTimer.timeout.connect(explode)
@@ -17,8 +15,7 @@ func _process(delta):
 
 func _try_attack():
 	if !is_exploding() && is_player_in_range():
-		_original_speed = _movement_speed
-		_movement_speed = 0
+		stop()
 		$ChargeTimer.start()
 
 
@@ -35,7 +32,7 @@ func is_player_in_range():
 
 
 func explode():
-	_movement_speed = _original_speed
+	unstop()
 	$SporeParticles.emitting = true
 	if is_player_in_range():
 		_target.deal_damage(_damage)

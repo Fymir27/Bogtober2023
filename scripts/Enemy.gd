@@ -7,7 +7,9 @@ class_name Enemy extends RigidBody2D
 @export var _hit_delay: float
 @export var _target: Player
 @export var _sprite: Sprite2D
+
 var _hit_timer: float
+var _original_speed
 
 
 func _process(delta):
@@ -34,7 +36,7 @@ func handle_collision(body: Node2D):
 	if !player:
 		return
 	player.deal_damage(_damage)
-	_hit_timer = _hit_delay
+	rechargeAttack()
 
 
 func flip_sprite():
@@ -57,3 +59,16 @@ func inflictAttack(damage: float, knock_back: Vector2) -> float:
 		return _xp
 	apply_impulse(knock_back)
 	return 0
+
+
+func stop():
+	_original_speed = _movement_speed
+	_movement_speed = 0
+
+
+func unstop():
+	_movement_speed = _original_speed
+
+
+func rechargeAttack():
+	_hit_timer = _hit_delay
