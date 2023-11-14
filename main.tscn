@@ -463,7 +463,6 @@ offset_top = -433.0
 offset_right = 1576.0
 offset_bottom = 471.0
 theme_override_styles/fill = SubResource("StyleBoxTexture_vsg47")
-value = 50.0
 fill_mode = 3
 show_percentage = false
 
