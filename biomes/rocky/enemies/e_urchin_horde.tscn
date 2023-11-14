@@ -1,21 +1,22 @@
-[gd_scene load_steps=8 format=3 uid="uid://ul6xlb5gwyd1"]
+[gd_scene load_steps=9 format=3 uid="uid://ul6xlb5gwyd1"]
 
+[ext_resource type="PhysicsMaterial" uid="uid://cqotul2dlie8x" path="res://enemy_physics_material.tres" id="1_hdy61"]
 [ext_resource type="Script" path="res://scripts/Enemy.gd" id="1_hycwp"]
 [ext_resource type="Texture2D" uid="uid://cc7wxpltq4g5t" path="res://biomes/rocky/enemies/UHorde1.png" id="2_036em"]
 [ext_resource type="Script" path="res://scripts/RandomSprite.gd" id="3_v776j"]
 [ext_resource type="Texture2D" uid="uid://2jbh0uq8tanr" path="res://biomes/rocky/enemies/UHorde2.png" id="4_fhiqb"]
 [ext_resource type="Texture2D" uid="uid://s4wll33npy1n" path="res://biomes/rocky/enemies/UHorde3.png" id="5_w35nr"]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_pt0o6"]
-radius = 37.0
-height = 98.0
-
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cwiwd"]
 bg_color = Color(0.333333, 0, 0.815686, 1)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_qs8eb"]
+radius = 75.0067
 
 [node name="urchin_horde" type="RigidBody2D" node_paths=PackedStringArray("_sprite")]
 collision_layer = 2
 collision_mask = 11
+physics_material_override = ExtResource("1_hdy61")
 gravity_scale = 0.0
 max_contacts_reported = 10
 contact_monitor = true
@@ -34,18 +35,6 @@ texture = ExtResource("2_036em")
 script = ExtResource("3_v776j")
 _variations = Array[Texture]([ExtResource("2_036em"), ExtResource("4_fhiqb"), ExtResource("5_w35nr")])
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-50, 27)
-shape = SubResource("CapsuleShape2D_pt0o6")
-
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
-position = Vector2(36, 27)
-shape = SubResource("CapsuleShape2D_pt0o6")
-
-[node name="CollisionShape2D3" type="CollisionShape2D" parent="."]
-position = Vector2(-8, -19)
-shape = SubResource("CapsuleShape2D_pt0o6")
-
 [node name="ProgressBar" type="ProgressBar" parent="."]
 visible = false
 offset_left = -23.0
@@ -55,3 +44,8 @@ offset_bottom = -26.0
 theme_override_styles/fill = SubResource("StyleBoxFlat_cwiwd")
 value = 75.0
 show_percentage = false
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="."]
+position = Vector2(-7, 6)
+shape = SubResource("CircleShape2D_qs8eb")
+debug_color = Color(0.992157, 0, 0.266667, 0.419608)

@@ -1,4 +1,4 @@
-[gd_scene load_steps=71 format=3 uid="uid://cbdeftm7hb34y"]
+[gd_scene load_steps=72 format=3 uid="uid://cbdeftm7hb34y"]
 
 [ext_resource type="Script" path="res://scripts/GameState.gd" id="1_t4v82"]
 [ext_resource type="Texture2D" uid="uid://egksrxfe65eo" path="res://map.png" id="2_ynyvf"]
@@ -14,6 +14,7 @@
 [ext_resource type="Script" path="res://scripts/Weapon.gd" id="9_o67k4"]
 [ext_resource type="Texture2D" uid="uid://caq2xtnmvc4cg" path="res://player/SpearSmol.png" id="10_s56v3"]
 [ext_resource type="Texture2D" uid="uid://rh4spei8sj05" path="res://player/Smear.png" id="11_0q3wb"]
+[ext_resource type="PhysicsMaterial" uid="uid://u7deb21dxv6f" path="res://player_physics_material.tres" id="11_63vi1"]
 [ext_resource type="Texture2D" uid="uid://cg1qqf044fqkv" path="res://ui/skull2.png" id="11_snup6"]
 [ext_resource type="AudioStream" uid="uid://rn56v31os2pn" path="res://music/effects/level_up.wav" id="12_i22si"]
 [ext_resource type="Script" path="res://scripts/Spawner.gd" id="12_yy7m0"]
@@ -471,6 +472,7 @@ z_as_relative = false
 y_sort_enabled = true
 collision_mask = 10
 mass = 0.5
+physics_material_override = ExtResource("11_63vi1")
 gravity_scale = 0.0
 lock_rotation = true
 linear_damp = 5.0

@@ -1,11 +1,12 @@
-[gd_scene load_steps=5 format=3 uid="uid://cya3kfckd314d"]
+[gd_scene load_steps=6 format=3 uid="uid://cya3kfckd314d"]
 
+[ext_resource type="PhysicsMaterial" uid="uid://cqotul2dlie8x" path="res://enemy_physics_material.tres" id="1_n167s"]
 [ext_resource type="Script" path="res://scripts/Enemy.gd" id="1_pq7bh"]
 [ext_resource type="Texture2D" uid="uid://b7wxjqokfjy12" path="res://biomes/lush/enemies/CorpsySmol.png" id="2_eiqil"]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_pt0o6"]
-radius = 169.0
-height = 338.0
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_0lrxw"]
+radius = 83.0
+height = 254.0
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cwiwd"]
 bg_color = Color(0.333333, 0, 0.815686, 1)
@@ -13,6 +14,7 @@ bg_color = Color(0.333333, 0, 0.815686, 1)
 [node name="corpsy" type="RigidBody2D" node_paths=PackedStringArray("_sprite")]
 collision_layer = 2
 collision_mask = 11
+physics_material_override = ExtResource("1_n167s")
 gravity_scale = 0.0
 max_contacts_reported = 10
 contact_monitor = true
@@ -30,8 +32,8 @@ _sprite = NodePath("Sprite2D")
 texture = ExtResource("2_eiqil")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(12, -35)
-shape = SubResource("CapsuleShape2D_pt0o6")
+position = Vector2(0, -7)
+shape = SubResource("CapsuleShape2D_0lrxw")
 
 [node name="ProgressBar" type="ProgressBar" parent="."]
 visible = false

@@ -1,6 +1,8 @@
-[gd_scene load_steps=2 format=3 uid="uid://bd0e2isid5adw"]
+[gd_scene load_steps=3 format=3 uid="uid://bd0e2isid5adw"]
 
 [ext_resource type="Texture2D" uid="uid://do7wmmlh5pbdh" path="res://biomes/sparky/obstacles/SparkObstacleMedium2.png" id="1_c74gk"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_jdo0f"]
 
 [node name="medium" type="Node2D"]
 
@@ -17,3 +19,6 @@ texture = ExtResource("1_c74gk")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="obstacle"]
 polygon = PackedVector2Array(132, 100, -56, 119, -117, 120, -127, 58, -86, 6, -63, -92, 2, -85, 70, -59, 78, 13, 121, 61)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="obstacle"]
+shape = SubResource("CircleShape2D_jdo0f")

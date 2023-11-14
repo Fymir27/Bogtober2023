@@ -1,11 +1,12 @@
-[gd_scene load_steps=7 format=3 uid="uid://dkmaxy8d1sscl"]
+[gd_scene load_steps=8 format=3 uid="uid://dkmaxy8d1sscl"]
 
 [ext_resource type="Script" path="res://scripts/Enemy.gd" id="1_jhhpj"]
+[ext_resource type="PhysicsMaterial" uid="uid://cqotul2dlie8x" path="res://enemy_physics_material.tres" id="1_rx3p1"]
 [ext_resource type="Texture2D" uid="uid://pm2g6srkdu3m" path="res://biomes/sparky/enemies/Bob.png" id="2_pqhv2"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_pt0o6"]
-radius = 36.0
-height = 132.0
+radius = 15.0
+height = 106.0
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cwiwd"]
 bg_color = Color(0.333333, 0, 0.815686, 1)
@@ -34,6 +35,7 @@ _data = {
 [node name="bob" type="RigidBody2D" node_paths=PackedStringArray("_sprite")]
 collision_layer = 2
 collision_mask = 11
+physics_material_override = ExtResource("1_rx3p1")
 gravity_scale = 0.0
 max_contacts_reported = 10
 contact_monitor = true
@@ -48,11 +50,11 @@ _hit_delay = 1.0
 _sprite = NodePath("Sprite2D")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(0.94872, 1)
+scale = Vector2(0.962656, 1)
 texture = ExtResource("2_pqhv2")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-6, 8)
+position = Vector2(-4, 23)
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_pt0o6")
 
@@ -72,4 +74,4 @@ libraries = {
 "": SubResource("AnimationLibrary_nd6be")
 }
 
-[connection signal="ready" from="." to="AnimationPlayer" method="play" binds= ["walk"]]
+[connection signal="ready" from="." to="AnimationPlayer" method="play" flags=18 binds= ["walk"]]

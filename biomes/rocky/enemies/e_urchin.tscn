@@ -1,14 +1,14 @@
-[gd_scene load_steps=8 format=3 uid="uid://caf48hth62ghq"]
+[gd_scene load_steps=9 format=3 uid="uid://caf48hth62ghq"]
 
 [ext_resource type="Script" path="res://scripts/Enemy.gd" id="1_awkcu"]
+[ext_resource type="PhysicsMaterial" uid="uid://cqotul2dlie8x" path="res://enemy_physics_material.tres" id="1_y50f8"]
 [ext_resource type="Texture2D" uid="uid://bcn62e3ybxsh8" path="res://biomes/rocky/enemies/Urchin1.png" id="2_qqpx2"]
 [ext_resource type="Script" path="res://scripts/RandomSprite.gd" id="3_e17n1"]
 [ext_resource type="Texture2D" uid="uid://diymkpx8c7tcg" path="res://biomes/rocky/enemies/Urchin2.png" id="4_75pyc"]
 [ext_resource type="Texture2D" uid="uid://bu2ldcdguo6no" path="res://biomes/rocky/enemies/Urchin3.png" id="5_e5xlr"]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_pt0o6"]
-radius = 37.0
-height = 98.0
+[sub_resource type="CircleShape2D" id="CircleShape2D_jg0hs"]
+radius = 37.3363
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cwiwd"]
 bg_color = Color(0.333333, 0, 0.815686, 1)
@@ -16,6 +16,7 @@ bg_color = Color(0.333333, 0, 0.815686, 1)
 [node name="urchin" type="RigidBody2D" node_paths=PackedStringArray("_sprite")]
 collision_layer = 2
 collision_mask = 11
+physics_material_override = ExtResource("1_y50f8")
 gravity_scale = 0.0
 max_contacts_reported = 10
 contact_monitor = true
@@ -35,8 +36,8 @@ script = ExtResource("3_e17n1")
 _variations = Array[Texture]([ExtResource("2_qqpx2"), ExtResource("4_75pyc"), ExtResource("5_e5xlr")])
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-10, 4)
-shape = SubResource("CapsuleShape2D_pt0o6")
+position = Vector2(-12, -3)
+shape = SubResource("CircleShape2D_jg0hs")
 
 [node name="ProgressBar" type="ProgressBar" parent="."]
 visible = false
