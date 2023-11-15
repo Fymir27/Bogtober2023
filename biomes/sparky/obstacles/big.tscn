@@ -1,14 +1,18 @@
-[gd_scene load_steps=4 format=3 uid="uid://cbeh63c3erw0y"]
+[gd_scene load_steps=5 format=3 uid="uid://cbeh63c3erw0y"]
 
 [ext_resource type="Texture2D" uid="uid://c2ydw83m0q227" path="res://biomes/sparky/obstacles/SparkObstacleLarge.png" id="1_frnqe"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_evd80"]
-radius = 116.0
-height = 818.0
+radius = 115.0
+height = 662.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_r4eda"]
 radius = 35.0
 height = 212.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_5x12o"]
+radius = 75.0
+height = 376.0
 
 [node name="big" type="Node2D"]
 
@@ -23,7 +27,7 @@ collision_mask = 0
 texture = ExtResource("1_frnqe")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="obstacle"]
-position = Vector2(7, 350)
+position = Vector2(88, 334)
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_evd80")
 
@@ -31,6 +35,11 @@ shape = SubResource("CapsuleShape2D_evd80")
 position = Vector2(-359, 407)
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_r4eda")
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="obstacle"]
+position = Vector2(-217, 391)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_5x12o")
 
 [node name="CollisionShape2D3" type="CollisionShape2D" parent="obstacle"]
 position = Vector2(382, 396)

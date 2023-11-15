@@ -31,6 +31,13 @@ func _try_attack():
 		handle_collision(body)
 
 
+func scale(difficulty: float):
+	difficulty = clampf(difficulty, 0, 1)
+	_damage *= 1 + difficulty
+	_health *= 1 + difficulty
+	# _hit_delay /= 1 + difficulty;
+
+
 func handle_collision(body: Node2D):
 	var player = body as Player
 	if !player:

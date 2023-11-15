@@ -48,10 +48,15 @@ func _process(delta):
 		print(name + " is already full! (" + str(current_enemy_count) + ")")
 		return
 
-	print("Spawning enemies: " + str(spawn_count) + " x " + enemy_template.resource_path)
+	var difficulty_sample_pos = _player.seconds_alive / settings.max_scaling_at_seconds
+	var difficulty = settings.sample_difficulty(difficulty_sample_pos)
+
+	print(
+		"Spawning %d x %s @ difficulty %f" % [spawn_count, enemy_template.resource_name, difficulty]
+	)
 
 	for i in spawn_count:
-		spawn_enemy(enemy_template)
+		spawn_enemy(enemy_template, difficulty)
 
 
 func disable_all_enemies():
@@ -98,7 +103,7 @@ func pick_enemy_count(template: PackedScene) -> int:
 	return ceili(unmod_count)
 
 
-func spawn_enemy(enemy_template: PackedScene) -> Enemy:
+func spawn_enemy(enemy_template: PackedScene, difficulty: float) -> Enemy:
 	var enemy = enemy_template.instantiate() as Enemy
 	if !enemy:
 		print("Invalid enemy: " + enemy_template.name)
@@ -114,6 +119,7 @@ func spawn_enemy(enemy_template: PackedScene) -> Enemy:
 		enemy.tree_exited.connect(_on_boss_death)
 
 	enemy._target = _player
+	enemy.scale(difficulty)
 
 	var spawn_position = Vector2()
 

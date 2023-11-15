@@ -1,8 +1,14 @@
-[gd_resource type="Resource" script_class="SpawnSettings" load_steps=2 format=3 uid="uid://dqq5u6kn6i1i7"]
+[gd_resource type="Resource" script_class="SpawnSettings" load_steps=3 format=3 uid="uid://dqq5u6kn6i1i7"]
 
 [ext_resource type="Script" path="res://scripts/SpawnSettings.gd" id="1_atsgo"]
+
+[sub_resource type="Curve" id="Curve_onqq8"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 3.0, 0.0, 0, 0]
+point_count = 2
 
 [resource]
 script = ExtResource("1_atsgo")
 max_enemies_per_tick = 10
 max_enemies_per_biome = 100
+enemy_scaling = SubResource("Curve_onqq8")
+max_scaling_at_seconds = 300
