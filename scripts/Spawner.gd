@@ -6,7 +6,7 @@ signal boss_defeated
 @export var _game_time: GameTime
 @export var _spawn_delay: float
 @export var _boss_spawns_after_seconds: float
-@export var _boss_progress: ProgressBar
+@export var _boss_progress: Range
 @export var _easy_enemy: PackedScene
 @export var _hard_enemy: PackedScene
 @export var _boss_enemy: PackedScene

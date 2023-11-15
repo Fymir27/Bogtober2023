@@ -12,6 +12,7 @@
 [ext_resource type="Texture2D" uid="uid://bbl0rlrjwl4c7" path="res://biomes/lush/PlantItem.png" id="8_d2mug"]
 [ext_resource type="Texture2D" uid="uid://b8e3lgiev3tgb" path="res://biomes/rocky/UrchinItem.png" id="9_7dvby"]
 [ext_resource type="Script" path="res://scripts/Weapon.gd" id="9_o67k4"]
+[ext_resource type="Texture2D" uid="uid://deanwtfcrwfrh" path="res://ui/skull2_transparent.png" id="10_38u5l"]
 [ext_resource type="Texture2D" uid="uid://caq2xtnmvc4cg" path="res://player/SpearSmol.png" id="10_s56v3"]
 [ext_resource type="Texture2D" uid="uid://rh4spei8sj05" path="res://player/Smear.png" id="11_0q3wb"]
 [ext_resource type="PhysicsMaterial" uid="uid://u7deb21dxv6f" path="res://player_physics_material.tres" id="11_63vi1"]
@@ -64,11 +65,6 @@ ProgressBar/styles/fill = SubResource("StyleBoxFlat_tm56y")
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xgv0x"]
 bg_color = Color(0.288184, 0.401598, 1, 1)
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_vsg47"]
-texture = ExtResource("11_snup6")
-axis_stretch_horizontal = 2
-axis_stretch_vertical = 1
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_xafwk"]
 radius = 23.0
@@ -454,17 +450,17 @@ stretch_mode = 2
 [node name="PickUpSound" type="AudioStreamPlayer" parent="UI/Items"]
 stream = ExtResource("13_tw66y")
 
-[node name="BossProgress" type="ProgressBar" parent="UI"]
+[node name="BossProgress" type="TextureProgressBar" parent="UI"]
 texture_filter = 1
-texture_repeat = 2
 layout_mode = 0
-offset_left = 1500.0
-offset_top = -433.0
-offset_right = 1576.0
-offset_bottom = 471.0
-theme_override_styles/fill = SubResource("StyleBoxTexture_vsg47")
-fill_mode = 3
-show_percentage = false
+offset_left = 1089.0
+offset_top = -797.0
+offset_right = 1153.0
+offset_bottom = -733.0
+scale = Vector2(2, 2)
+fill_mode = 5
+texture_under = ExtResource("10_38u5l")
+texture_progress = ExtResource("11_snup6")
 
 [node name="Player" type="RigidBody2D" parent="." node_paths=PackedStringArray("_hp_bar", "_xp_bar", "_lvl_label", "_sprite")]
 z_as_relative = false
