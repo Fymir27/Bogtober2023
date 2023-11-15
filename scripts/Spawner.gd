@@ -1,12 +1,13 @@
-extends Node2D
+class_name Spawner extends Node2D
 
 signal boss_defeated
+signal player_entered(biome: Spawner)
 
+@export var _active_initially: bool
 @export var _player: Player
 @export var _game_time: GameTime
 @export var _spawn_delay: float
-@export var _boss_spawns_after_seconds: float
-@export var _boss_progress: Range
+@export var boss_spawns_after_seconds: float
 @export var _easy_enemy: PackedScene
 @export var _hard_enemy: PackedScene
 @export var _boss_enemy: PackedScene
@@ -17,19 +18,17 @@ var _secondsUntilNextSpawn: float
 var enemies: Array[Enemy] = []
 var time_active: float = 0
 var boss_spawned: bool = false
+var is_boss_defeated: bool = false
 var running_id = 0
 
 
 func _ready():
 	set_process(false)
-	_boss_progress.max_value = _boss_spawns_after_seconds
 
 
 func _process(delta):
 	time_active += delta
 	_secondsUntilNextSpawn -= delta
-
-	_boss_progress.value = time_active
 
 	if _secondsUntilNextSpawn > 0:
 		return
@@ -48,8 +47,7 @@ func _process(delta):
 		print(name + " is already full! (" + str(current_enemy_count) + ")")
 		return
 
-	var difficulty_sample_pos = _player.seconds_alive / settings.max_scaling_at_seconds
-	var difficulty = settings.sample_difficulty(difficulty_sample_pos)
+	var difficulty = _game_time.difficulty
 
 	print(
 		"Spawning %d x %s @ difficulty %f" % [spawn_count, enemy_template.resource_name, difficulty]
@@ -83,7 +81,7 @@ func randf_between(min_val, max_val):
 
 
 func pick_enemy_to_spawn() -> PackedScene:
-	if time_active >= _boss_spawns_after_seconds && !boss_spawned:
+	if time_active >= boss_spawns_after_seconds && !boss_spawned:
 		boss_spawned = true
 		return _boss_enemy
 
@@ -153,19 +151,9 @@ func clear_dead_enemies():
 
 
 func _on_body_entered(body):
-	if body.collision_layer != 1:
-		return
-	set_process(true)
-
-
-func _on_body_exited(body):
-	if body.collision_layer != 1:
-		return
-	#tes
-	_boss_progress.value = 0
-	set_process(false)
+	player_entered.emit(self)
 
 
 func _on_boss_death():
-	_boss_progress.hide()
+	is_boss_defeated = true
 	boss_defeated.emit()

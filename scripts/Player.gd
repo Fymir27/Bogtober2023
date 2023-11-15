@@ -11,7 +11,6 @@ signal player_died
 @export var chain_lightning_unlocked: bool
 @export var symbiosis_unlocked: bool
 
-var seconds_alive: float
 var hit_timer: float
 var level = 1
 
@@ -25,7 +24,6 @@ func _process(delta):
 	handle_input()
 	flip_sprite()
 	hit_timer -= delta
-	seconds_alive += delta
 
 
 func _physics_process(_delta):

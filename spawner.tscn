@@ -11,10 +11,10 @@ script = ExtResource("1_ewoh8")
 _spawn_delay = 1.0
 
 [node name="Area" type="Area2D" parent="."]
+collision_layer = 0
 
 [node name="Shape" type="CollisionShape2D" parent="Area"]
 shape = SubResource("RectangleShape2D_d7w66")
 debug_color = Color(0.85098, 0.635294, 0, 0.12549)
 
 [connection signal="body_entered" from="Area" to="." method="_on_body_entered"]
-[connection signal="body_exited" from="Area" to="." method="_on_body_exited"]

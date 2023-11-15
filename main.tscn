@@ -195,10 +195,11 @@ size = Vector2(5608, 4273)
 [node name="Root" type="Node2D"]
 y_sort_enabled = true
 
-[node name="GameState" type="Node" parent="." node_paths=PackedStringArray("_game_over_panel", "_game_time")]
+[node name="GameState" type="Node" parent="." node_paths=PackedStringArray("_game_over_panel", "_game_time", "_boss_progress")]
 script = ExtResource("1_t4v82")
 _game_over_panel = NodePath("../UI/GameOver")
 _game_time = NodePath("../UI/GameTime")
+_boss_progress = NodePath("../UI/BossProgress")
 
 [node name="Background" type="Sprite2D" parent="."]
 z_index = -100
@@ -210,10 +211,10 @@ z_index = 100
 z_as_relative = false
 layout_mode = 3
 anchors_preset = 0
-offset_left = 3.0
-offset_top = -21.0
-offset_right = 43.0
-offset_bottom = 19.0
+offset_left = -7367.0
+offset_top = -29.0
+offset_right = -7327.0
+offset_bottom = 11.0
 theme = SubResource("Theme_wdh6d")
 
 [node name="Bars" type="VBoxContainer" parent="UI"]
@@ -465,6 +466,7 @@ texture_progress = ExtResource("11_snup6")
 [node name="Player" type="RigidBody2D" parent="." node_paths=PackedStringArray("_hp_bar", "_xp_bar", "_lvl_label", "_sprite")]
 z_as_relative = false
 y_sort_enabled = true
+position = Vector2(-1119, -1500)
 collision_mask = 10
 mass = 0.5
 physics_material_override = ExtResource("11_63vi1")
@@ -567,15 +569,14 @@ stream = ExtResource("12_i22si")
 [node name="SymbiosisTimer" type="Timer" parent="Player"]
 wait_time = 5.0
 
-[node name="BiomeLush" type="Node2D" parent="." node_paths=PackedStringArray("_player", "_game_time", "_boss_progress")]
+[node name="BiomeLush" type="Node2D" parent="." node_paths=PackedStringArray("_player", "_game_time")]
 y_sort_enabled = true
 position = Vector2(-2764, -2046)
 script = ExtResource("12_yy7m0")
 _player = NodePath("../Player")
 _game_time = NodePath("../UI/GameTime")
 _spawn_delay = 5.0
-_boss_spawns_after_seconds = 60.0
-_boss_progress = NodePath("../UI/BossProgress")
+boss_spawns_after_seconds = 60.0
 _easy_enemy = ExtResource("13_h7kcm")
 _hard_enemy = ExtResource("14_n51tq")
 _boss_enemy = ExtResource("15_cjkdu")
@@ -608,7 +609,7 @@ position = Vector2(306, -1757)
 [node name="smol4" parent="BiomeLush" instance=ExtResource("31_ybpmv")]
 position = Vector2(296, 302)
 
-[node name="BiomeRocky" type="Node2D" parent="." node_paths=PackedStringArray("_player", "_game_time", "_boss_progress")]
+[node name="BiomeRocky" type="Node2D" parent="." node_paths=PackedStringArray("_player", "_game_time")]
 z_as_relative = false
 y_sort_enabled = true
 position = Vector2(2699, -2033)
@@ -616,8 +617,7 @@ script = ExtResource("12_yy7m0")
 _player = NodePath("../Player")
 _game_time = NodePath("../UI/GameTime")
 _spawn_delay = 5.0
-_boss_spawns_after_seconds = 60.0
-_boss_progress = NodePath("../UI/BossProgress")
+boss_spawns_after_seconds = 60.0
 _easy_enemy = ExtResource("27_6kb45")
 _hard_enemy = ExtResource("28_j28df")
 _boss_enemy = ExtResource("29_0bhk5")
@@ -649,15 +649,14 @@ position = Vector2(-1296, -175)
 [node name="stone3" parent="BiomeRocky" instance=ExtResource("32_qdtte")]
 position = Vector2(698, 1158)
 
-[node name="BiomeSparky" type="Node2D" parent="." node_paths=PackedStringArray("_player", "_game_time", "_boss_progress")]
+[node name="BiomeSparky" type="Node2D" parent="." node_paths=PackedStringArray("_player", "_game_time")]
 y_sort_enabled = true
 position = Vector2(-2833, 2041)
 script = ExtResource("12_yy7m0")
 _player = NodePath("../Player")
 _game_time = NodePath("../UI/GameTime")
 _spawn_delay = 5.0
-_boss_spawns_after_seconds = 60.0
-_boss_progress = NodePath("../UI/BossProgress")
+boss_spawns_after_seconds = 60.0
 _easy_enemy = ExtResource("19_7pygj")
 _hard_enemy = ExtResource("20_nhi3m")
 _boss_enemy = ExtResource("21_ynqu8")
@@ -692,15 +691,14 @@ position = Vector2(2142, -1572)
 [node name="smol3" parent="BiomeSparky" instance=ExtResource("26_4l3qb")]
 position = Vector2(-912, 1089)
 
-[node name="BiomeMud" type="Node2D" parent="." node_paths=PackedStringArray("_player", "_game_time", "_boss_progress")]
+[node name="BiomeMud" type="Node2D" parent="." node_paths=PackedStringArray("_player", "_game_time")]
 y_sort_enabled = true
 position = Vector2(2699, 2147)
 script = ExtResource("12_yy7m0")
 _player = NodePath("../Player")
 _game_time = NodePath("../UI/GameTime")
 _spawn_delay = 5.0
-_boss_spawns_after_seconds = 60.0
-_boss_progress = NodePath("../UI/BossProgress")
+boss_spawns_after_seconds = 60.0
 _easy_enemy = ExtResource("13_h7kcm")
 _hard_enemy = ExtResource("20_nhi3m")
 _boss_enemy = ExtResource("21_ynqu8")
@@ -773,15 +771,19 @@ shape = SubResource("RectangleShape2D_mpfkh")
 [connection signal="player_died" from="Player" to="BiomeMud" method="disable_all_enemies"]
 [connection signal="body_entered" from="Player/Weapon/WeaponSprite/WeaponHitbox" to="Player/Weapon" method="_on_enemy_hit"]
 [connection signal="timeout" from="Player/SymbiosisTimer" to="Player" method="heal" binds= [1.0]]
+[connection signal="boss_defeated" from="BiomeLush" to="GameState" method="boss_defeated"]
 [connection signal="boss_defeated" from="BiomeLush" to="UI/Items" method="unlock_symbiosis"]
-[connection signal="body_entered" from="BiomeLush/Area" to="BiomeLush" method="_on_body_entered" flags=18]
-[connection signal="body_exited" from="BiomeLush/Area" to="BiomeLush" method="_on_body_exited" flags=18]
+[connection signal="player_entered" from="BiomeLush" to="GameState" method="player_entered_biome"]
+[connection signal="body_entered" from="BiomeLush/Area" to="BiomeLush" method="_on_body_entered"]
+[connection signal="boss_defeated" from="BiomeRocky" to="GameState" method="boss_defeated"]
 [connection signal="boss_defeated" from="BiomeRocky" to="UI/Items" method="unlock_speed"]
-[connection signal="body_entered" from="BiomeRocky/Area" to="BiomeRocky" method="_on_body_entered" flags=18]
-[connection signal="body_exited" from="BiomeRocky/Area" to="BiomeRocky" method="_on_body_exited" flags=18]
+[connection signal="player_entered" from="BiomeRocky" to="GameState" method="player_entered_biome"]
+[connection signal="body_entered" from="BiomeRocky/Area" to="BiomeRocky" method="_on_body_entered"]
+[connection signal="boss_defeated" from="BiomeSparky" to="GameState" method="boss_defeated"]
 [connection signal="boss_defeated" from="BiomeSparky" to="UI/Items" method="unlock_chain_lightning"]
-[connection signal="body_entered" from="BiomeSparky/Area" to="BiomeSparky" method="_on_body_entered" flags=18]
-[connection signal="body_exited" from="BiomeSparky/Area" to="BiomeSparky" method="_on_body_exited" flags=18]
-[connection signal="body_entered" from="BiomeMud/Area" to="BiomeMud" method="_on_body_entered" flags=18]
-[connection signal="body_exited" from="BiomeMud/Area" to="BiomeMud" method="_on_body_exited" flags=18]
+[connection signal="player_entered" from="BiomeSparky" to="GameState" method="player_entered_biome"]
+[connection signal="body_entered" from="BiomeSparky/Area" to="BiomeSparky" method="_on_body_entered"]
+[connection signal="boss_defeated" from="BiomeMud" to="GameState" method="boss_defeated"]
+[connection signal="player_entered" from="BiomeMud" to="GameState" method="player_entered_biome"]
+[connection signal="body_entered" from="BiomeMud/Area" to="BiomeMud" method="_on_body_entered"]
 [connection signal="finished" from="BackgroundMusic" to="BackgroundMusic" method="_set_playing" binds= [true]]
