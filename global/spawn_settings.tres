@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="SpawnSettings" load_steps=2 format=3 uid="uid://dqq5u6kn6i1i7"]
+
+[ext_resource type="Script" path="res://scripts/SpawnSettings.gd" id="1_atsgo"]
+
+[resource]
+script = ExtResource("1_atsgo")
+max_enemies_per_tick = 10
+max_enemies_per_biome = 100

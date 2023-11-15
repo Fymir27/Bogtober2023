@@ -11,12 +11,12 @@ signal boss_defeated
 @export var _hard_enemy: PackedScene
 @export var _boss_enemy: PackedScene
 
+var settings: SpawnSettings = preload("res://global/spawn_settings.tres")
+
 var _secondsUntilNextSpawn: float
 var enemies: Array[Enemy] = []
 var time_active: float = 0
 var boss_spawned: bool = false
-var boss_node: Enemy
-
 var running_id = 0
 
 
@@ -29,27 +29,29 @@ func _process(delta):
 	time_active += delta
 	_secondsUntilNextSpawn -= delta
 
-	if boss_spawned && boss_node == null:
-		_boss_progress.value = 0
-	else:
-		_boss_progress.value = time_active
+	_boss_progress.value = time_active
 
 	if _secondsUntilNextSpawn > 0:
 		return
 
-	var enemy_template = pick_enemy_to_spawn()
-	var enemy_count = pick_enemy_count(enemy_template)
-
-	print("Spawning enemies: " + str(enemy_count) + " x " + enemy_template.resource_path)
-
-	var spawned_enemies: Array[Enemy] = []
-	for i in enemy_count:
-		var enemy = spawn_enemy(enemy_template)
-		spawned_enemies.append(enemy)
-
-	enemies.append_array(spawned_enemies)
-
 	_secondsUntilNextSpawn = _spawn_delay
+
+	clear_dead_enemies()
+
+	var enemy_template = pick_enemy_to_spawn()
+	var spawn_count = pick_enemy_count(enemy_template)
+
+	var current_enemy_count = enemies.size()
+	var new_count = current_enemy_count + spawn_count
+	var is_boss = enemy_template == _boss_enemy
+	if !is_boss && new_count > settings.max_enemies_per_biome:
+		print(name + " is already full! (" + str(current_enemy_count) + ")")
+		return
+
+	print("Spawning enemies: " + str(spawn_count) + " x " + enemy_template.resource_path)
+
+	for i in spawn_count:
+		spawn_enemy(enemy_template)
 
 
 func disable_all_enemies():
@@ -88,7 +90,7 @@ func pick_enemy_to_spawn() -> PackedScene:
 
 
 func pick_enemy_count(template: PackedScene) -> int:
-	var unmod_count = _game_time.total_seconds_elapsed / 15
+	var unmod_count = min(settings.max_enemies_per_tick, _game_time.total_seconds_elapsed / 15)
 	if template == _boss_enemy:
 		return 1
 	if template == _hard_enemy:
@@ -109,8 +111,7 @@ func spawn_enemy(enemy_template: PackedScene) -> Enemy:
 	enemies.append(enemy)
 
 	if enemy_template == _boss_enemy:
-		enemy.tree_exited.connect(func(): boss_defeated.emit())
-		boss_node = enemy
+		enemy.tree_exited.connect(_on_boss_death)
 
 	enemy._target = _player
 
@@ -137,6 +138,14 @@ func get_random_spawn_position() -> Vector2:
 	return camera.get_screen_center_position() + spawn_offset
 
 
+func clear_dead_enemies():
+	var alive: Array[Enemy] = []
+	for enemy in enemies:
+		if enemy != null:
+			alive.append(enemy)
+	enemies = alive
+
+
 func _on_body_entered(body):
 	if body.collision_layer != 1:
 		return
@@ -149,3 +158,8 @@ func _on_body_exited(body):
 	#tes
 	_boss_progress.value = 0
 	set_process(false)
+
+
+func _on_boss_death():
+	_boss_progress.hide()
+	boss_defeated.emit()
