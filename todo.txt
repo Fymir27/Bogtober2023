@@ -1,8 +1,7 @@
+* Pause Menu
 * Upgrades
 	* display on character?
 * different enemy behaviour
 	* Boss behaviour
 * Music
 	* varying intensitiy?
-* BALANCING
-	* chain lightning op?

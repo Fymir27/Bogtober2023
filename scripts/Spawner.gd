@@ -5,7 +5,7 @@ signal player_entered(biome: Spawner)
 
 @export var _active_initially: bool
 @export var _player: Player
-@export var _game_time: GameTime
+@export var ui: UI
 @export var _spawn_delay: float
 @export var boss_spawns_after_seconds: float
 @export var _easy_enemy: PackedScene
@@ -47,10 +47,10 @@ func _process(delta):
 		print(name + " is already full! (" + str(current_enemy_count) + ")")
 		return
 
-	var difficulty = _game_time.difficulty
+	var difficulty = ui.game_time.difficulty
 
 	print(
-		"Spawning %d x %s @ difficulty %f" % [spawn_count, enemy_template.resource_name, difficulty]
+		"Spawning %d x %s @ difficulty %f" % [spawn_count, enemy_template.resource_path, difficulty]
 	)
 
 	for i in spawn_count:
@@ -85,7 +85,7 @@ func pick_enemy_to_spawn() -> PackedScene:
 		boss_spawned = true
 		return _boss_enemy
 
-	var chance_for_hard = min(0.95, _game_time.total_seconds_elapsed / 120)
+	var chance_for_hard = min(0.95, ui.game_time.total_seconds_elapsed / 120)
 	if randf() < chance_for_hard:
 		return _hard_enemy
 
@@ -93,7 +93,7 @@ func pick_enemy_to_spawn() -> PackedScene:
 
 
 func pick_enemy_count(template: PackedScene) -> int:
-	var unmod_count = min(settings.max_enemies_per_tick, _game_time.total_seconds_elapsed / 15)
+	var unmod_count = min(settings.max_enemies_per_tick, ui.game_time.total_seconds_elapsed / 15)
 	if template == _boss_enemy:
 		return 1
 	if template == _hard_enemy:

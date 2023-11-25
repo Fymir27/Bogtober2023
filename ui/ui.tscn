@@ -1,0 +1,228 @@
+[gd_scene load_steps=11 format=3 uid="uid://bquv52o4gosrw"]
+
+[ext_resource type="Script" path="res://scripts/GameTime.gd" id="1_2ouyh"]
+[ext_resource type="Script" path="res://scripts/UI.gd" id="1_hxlga"]
+[ext_resource type="Theme" uid="uid://gfe8yonjytoy" path="res://ui/default_theme.tres" id="2_t3byc"]
+[ext_resource type="PackedScene" uid="uid://js4u21idsck5" path="res://item_frame.tscn" id="4_svklc"]
+[ext_resource type="Texture2D" uid="uid://bbl0rlrjwl4c7" path="res://biomes/lush/PlantItem.png" id="5_hofjt"]
+[ext_resource type="Texture2D" uid="uid://b8e3lgiev3tgb" path="res://biomes/rocky/UrchinItem.png" id="6_0own2"]
+[ext_resource type="AudioStream" uid="uid://blqf23f885cgh" path="res://music/effects/pick_up.wav" id="7_lx4s2"]
+[ext_resource type="Texture2D" uid="uid://deanwtfcrwfrh" path="res://ui/skull2_transparent.png" id="8_dqpab"]
+[ext_resource type="Texture2D" uid="uid://cg1qqf044fqkv" path="res://ui/skull2.png" id="9_4k47h"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xgv0x"]
+bg_color = Color(0.288184, 0.401598, 1, 1)
+
+[node name="UI" type="CanvasLayer" node_paths=PackedStringArray("hp_bar", "xp_bar", "game_time", "boss_progress", "_item_icons", "_game_over", "_lvl_label")]
+script = ExtResource("1_hxlga")
+hp_bar = NodePath("Rect/Bars/HPBar")
+xp_bar = NodePath("Rect/Bars/XPBar")
+game_time = NodePath("Rect/Timers/GameTime")
+boss_progress = NodePath("Rect/Timers/CenterContainer/BossProgress")
+_item_icons = [NodePath("Rect/ItemMargin/Items/chain_lightning/Margin"), NodePath("Rect/ItemMargin/Items/symbiosis/Margin"), NodePath("Rect/ItemMargin/Items/speed/Margin"), NodePath("Rect/ItemMargin/Items/todo/Margin")]
+_game_over = NodePath("Rect/GameOverMargin/GameOver")
+_lvl_label = NodePath("Rect/Bars/HBoxContainer/LevelValue")
+metadata/_edit_use_anchors_ = true
+
+[node name="Rect" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_t3byc")
+
+[node name="GameOverMargin" type="MarginContainer" parent="Rect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 200
+theme_override_constants/margin_top = 200
+theme_override_constants/margin_right = 200
+theme_override_constants/margin_bottom = 200
+
+[node name="GameOver" type="Panel" parent="Rect/GameOverMargin"]
+layout_mode = 2
+
+[node name="Text" type="Label" parent="Rect/GameOverMargin/GameOver"]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -263.0
+offset_bottom = -123.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 100
+text = "Game Over"
+horizontal_alignment = 1
+vertical_alignment = 1
+uppercase = true
+
+[node name="Quit" type="Button" parent="Rect/GameOverMargin/GameOver"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 113.0
+offset_top = 440.0
+offset_right = -1096.0
+offset_bottom = -79.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Quit
+"
+
+[node name="Retry" type="Button" parent="Rect/GameOverMargin/GameOver"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 1079.0
+offset_top = 440.0
+offset_right = -132.0
+offset_bottom = -80.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Retry"
+
+[node name="ItemMargin" type="MarginContainer" parent="Rect"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 143.0
+grow_horizontal = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+
+[node name="Items" type="HBoxContainer" parent="Rect/ItemMargin"]
+layout_mode = 2
+theme_override_constants/separation = 1
+
+[node name="chain_lightning" parent="Rect/ItemMargin/Items" instance=ExtResource("4_svklc")]
+layout_mode = 2
+
+[node name="symbiosis" parent="Rect/ItemMargin/Items" instance=ExtResource("4_svklc")]
+layout_mode = 2
+
+[node name="Icon" parent="Rect/ItemMargin/Items/symbiosis/Margin" index="0"]
+texture = ExtResource("5_hofjt")
+
+[node name="Label" parent="Rect/ItemMargin/Items/symbiosis/Margin/Icon" index="0"]
+text = "HP/s"
+
+[node name="speed" parent="Rect/ItemMargin/Items" instance=ExtResource("4_svklc")]
+layout_mode = 2
+
+[node name="Icon" parent="Rect/ItemMargin/Items/speed/Margin" index="0"]
+texture = ExtResource("6_0own2")
+
+[node name="Label" parent="Rect/ItemMargin/Items/speed/Margin/Icon" index="0"]
+text = "+Speed"
+
+[node name="todo" parent="Rect/ItemMargin/Items" instance=ExtResource("4_svklc")]
+layout_mode = 2
+
+[node name="Bars" type="VBoxContainer" parent="Rect"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -372.0
+offset_right = 372.0
+offset_bottom = 170.0
+grow_horizontal = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Rect/Bars"]
+layout_mode = 2
+
+[node name="Name" type="Label" parent="Rect/Bars/HBoxContainer"]
+layout_mode = 2
+text = "Phinoon"
+
+[node name="Level" type="Label" parent="Rect/Bars/HBoxContainer"]
+layout_mode = 2
+text = "Level
+"
+
+[node name="LevelValue" type="Label" parent="Rect/Bars/HBoxContainer"]
+layout_mode = 2
+text = "69
+"
+
+[node name="HPBar" type="ProgressBar" parent="Rect/Bars"]
+layout_mode = 2
+max_value = 25.0
+value = 25.0
+
+[node name="Label" type="Label" parent="Rect/Bars/HPBar"]
+z_index = 100
+z_as_relative = false
+layout_mode = 0
+offset_left = 5.0
+offset_top = -1.0
+offset_right = 203.0
+offset_bottom = 74.0
+text = "HP
+"
+uppercase = true
+
+[node name="XPBar" type="ProgressBar" parent="Rect/Bars"]
+layout_mode = 2
+theme_override_styles/fill = SubResource("StyleBoxFlat_xgv0x")
+max_value = 10.0
+allow_greater = true
+
+[node name="Label" type="Label" parent="Rect/Bars/XPBar"]
+z_index = 100
+z_as_relative = false
+layout_mode = 0
+offset_left = 5.0
+offset_top = -1.0
+offset_right = 203.0
+offset_bottom = 74.0
+text = "XP
+"
+uppercase = true
+
+[node name="Timers" type="HBoxContainer" parent="Rect"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -339.0
+offset_bottom = 170.0
+grow_horizontal = 0
+
+[node name="CenterContainer" type="CenterContainer" parent="Rect/Timers"]
+layout_mode = 2
+
+[node name="BossProgress" type="TextureProgressBar" parent="Rect/Timers/CenterContainer"]
+texture_filter = 1
+layout_mode = 2
+fill_mode = 5
+texture_under = ExtResource("8_dqpab")
+texture_progress = ExtResource("9_4k47h")
+
+[node name="GameTime" type="Label" parent="Rect/Timers"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 100
+text = "59:59
+"
+script = ExtResource("1_2ouyh")
+
+[node name="PickUpSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_lx4s2")
+
+[connection signal="pressed" from="Rect/GameOverMargin/GameOver/Quit" to="." method="quit"]
+[connection signal="pressed" from="Rect/GameOverMargin/GameOver/Retry" to="." method="restart"]
+
+[editable path="Rect/ItemMargin/Items/chain_lightning"]
+[editable path="Rect/ItemMargin/Items/symbiosis"]
+[editable path="Rect/ItemMargin/Items/speed"]
+[editable path="Rect/ItemMargin/Items/todo"]

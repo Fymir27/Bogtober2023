@@ -1,26 +1,17 @@
-[gd_scene load_steps=72 format=3 uid="uid://cbdeftm7hb34y"]
+[gd_scene load_steps=59 format=3 uid="uid://cbdeftm7hb34y"]
 
 [ext_resource type="Script" path="res://scripts/GameState.gd" id="1_t4v82"]
 [ext_resource type="Texture2D" uid="uid://egksrxfe65eo" path="res://map.png" id="2_ynyvf"]
-[ext_resource type="Script" path="res://scripts/GameTime.gd" id="4_0k0ri"]
-[ext_resource type="Texture2D" uid="uid://c1tirdaed2ul2" path="res://item_frame.png" id="5_5u7tj"]
-[ext_resource type="Script" path="res://scripts/Items.gd" id="5_87041"]
-[ext_resource type="Texture2D" uid="uid://dbirml0mjpsox" path="res://biomes/sparky/SparkItem.png" id="6_81a8v"]
+[ext_resource type="PackedScene" uid="uid://bquv52o4gosrw" path="res://ui/ui.tscn" id="3_87rnx"]
 [ext_resource type="Script" path="res://scripts/Player.gd" id="6_tc2es"]
 [ext_resource type="Texture2D" uid="uid://dpcx5nipciom0" path="res://player/PhinoonSmol.png" id="7_5k478"]
-[ext_resource type="Script" path="res://scripts/Camera.gd" id="8_7nwj7"]
-[ext_resource type="Texture2D" uid="uid://bbl0rlrjwl4c7" path="res://biomes/lush/PlantItem.png" id="8_d2mug"]
-[ext_resource type="Texture2D" uid="uid://b8e3lgiev3tgb" path="res://biomes/rocky/UrchinItem.png" id="9_7dvby"]
 [ext_resource type="Script" path="res://scripts/Weapon.gd" id="9_o67k4"]
-[ext_resource type="Texture2D" uid="uid://deanwtfcrwfrh" path="res://ui/skull2_transparent.png" id="10_38u5l"]
 [ext_resource type="Texture2D" uid="uid://caq2xtnmvc4cg" path="res://player/SpearSmol.png" id="10_s56v3"]
 [ext_resource type="Texture2D" uid="uid://rh4spei8sj05" path="res://player/Smear.png" id="11_0q3wb"]
 [ext_resource type="PhysicsMaterial" uid="uid://u7deb21dxv6f" path="res://player_physics_material.tres" id="11_63vi1"]
-[ext_resource type="Texture2D" uid="uid://cg1qqf044fqkv" path="res://ui/skull2.png" id="11_snup6"]
 [ext_resource type="AudioStream" uid="uid://rn56v31os2pn" path="res://music/effects/level_up.wav" id="12_i22si"]
 [ext_resource type="Script" path="res://scripts/Spawner.gd" id="12_yy7m0"]
 [ext_resource type="PackedScene" uid="uid://dmy3nmj6kyst2" path="res://biomes/lush/enemies/e_shroomba.tscn" id="13_h7kcm"]
-[ext_resource type="AudioStream" uid="uid://blqf23f885cgh" path="res://music/effects/pick_up.wav" id="13_tw66y"]
 [ext_resource type="PackedScene" uid="uid://bajtyj4f4sh4q" path="res://biomes/lush/enemies/e_baum.tscn" id="14_n51tq"]
 [ext_resource type="PackedScene" uid="uid://cya3kfckd314d" path="res://biomes/lush/enemies/e_corpsy.tscn" id="15_cjkdu"]
 [ext_resource type="PackedScene" uid="uid://cyug8tcg6hn6c" path="res://biomes/lush/obstacles/big.tscn" id="16_ueqgk"]
@@ -48,23 +39,6 @@
 [ext_resource type="Script" path="res://scripts/Lightning.gd" id="38_38805"]
 [ext_resource type="Texture2D" uid="uid://fusup5dfalf8" path="res://fence.png" id="43_ceau8"]
 [ext_resource type="PackedScene" uid="uid://bomskyecynw86" path="res://biomes/rocky/obstacles/hole.tscn" id="44_6tk8r"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vhali"]
-bg_color = Color(0.254902, 0.4, 0.203922, 1)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tm56y"]
-bg_color = Color(0.784314, 0, 0.227451, 1)
-
-[sub_resource type="Theme" id="Theme_wdh6d"]
-Button/font_sizes/font_size = 42
-HBoxContainer/constants/separation = 20
-Label/font_sizes/font_size = 42
-Panel/styles/panel = SubResource("StyleBoxFlat_vhali")
-ProgressBar/font_sizes/font_size = 42
-ProgressBar/styles/fill = SubResource("StyleBoxFlat_tm56y")
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xgv0x"]
-bg_color = Color(0.288184, 0.401598, 1, 1)
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_xafwk"]
 radius = 23.0
@@ -195,275 +169,21 @@ size = Vector2(5608, 4273)
 [node name="Root" type="Node2D"]
 y_sort_enabled = true
 
-[node name="GameState" type="Node" parent="." node_paths=PackedStringArray("_game_over_panel", "_game_time", "_boss_progress")]
+[node name="GameState" type="Node" parent="." node_paths=PackedStringArray("ui")]
 script = ExtResource("1_t4v82")
-_game_over_panel = NodePath("../UI/GameOver")
-_game_time = NodePath("../UI/GameTime")
-_boss_progress = NodePath("../UI/BossProgress")
+ui = NodePath("../UI")
+
+[node name="UI" parent="." node_paths=PackedStringArray("_player", "_symbiosis_timer") instance=ExtResource("3_87rnx")]
+layer = 99
+_player = NodePath("../Player")
+_symbiosis_timer = NodePath("../Player/SymbiosisTimer")
 
 [node name="Background" type="Sprite2D" parent="."]
 z_index = -100
 z_as_relative = false
 texture = ExtResource("2_ynyvf")
 
-[node name="UI" type="Control" parent="."]
-z_index = 100
-z_as_relative = false
-layout_mode = 3
-anchors_preset = 0
-offset_left = -7367.0
-offset_top = -29.0
-offset_right = -7327.0
-offset_bottom = 11.0
-theme = SubResource("Theme_wdh6d")
-
-[node name="Bars" type="VBoxContainer" parent="UI"]
-layout_mode = 2
-offset_left = -500.0
-offset_top = -871.0
-offset_right = 500.0
-offset_bottom = -671.0
-grow_horizontal = 2
-
-[node name="HBoxContainer" type="HBoxContainer" parent="UI/Bars"]
-layout_mode = 2
-theme = SubResource("Theme_wdh6d")
-
-[node name="Name" type="Label" parent="UI/Bars/HBoxContainer"]
-layout_mode = 2
-text = "Phinoon"
-
-[node name="Level" type="Label" parent="UI/Bars/HBoxContainer"]
-layout_mode = 2
-text = "Level
-"
-
-[node name="LevelValue" type="Label" parent="UI/Bars/HBoxContainer"]
-layout_mode = 2
-text = "69
-"
-
-[node name="HPBar" type="ProgressBar" parent="UI/Bars"]
-layout_mode = 2
-theme = SubResource("Theme_wdh6d")
-max_value = 25.0
-value = 25.0
-
-[node name="Label" type="Label" parent="UI/Bars/HPBar"]
-z_index = 100
-z_as_relative = false
-layout_mode = 0
-offset_left = 5.0
-offset_top = -1.0
-offset_right = 203.0
-offset_bottom = 74.0
-theme = SubResource("Theme_wdh6d")
-text = "HP
-"
-uppercase = true
-
-[node name="XPBar" type="ProgressBar" parent="UI/Bars"]
-layout_mode = 2
-theme = SubResource("Theme_wdh6d")
-theme_override_styles/fill = SubResource("StyleBoxFlat_xgv0x")
-max_value = 10.0
-allow_greater = true
-
-[node name="Label" type="Label" parent="UI/Bars/XPBar"]
-z_index = 100
-z_as_relative = false
-layout_mode = 0
-offset_left = 5.0
-offset_top = -1.0
-offset_right = 203.0
-offset_bottom = 74.0
-theme = SubResource("Theme_wdh6d")
-text = "XP
-"
-uppercase = true
-
-[node name="GameOver" type="Panel" parent="UI"]
-visible = false
-z_index = 1
-layout_mode = 0
-offset_left = -860.0
-offset_top = -427.0
-offset_right = 864.0
-offset_bottom = 467.0
-theme = SubResource("Theme_wdh6d")
-
-[node name="Text" type="Label" parent="UI/GameOver"]
-z_index = 1
-layout_mode = 0
-offset_left = 3.0
-offset_top = 54.0
-offset_right = 1723.0
-offset_bottom = 381.0
-theme_override_font_sizes/font_size = 100
-text = "Game Over"
-horizontal_alignment = 1
-vertical_alignment = 1
-uppercase = true
-
-[node name="Quit" type="Button" parent="UI/GameOver"]
-z_index = 1
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 199.0
-offset_top = 631.0
-offset_right = -1119.0
-offset_bottom = -88.0
-grow_horizontal = 2
-grow_vertical = 2
-theme = SubResource("Theme_wdh6d")
-text = "Quit
-"
-
-[node name="Retry" type="Button" parent="UI/GameOver"]
-z_index = 1
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 1055.0
-offset_top = 633.0
-offset_right = -263.0
-offset_bottom = -88.0
-grow_horizontal = 2
-grow_vertical = 2
-theme = SubResource("Theme_wdh6d")
-text = "Retry"
-
-[node name="GameTime" type="Label" parent="UI"]
-layout_mode = 0
-offset_left = 1238.0
-offset_top = -803.0
-offset_right = 1362.0
-offset_bottom = -742.0
-theme = SubResource("Theme_wdh6d")
-theme_override_font_sizes/font_size = 100
-text = "59:59
-"
-script = ExtResource("4_0k0ri")
-
-[node name="Items" type="HBoxContainer" parent="UI" node_paths=PackedStringArray("player", "symbiosis_timer", "icons")]
-layout_mode = 1
-offset_left = -1559.0
-offset_top = -850.0
-offset_right = -699.0
-offset_bottom = -650.0
-script = ExtResource("5_87041")
-player = NodePath("../../Player")
-symbiosis_timer = NodePath("../../Player/SymbiosisTimer")
-icons = [NodePath("TextureRect/chain_lightning"), NodePath("TextureRect2/symbiosis"), NodePath("TextureRect3/speed"), NodePath("TextureRect4/tbd")]
-
-[node name="TextureRect" type="TextureRect" parent="UI/Items"]
-layout_mode = 2
-texture = ExtResource("5_5u7tj")
-expand_mode = 2
-
-[node name="chain_lightning" type="TextureRect" parent="UI/Items/TextureRect"]
-visible = false
-layout_mode = 0
-offset_left = 7.0
-offset_top = -3.0
-offset_right = 205.0
-offset_bottom = 203.0
-texture = ExtResource("6_81a8v")
-stretch_mode = 2
-
-[node name="Label" type="Label" parent="UI/Items/TextureRect/chain_lightning"]
-layout_mode = 0
-offset_left = -1.0
-offset_top = 138.0
-offset_right = 184.0
-offset_bottom = 196.0
-text = "Lightning"
-
-[node name="TextureRect2" type="TextureRect" parent="UI/Items"]
-layout_mode = 2
-texture = ExtResource("5_5u7tj")
-expand_mode = 2
-
-[node name="symbiosis" type="TextureRect" parent="UI/Items/TextureRect2"]
-visible = false
-layout_mode = 0
-offset_left = 7.0
-offset_top = 6.0
-offset_right = 205.0
-offset_bottom = 212.0
-texture = ExtResource("8_d2mug")
-stretch_mode = 2
-
-[node name="Label" type="Label" parent="UI/Items/TextureRect2/symbiosis"]
-layout_mode = 0
-offset_left = -3.0
-offset_top = 131.0
-offset_right = 188.0
-offset_bottom = 192.0
-text = "HP/s
-"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="TextureRect3" type="TextureRect" parent="UI/Items"]
-layout_mode = 2
-texture = ExtResource("5_5u7tj")
-expand_mode = 2
-
-[node name="speed" type="TextureRect" parent="UI/Items/TextureRect3"]
-visible = false
-layout_mode = 0
-offset_left = 11.0
-offset_top = 10.0
-offset_right = 209.0
-offset_bottom = 216.0
-texture = ExtResource("9_7dvby")
-stretch_mode = 2
-
-[node name="Label" type="Label" parent="UI/Items/TextureRect3/speed"]
-layout_mode = 0
-offset_left = -7.0
-offset_top = 127.0
-offset_right = 184.0
-offset_bottom = 188.0
-text = "+Speed"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="TextureRect4" type="TextureRect" parent="UI/Items"]
-layout_mode = 2
-texture = ExtResource("5_5u7tj")
-expand_mode = 2
-
-[node name="tbd" type="TextureRect" parent="UI/Items/TextureRect4"]
-visible = false
-layout_mode = 0
-offset_left = 7.0
-offset_top = -3.0
-offset_right = 205.0
-offset_bottom = 203.0
-texture = ExtResource("6_81a8v")
-stretch_mode = 2
-
-[node name="PickUpSound" type="AudioStreamPlayer" parent="UI/Items"]
-stream = ExtResource("13_tw66y")
-
-[node name="BossProgress" type="TextureProgressBar" parent="UI"]
-texture_filter = 1
-layout_mode = 0
-offset_left = 1089.0
-offset_top = -797.0
-offset_right = 1153.0
-offset_bottom = -733.0
-scale = Vector2(2, 2)
-fill_mode = 5
-texture_under = ExtResource("10_38u5l")
-texture_progress = ExtResource("11_snup6")
-
-[node name="Player" type="RigidBody2D" parent="." node_paths=PackedStringArray("_hp_bar", "_xp_bar", "_lvl_label", "_sprite")]
+[node name="Player" type="RigidBody2D" parent="." node_paths=PackedStringArray("_ui", "_sprite")]
 z_as_relative = false
 y_sort_enabled = true
 position = Vector2(-1119, -1500)
@@ -474,10 +194,8 @@ gravity_scale = 0.0
 lock_rotation = true
 linear_damp = 5.0
 script = ExtResource("6_tc2es")
+_ui = NodePath("../UI")
 _speed = 2000.0
-_hp_bar = NodePath("../UI/Bars/HPBar")
-_xp_bar = NodePath("../UI/Bars/XPBar")
-_lvl_label = NodePath("../UI/Bars/HBoxContainer/LevelValue")
 _sprite = NodePath("PlayerSprite")
 _hit_delay = 2.0
 
@@ -486,7 +204,7 @@ y_sort_enabled = true
 texture = ExtResource("7_5k478")
 region_rect = Rect2(1, 1, 100, 100)
 
-[node name="Camera2D" type="Camera2D" parent="Player" node_paths=PackedStringArray("ui")]
+[node name="Camera2D" type="Camera2D" parent="Player"]
 zoom = Vector2(0.6, 0.6)
 limit_left = -5000
 limit_top = -5000
@@ -495,8 +213,6 @@ limit_bottom = 5000
 limit_smoothed = true
 position_smoothing_speed = 10.0
 editor_draw_limits = true
-script = ExtResource("8_7nwj7")
-ui = NodePath("../../UI")
 
 [node name="PlayerShape" type="CollisionShape2D" parent="Player"]
 position = Vector2(-4, 26.63)
@@ -569,12 +285,12 @@ stream = ExtResource("12_i22si")
 [node name="SymbiosisTimer" type="Timer" parent="Player"]
 wait_time = 5.0
 
-[node name="BiomeLush" type="Node2D" parent="." node_paths=PackedStringArray("_player", "_game_time")]
+[node name="BiomeLush" type="Node2D" parent="." node_paths=PackedStringArray("_player", "ui")]
 y_sort_enabled = true
 position = Vector2(-2764, -2046)
 script = ExtResource("12_yy7m0")
 _player = NodePath("../Player")
-_game_time = NodePath("../UI/GameTime")
+ui = NodePath("../UI")
 _spawn_delay = 5.0
 boss_spawns_after_seconds = 60.0
 _easy_enemy = ExtResource("13_h7kcm")
@@ -609,13 +325,13 @@ position = Vector2(306, -1757)
 [node name="smol4" parent="BiomeLush" instance=ExtResource("31_ybpmv")]
 position = Vector2(296, 302)
 
-[node name="BiomeRocky" type="Node2D" parent="." node_paths=PackedStringArray("_player", "_game_time")]
+[node name="BiomeRocky" type="Node2D" parent="." node_paths=PackedStringArray("_player", "ui")]
 z_as_relative = false
 y_sort_enabled = true
 position = Vector2(2699, -2033)
 script = ExtResource("12_yy7m0")
 _player = NodePath("../Player")
-_game_time = NodePath("../UI/GameTime")
+ui = NodePath("../UI")
 _spawn_delay = 5.0
 boss_spawns_after_seconds = 60.0
 _easy_enemy = ExtResource("27_6kb45")
@@ -649,12 +365,12 @@ position = Vector2(-1296, -175)
 [node name="stone3" parent="BiomeRocky" instance=ExtResource("32_qdtte")]
 position = Vector2(698, 1158)
 
-[node name="BiomeSparky" type="Node2D" parent="." node_paths=PackedStringArray("_player", "_game_time")]
+[node name="BiomeSparky" type="Node2D" parent="." node_paths=PackedStringArray("_player", "ui")]
 y_sort_enabled = true
 position = Vector2(-2833, 2041)
 script = ExtResource("12_yy7m0")
 _player = NodePath("../Player")
-_game_time = NodePath("../UI/GameTime")
+ui = NodePath("../UI")
 _spawn_delay = 5.0
 boss_spawns_after_seconds = 60.0
 _easy_enemy = ExtResource("19_7pygj")
@@ -691,12 +407,12 @@ position = Vector2(2142, -1572)
 [node name="smol3" parent="BiomeSparky" instance=ExtResource("26_4l3qb")]
 position = Vector2(-912, 1089)
 
-[node name="BiomeMud" type="Node2D" parent="." node_paths=PackedStringArray("_player", "_game_time")]
+[node name="BiomeMud" type="Node2D" parent="." node_paths=PackedStringArray("_player", "ui")]
 y_sort_enabled = true
 position = Vector2(2699, 2147)
 script = ExtResource("12_yy7m0")
 _player = NodePath("../Player")
-_game_time = NodePath("../UI/GameTime")
+ui = NodePath("../UI")
 _spawn_delay = 5.0
 boss_spawns_after_seconds = 60.0
 _easy_enemy = ExtResource("13_h7kcm")
@@ -762,8 +478,9 @@ texture = ExtResource("43_ceau8")
 position = Vector2(154, 566.5)
 shape = SubResource("RectangleShape2D_mpfkh")
 
-[connection signal="pressed" from="UI/GameOver/Quit" to="GameState" method="quit"]
-[connection signal="pressed" from="UI/GameOver/Retry" to="GameState" method="retry"]
+[connection signal="game_over" from="GameState" to="UI" method="show_game_over_modal"]
+[connection signal="quit_requested" from="UI" to="GameState" method="quit"]
+[connection signal="restart_requested" from="UI" to="GameState" method="retry"]
 [connection signal="player_died" from="Player" to="GameState" method="_on_player_died"]
 [connection signal="player_died" from="Player" to="BiomeLush" method="disable_all_enemies"]
 [connection signal="player_died" from="Player" to="BiomeRocky" method="disable_all_enemies"]
@@ -772,15 +489,15 @@ shape = SubResource("RectangleShape2D_mpfkh")
 [connection signal="body_entered" from="Player/Weapon/WeaponSprite/WeaponHitbox" to="Player/Weapon" method="_on_enemy_hit"]
 [connection signal="timeout" from="Player/SymbiosisTimer" to="Player" method="heal" binds= [1.0]]
 [connection signal="boss_defeated" from="BiomeLush" to="GameState" method="boss_defeated"]
-[connection signal="boss_defeated" from="BiomeLush" to="UI/Items" method="unlock_symbiosis"]
+[connection signal="boss_defeated" from="BiomeLush" to="UI" method="unlock_symbiosis"]
 [connection signal="player_entered" from="BiomeLush" to="GameState" method="player_entered_biome"]
 [connection signal="body_entered" from="BiomeLush/Area" to="BiomeLush" method="_on_body_entered"]
 [connection signal="boss_defeated" from="BiomeRocky" to="GameState" method="boss_defeated"]
-[connection signal="boss_defeated" from="BiomeRocky" to="UI/Items" method="unlock_speed"]
+[connection signal="boss_defeated" from="BiomeRocky" to="UI" method="unlock_speed"]
 [connection signal="player_entered" from="BiomeRocky" to="GameState" method="player_entered_biome"]
 [connection signal="body_entered" from="BiomeRocky/Area" to="BiomeRocky" method="_on_body_entered"]
 [connection signal="boss_defeated" from="BiomeSparky" to="GameState" method="boss_defeated"]
-[connection signal="boss_defeated" from="BiomeSparky" to="UI/Items" method="unlock_chain_lightning"]
+[connection signal="boss_defeated" from="BiomeSparky" to="UI" method="unlock_chain_lightning"]
 [connection signal="player_entered" from="BiomeSparky" to="GameState" method="player_entered_biome"]
 [connection signal="body_entered" from="BiomeSparky/Area" to="BiomeSparky" method="_on_body_entered"]
 [connection signal="boss_defeated" from="BiomeMud" to="GameState" method="boss_defeated"]

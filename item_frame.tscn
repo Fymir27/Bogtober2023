@@ -1,0 +1,45 @@
+[gd_scene load_steps=3 format=3 uid="uid://js4u21idsck5"]
+
+[ext_resource type="Texture2D" uid="uid://c1tirdaed2ul2" path="res://item_frame.png" id="1_ly451"]
+[ext_resource type="Texture2D" uid="uid://dbirml0mjpsox" path="res://biomes/sparky/SparkItem.png" id="2_ibi8l"]
+
+[node name="Frame" type="TextureRect"]
+anchors_preset = -1
+anchor_right = 0.068
+anchor_bottom = 0.12
+offset_right = -0.560013
+offset_bottom = 0.399994
+texture = ExtResource("1_ly451")
+expand_mode = 2
+stretch_mode = 5
+
+[node name="Margin" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="Icon" type="TextureRect" parent="Margin"]
+layout_mode = 2
+texture = ExtResource("2_ibi8l")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Label" type="Label" parent="Margin/Icon"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -26.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "Lightning"
+horizontal_alignment = 1
+vertical_alignment = 1

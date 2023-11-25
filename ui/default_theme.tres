@@ -9,7 +9,7 @@ bg_color = Color(0.784314, 0, 0.227451, 1)
 [resource]
 Button/font_sizes/font_size = 42
 HBoxContainer/constants/separation = 20
-Label/font_sizes/font_size = 42
+Label/font_sizes/font_size = 30
 Panel/styles/panel = SubResource("StyleBoxFlat_vhali")
-ProgressBar/font_sizes/font_size = 42
+ProgressBar/font_sizes/font_size = 30
 ProgressBar/styles/fill = SubResource("StyleBoxFlat_tm56y")
