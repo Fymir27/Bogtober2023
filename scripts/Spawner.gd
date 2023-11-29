@@ -67,6 +67,15 @@ func disable_all_enemies():
 		enemy.set_physics_process(false)
 
 
+func enable_all_enemies():
+	set_process(true)
+	for enemy in enemies:
+		if enemy == null:
+			continue
+		enemy.set_process(true)
+		enemy.set_physics_process(true)
+
+
 func kill_all_enemies():
 	for enemy in enemies:
 		if enemy == null:

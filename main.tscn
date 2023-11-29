@@ -169,9 +169,11 @@ size = Vector2(5608, 4273)
 [node name="Root" type="Node2D"]
 y_sort_enabled = true
 
-[node name="GameState" type="Node" parent="." node_paths=PackedStringArray("ui")]
+[node name="GameState" type="Node" parent="." node_paths=PackedStringArray("ui", "player", "biomes")]
 script = ExtResource("1_t4v82")
 ui = NodePath("../UI")
+player = NodePath("../Player")
+biomes = [NodePath("../BiomeLush"), NodePath("../BiomeRocky"), NodePath("../BiomeSparky"), NodePath("../BiomeMud")]
 
 [node name="UI" parent="." node_paths=PackedStringArray("_player", "_symbiosis_timer") instance=ExtResource("3_87rnx")]
 layer = 99
@@ -481,11 +483,10 @@ shape = SubResource("RectangleShape2D_mpfkh")
 [connection signal="game_over" from="GameState" to="UI" method="show_game_over_modal"]
 [connection signal="quit_requested" from="UI" to="GameState" method="quit"]
 [connection signal="restart_requested" from="UI" to="GameState" method="retry"]
+[connection signal="resume_requested" from="UI" to="GameState" method="resume"]
+[connection signal="pause_requested" from="Player" to="GameState" method="pause"]
+[connection signal="pause_requested" from="Player" to="UI" method="pause"]
 [connection signal="player_died" from="Player" to="GameState" method="_on_player_died"]
-[connection signal="player_died" from="Player" to="BiomeLush" method="disable_all_enemies"]
-[connection signal="player_died" from="Player" to="BiomeRocky" method="disable_all_enemies"]
-[connection signal="player_died" from="Player" to="BiomeSparky" method="disable_all_enemies"]
-[connection signal="player_died" from="Player" to="BiomeMud" method="disable_all_enemies"]
 [connection signal="body_entered" from="Player/Weapon/WeaponSprite/WeaponHitbox" to="Player/Weapon" method="_on_enemy_hit"]
 [connection signal="timeout" from="Player/SymbiosisTimer" to="Player" method="heal" binds= [1.0]]
 [connection signal="boss_defeated" from="BiomeLush" to="GameState" method="boss_defeated"]

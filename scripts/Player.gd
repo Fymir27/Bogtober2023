@@ -1,6 +1,7 @@
 class_name Player extends RigidBody2D
 
 signal player_died
+signal pause_requested
 
 @export var _ui: UI
 @export var _speed: float
@@ -27,6 +28,11 @@ func _process(delta):
 func _physics_process(_delta):
 	if hit_timer <= 0:
 		hit_closest_enemy()
+
+
+func _input(event):
+	if event.is_action_pressed("ui_cancel"):
+		pause_requested.emit()
 
 
 func handle_input():

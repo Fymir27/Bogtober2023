@@ -1,0 +1,83 @@
+[gd_scene load_steps=4 format=3 uid="uid://8daxsarfwe5s"]
+
+[ext_resource type="Script" path="res://ui/pause_modal.gd" id="1_hbwbt"]
+[ext_resource type="Theme" uid="uid://gfe8yonjytoy" path="res://ui/default_theme.tres" id="1_vj4uw"]
+[ext_resource type="Script" path="res://scripts/Volume.gd" id="3_h54ie"]
+
+[node name="PauseModal" type="Panel"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_vj4uw")
+script = ExtResource("1_hbwbt")
+
+[node name="OuterMargin" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 50
+theme_override_constants/margin_top = 50
+theme_override_constants/margin_right = 50
+theme_override_constants/margin_bottom = 50
+
+[node name="VBoxContainer" type="VBoxContainer" parent="OuterMargin"]
+layout_mode = 2
+alignment = 1
+
+[node name="TitleMargin" type="CenterContainer" parent="OuterMargin/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 4
+
+[node name="Label" type="Label" parent="OuterMargin/VBoxContainer/TitleMargin"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 150
+text = "Paused"
+
+[node name="MarginContainer" type="MarginContainer" parent="OuterMargin/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 300
+theme_override_constants/margin_right = 300
+theme_override_constants/margin_bottom = 100
+
+[node name="VBoxContainer" type="VBoxContainer" parent="OuterMargin/VBoxContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="CenterContainer" type="CenterContainer" parent="OuterMargin/VBoxContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="OuterMargin/VBoxContainer/MarginContainer/VBoxContainer/CenterContainer"]
+layout_mode = 2
+text = "Volume"
+
+[node name="HSlider" type="HSlider" parent="OuterMargin/VBoxContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 1
+max_value = 1.0
+step = 0.001
+script = ExtResource("3_h54ie")
+
+[node name="Buttons" type="HBoxContainer" parent="OuterMargin/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 50
+
+[node name="Quit" type="Button" parent="OuterMargin/VBoxContainer/Buttons"]
+custom_minimum_size = Vector2(0, 150)
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Quit
+"
+
+[node name="Resume" type="Button" parent="OuterMargin/VBoxContainer/Buttons"]
+custom_minimum_size = Vector2(0, 150)
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Resume
+"
+
+[connection signal="pressed" from="OuterMargin/VBoxContainer/Buttons/Quit" to="." method="_on_quit_pressed"]
+[connection signal="pressed" from="OuterMargin/VBoxContainer/Buttons/Resume" to="." method="_on_resume_pressed"]

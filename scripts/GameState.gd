@@ -4,6 +4,8 @@ signal restart_scene
 signal game_over
 
 @export var ui: UI
+@export var player: Player
+@export var biomes: Array[Spawner]
 
 var _active_biome: Spawner
 
@@ -22,8 +24,24 @@ func retry():
 	get_tree().reload_current_scene()
 
 
-func _on_player_died():
+func pause():
+	player.set_process(false)
+	player.set_physics_process(false)
 	ui.game_time.set_process(false)
+	for biome in biomes:
+		biome.disable_all_enemies()
+
+
+func resume():
+	player.set_process(true)
+	player.set_physics_process(true)
+	ui.game_time.set_process(true)
+	for biome in biomes:
+		biome.enable_all_enemies()
+
+
+func _on_player_died():
+	pause()
 	game_over.emit()
 
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://bquv52o4gosrw"]
+[gd_scene load_steps=12 format=3 uid="uid://bquv52o4gosrw"]
 
 [ext_resource type="Script" path="res://scripts/GameTime.gd" id="1_2ouyh"]
 [ext_resource type="Script" path="res://scripts/UI.gd" id="1_hxlga"]
@@ -9,18 +9,20 @@
 [ext_resource type="AudioStream" uid="uid://blqf23f885cgh" path="res://music/effects/pick_up.wav" id="7_lx4s2"]
 [ext_resource type="Texture2D" uid="uid://deanwtfcrwfrh" path="res://ui/skull2_transparent.png" id="8_dqpab"]
 [ext_resource type="Texture2D" uid="uid://cg1qqf044fqkv" path="res://ui/skull2.png" id="9_4k47h"]
+[ext_resource type="PackedScene" uid="uid://8daxsarfwe5s" path="res://ui/pause_modal.tscn" id="9_aax0x"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xgv0x"]
 bg_color = Color(0.288184, 0.401598, 1, 1)
 
-[node name="UI" type="CanvasLayer" node_paths=PackedStringArray("hp_bar", "xp_bar", "game_time", "boss_progress", "_item_icons", "_game_over", "_lvl_label")]
+[node name="UI" type="CanvasLayer" node_paths=PackedStringArray("_game_over", "_pause_dialog", "hp_bar", "xp_bar", "game_time", "boss_progress", "_item_icons", "_lvl_label")]
 script = ExtResource("1_hxlga")
+_game_over = NodePath("Rect/GameOverMargin")
+_pause_dialog = NodePath("Rect/PauseModalMargin")
 hp_bar = NodePath("Rect/Bars/HPBar")
 xp_bar = NodePath("Rect/Bars/XPBar")
 game_time = NodePath("Rect/Timers/GameTime")
 boss_progress = NodePath("Rect/Timers/CenterContainer/BossProgress")
 _item_icons = [NodePath("Rect/ItemMargin/Items/chain_lightning/Margin"), NodePath("Rect/ItemMargin/Items/symbiosis/Margin"), NodePath("Rect/ItemMargin/Items/speed/Margin"), NodePath("Rect/ItemMargin/Items/todo/Margin")]
-_game_over = NodePath("Rect/GameOverMargin/GameOver")
 _lvl_label = NodePath("Rect/Bars/HBoxContainer/LevelValue")
 metadata/_edit_use_anchors_ = true
 
@@ -32,64 +34,6 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("2_t3byc")
-
-[node name="GameOverMargin" type="MarginContainer" parent="Rect"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_constants/margin_left = 200
-theme_override_constants/margin_top = 200
-theme_override_constants/margin_right = 200
-theme_override_constants/margin_bottom = 200
-
-[node name="GameOver" type="Panel" parent="Rect/GameOverMargin"]
-layout_mode = 2
-
-[node name="Text" type="Label" parent="Rect/GameOverMargin/GameOver"]
-layout_mode = 1
-anchors_preset = 14
-anchor_top = 0.5
-anchor_right = 1.0
-anchor_bottom = 0.5
-offset_top = -263.0
-offset_bottom = -123.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_font_sizes/font_size = 100
-text = "Game Over"
-horizontal_alignment = 1
-vertical_alignment = 1
-uppercase = true
-
-[node name="Quit" type="Button" parent="Rect/GameOverMargin/GameOver"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 113.0
-offset_top = 440.0
-offset_right = -1096.0
-offset_bottom = -79.0
-grow_horizontal = 2
-grow_vertical = 2
-text = "Quit
-"
-
-[node name="Retry" type="Button" parent="Rect/GameOverMargin/GameOver"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 1079.0
-offset_top = 440.0
-offset_right = -132.0
-offset_bottom = -80.0
-grow_horizontal = 2
-grow_vertical = 2
-text = "Retry"
 
 [node name="ItemMargin" type="MarginContainer" parent="Rect"]
 layout_mode = 1
@@ -161,8 +105,6 @@ max_value = 25.0
 value = 25.0
 
 [node name="Label" type="Label" parent="Rect/Bars/HPBar"]
-z_index = 100
-z_as_relative = false
 layout_mode = 0
 offset_left = 5.0
 offset_top = -1.0
@@ -179,8 +121,6 @@ max_value = 10.0
 allow_greater = true
 
 [node name="Label" type="Label" parent="Rect/Bars/XPBar"]
-z_index = 100
-z_as_relative = false
 layout_mode = 0
 offset_left = 5.0
 offset_top = -1.0
@@ -216,9 +156,85 @@ text = "59:59
 "
 script = ExtResource("1_2ouyh")
 
+[node name="PauseModalMargin" type="MarginContainer" parent="Rect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 200
+theme_override_constants/margin_top = 200
+theme_override_constants/margin_right = 200
+theme_override_constants/margin_bottom = 200
+
+[node name="PauseModal" parent="Rect/PauseModalMargin" instance=ExtResource("9_aax0x")]
+layout_mode = 2
+
+[node name="GameOverMargin" type="MarginContainer" parent="Rect"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 200
+theme_override_constants/margin_top = 200
+theme_override_constants/margin_right = 200
+theme_override_constants/margin_bottom = 200
+
+[node name="GameOver" type="Panel" parent="Rect/GameOverMargin"]
+layout_mode = 2
+
+[node name="Text" type="Label" parent="Rect/GameOverMargin/GameOver"]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -263.0
+offset_bottom = -123.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 100
+text = "Game Over"
+horizontal_alignment = 1
+vertical_alignment = 1
+uppercase = true
+
+[node name="Quit" type="Button" parent="Rect/GameOverMargin/GameOver"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 113.0
+offset_top = 440.0
+offset_right = -1096.0
+offset_bottom = -79.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Quit
+"
+
+[node name="Retry" type="Button" parent="Rect/GameOverMargin/GameOver"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 1079.0
+offset_top = 440.0
+offset_right = -132.0
+offset_bottom = -80.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Retry"
+
 [node name="PickUpSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("7_lx4s2")
 
+[connection signal="quit_requested" from="Rect/PauseModalMargin/PauseModal" to="." method="quit"]
+[connection signal="resume_requested" from="Rect/PauseModalMargin/PauseModal" to="." method="resume"]
 [connection signal="pressed" from="Rect/GameOverMargin/GameOver/Quit" to="." method="quit"]
 [connection signal="pressed" from="Rect/GameOverMargin/GameOver/Retry" to="." method="restart"]
 

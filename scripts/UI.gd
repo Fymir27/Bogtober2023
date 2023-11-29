@@ -2,21 +2,25 @@ class_name UI extends CanvasLayer
 
 signal quit_requested
 signal restart_requested
+signal resume_requested
+
+@export var _player: Player
+@export var _symbiosis_timer: Timer
+
+@export var _game_over: Control
+@export var _pause_dialog: Control
 
 @export var hp_bar: ProgressBar
 @export var xp_bar: ProgressBar
 @export var game_time: GameTime
 @export var boss_progress: Range
-
-@export var _player: Player
-@export var _symbiosis_timer: Timer
 @export var _item_icons: Array[Control]
-@export var _game_over: Control
 @export var _lvl_label: Label
 
 
 func _ready():
 	_game_over.hide()
+	_pause_dialog.hide()
 	for icon in _item_icons:
 		icon.hide()
 
@@ -28,6 +32,14 @@ func quit():
 func restart():
 	restart_requested.emit()
 
+
+func pause():
+	_pause_dialog.show()
+	
+func resume():
+	_pause_dialog.hide()
+	resume_requested.emit()
+	
 
 func unlock_chain_lightning():
 	_player.chain_lightning_unlocked = true
